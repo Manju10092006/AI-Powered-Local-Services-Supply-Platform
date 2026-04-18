@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FixMate AI — Admin Users</title>
+  <link rel="stylesheet" href="../assets/css/global.css">
+  <link rel="stylesheet" href="../assets/css/cards.css">
+  <link rel="stylesheet" href="../assets/css/admin.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>🔧</text></svg>">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+
+  <style>
+    :root {
+      --bg: #FAFAFA; --surface: #FFFFFF; --surface-frosted: rgba(255, 255, 255, 0.75);
+      --fg: #111827; --fg-muted: #6B7280; --border: #F3F4F6; --border-strong: #E5E7EB;
+      --accent: #5B7AF7; --accent-light: #EFF2FE; --success: #10B981; --warning: #F59E0B; --danger: #EF4444;
+      --font-display: 'Instrument Serif', serif; --font-body: 'Inter', sans-serif;
+      --radius-sm: 8px; --radius-md: 12px; --radius-lg: 20px; --radius-xl: 32px;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.05); --shadow-md: 0 10px 25px -5px rgba(0,0,0,0.02), 0 4px 10px -5px rgba(0,0,0,0.01);
+      --shadow-lg: 0 20px 40px -10px rgba(0,0,0,0.05); --shadow-glow: 0 10px 30px -10px rgba(91,122,247,0.3);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-body); background-color: var(--bg); color: var(--fg); line-height: 1.5; -webkit-font-smoothing: antialiased; background-image: radial-gradient(circle at 100% 0%, rgba(91,122,247,0.04) 0%, transparent 25%), radial-gradient(circle at 0% 100%, rgba(91,122,247,0.03) 0%, transparent 20%); background-attachment: fixed; }
+    .bg-shape { position: fixed; top: -20vh; right: -10vw; width: 60vw; height: 60vw; border-radius: 50%; background: radial-gradient(circle, rgba(91,122,247,0.08) 0%, transparent 60%); pointer-events: none; z-index: -1; filter: blur(40px); }
+    .app-container { display: flex; min-height: 100vh; max-width: 1600px; margin: 0 auto; }
+    .sidebar { width: 260px; background: var(--surface); border-right: 1px solid var(--border); display: flex; flex-direction: column; position: sticky; top: 0; height: 100vh; z-index: 50; }
+    .brand { height: 80px; display: flex; align-items: center; padding: 0 24px; font-family: var(--font-display); font-size: 28px; font-style: italic; color: var(--fg); letter-spacing: -0.5px; border-bottom: 1px solid var(--border); text-decoration: none; }
+    .nav-menu { padding: 24px 12px; flex: 1; display: flex; flex-direction: column; gap: 4px; }
+    .nav-label { font-size: 11px; font-weight: 700; color: var(--fg-muted); text-transform: uppercase; letter-spacing: 0.1em; padding: 12px 16px 4px; margin-top: 8px; }
+    .nav-item { display: flex; align-items: center; gap: 12px; padding: 10px 16px; border-radius: var(--radius-sm); color: var(--fg-muted); text-decoration: none; font-weight: 500; font-size: 14px; transition: all 0.2s ease; }
+    .nav-item svg { width: 18px; height: 18px; opacity: 0.7; }
+    .nav-item:hover { background: var(--bg); color: var(--fg); }
+    .nav-item.active { background: var(--accent-light); color: var(--accent); }
+    .nav-item.active svg { opacity: 1; stroke: var(--accent); }
+    .sidebar-footer { padding: 24px; border-top: 1px solid var(--border); }
+    .user-profile { display: flex; align-items: center; gap: 12px; cursor: pointer; }
+    .avatar { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), #9b87f5); color: white; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 14px; box-shadow: 0 4px 12px rgba(91,122,247,0.2); }
+    .user-info .name { font-weight: 600; font-size: 14px; color: var(--fg); }
+    .user-info .plan { font-size: 12px; color: var(--accent); font-weight: 500; display:flex; align-items:center; gap:4px; }
+    .main-content { flex: 1; padding: 40px clamp(20px, 4vw, 48px); overflow-y: auto; }
+    @media (max-width: 768px) { .sidebar { display: none; } }
+  </style>
+
+</head>
+<body>
+<div class="bg-shape"></div>
+<div class="app-container">
+  
+  <aside class="sidebar">
+    <a href="../index.html" class="brand">FixMate<span style="font-family: var(--font-body); font-size:12px; font-style:normal; margin-left:8px; font-weight:600; color:#EF4444; background:rgba(239,68,68,0.1); padding:2px 8px; border-radius:10px;">HQ</span></a>
+    <nav class="nav-menu">
+      <div class="nav-label">Core</div>
+      <a href="dashboard.html" class="nav-item da-dashboard">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1"></rect><rect x="14" y="3" width="7" height="5" rx="1"></rect><rect x="14" y="12" width="7" height="9" rx="1"></rect><rect x="3" y="16" width="7" height="5" rx="1"></rect></svg>
+        Overview
+      </a>
+      <a href="bookings.html" class="nav-item da-bookings">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+        Live Bookings
+      </a>
+      <a href="analytics.html" class="nav-item da-analytics">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"></path><path d="M18 17V9"></path><path d="M13 17V5"></path><path d="M8 17v-3"></path></svg>
+        Analytics
+      </a>
+      <div class="nav-label">Network</div>
+      <a href="users.html" class="nav-item da-users">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+        Customers
+      </a>
+      <a href="workers.html" class="nav-item da-workers">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+        Worker Fleet
+      </a>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="user-profile" onclick="Auth.logout()">
+        <div class="avatar" style="background:var(--danger);" id="sidebar-avatar">A</div>
+        <div class="user-info">
+          <div class="name" id="sidebar-name">Admin Control</div>
+          <div class="plan"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg> Master Access</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <main class="main-content">
+  
+    <div class="dash-header">
+      <div><h1>👥 User Management</h1><p style="color:var(--text-muted);font-size:0.875rem;">52,430 total users</p></div>
+      <div style="display:flex;gap:8px;">
+        <input type="text" class="input" placeholder="🔍 Search users..." style="width:240px;padding:8px 16px;font-size:0.8125rem;">
+        <select class="input" style="width:auto;padding:8px 14px;font-size:0.8125rem;"><option>All Status</option><option>Active</option><option>Suspended</option><option>Plus Members</option></select>
+        <button class="btn btn-primary btn-sm">📥 Export</button>
+      </div>
+    </div>
+
+    <div class="admin-stats-stripe" style="margin-bottom:24px;">
+      <div class="admin-stat purple"><div class="as-value">52,430</div><div class="as-label">Total Users</div></div>
+      <div class="admin-stat green"><div class="as-value">48,210</div><div class="as-label">Active</div></div>
+      <div class="admin-stat orange"><div class="as-value">3,450</div><div class="as-label">Plus Members</div></div>
+      <div class="admin-stat red"><div class="as-value">127</div><div class="as-label">Suspended</div></div>
+    </div>
+
+    <div class="admin-table-card">
+      <table class="admin-table">
+        <thead><tr><th>User</th><th>Email</th><th>Phone</th><th>City</th><th>Bookings</th><th>Membership</th><th>Status</th><th>Actions</th></tr></thead>
+        <tbody>
+          <tr><td><div class="user-cell"><div class="user-avatar">RK</div><div><div class="user-name">Rahul Kumar</div><div style="font-size:0.7rem;color:var(--text-muted);">Joined Mar 2025</div></div></div></td><td>rahul@email.com</td><td>+91 98765</td><td>Hyderabad</td><td style="font-weight:700;">24</td><td><span class="badge badge-warning">Plus</span></td><td><span class="status-badge active">Active</span></td><td><div class="action-btns"><button class="action-btn">👁</button><button class="action-btn">✏</button><button class="action-btn" style="color:var(--accent-red);">🚫</button></div></td></tr>
+          <tr><td><div class="user-cell"><div class="user-avatar">PA</div><div><div class="user-name">Priya Agarwal</div><div style="font-size:0.7rem;color:var(--text-muted);">Joined Jan 2025</div></div></div></td><td>priya@email.com</td><td>+91 87654</td><td>Bangalore</td><td style="font-weight:700;">18</td><td><span class="badge badge-warning">Plus</span></td><td><span class="status-badge active">Active</span></td><td><div class="action-btns"><button class="action-btn">👁</button><button class="action-btn">✏</button></div></td></tr>
+          <tr><td><div class="user-cell"><div class="user-avatar">SK</div><div><div class="user-name">Suresh Kapoor</div><div style="font-size:0.7rem;color:var(--text-muted);">Joined Feb 2025</div></div></div></td><td>suresh@email.com</td><td>+91 76543</td><td>Mumbai</td><td style="font-weight:700;">31</td><td><span style="font-size:0.75rem;color:var(--text-muted);">Free</span></td><td><span class="status-badge active">Active</span></td><td><div class="action-btns"><button class="action-btn">👁</button><button class="action-btn">✏</button></div></td></tr>
+          <tr><td><div class="user-cell"><div class="user-avatar">AD</div><div><div class="user-name">Anjali Desai</div><div style="font-size:0.7rem;color:var(--text-muted);">Joined Dec 2024</div></div></div></td><td>anjali@email.com</td><td>+91 65432</td><td>Pune</td><td style="font-weight:700;">42</td><td><span class="badge badge-warning">Plus</span></td><td><span class="status-badge active">Active</span></td><td><div class="action-btns"><button class="action-btn">👁</button><button class="action-btn">✏</button></div></td></tr>
+          <tr><td><div class="user-cell"><div class="user-avatar">VM</div><div><div class="user-name">Vikram Mehta</div><div style="font-size:0.7rem;color:var(--text-muted);">Joined Apr 2025</div></div></div></td><td>vikram@email.com</td><td>+91 54321</td><td>Delhi</td><td style="font-weight:700;">3</td><td><span style="font-size:0.75rem;color:var(--text-muted);">Free</span></td><td><span class="status-badge blocked">Suspended</span></td><td><div class="action-btns"><button class="action-btn">👁</button><button class="action-btn" style="color:var(--accent-green);">✓</button></div></td></tr>
+          <tr><td><div class="user-cell"><div class="user-avatar">NS</div><div><div class="user-name">Neha Sharma</div><div style="font-size:0.7rem;color:var(--text-muted);">Joined Mar 2025</div></div></div></td><td>neha@email.com</td><td>+91 43210</td><td>Chennai</td><td style="font-weight:700;">15</td><td><span style="font-size:0.75rem;color:var(--text-muted);">Free</span></td><td><span class="status-badge active">Active</span></td><td><div class="action-btns"><button class="action-btn">👁</button><button class="action-btn">✏</button></div></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-top:20px;">
+      <span style="font-size:0.8125rem;color:var(--text-muted);">Showing 1-6 of 52,430</span>
+      <div style="display:flex;gap:6px;"><button class="btn btn-secondary btn-sm">← Prev</button><button class="btn btn-primary btn-sm">1</button><button class="btn btn-secondary btn-sm">2</button><button class="btn btn-secondary btn-sm">3</button><button class="btn btn-secondary btn-sm">Next →</button></div>
+    </div>
+  
+  </main>
+</div>
+<script src="../assets/js/api.js"></script>
+<script>document.addEventListener('DOMContentLoaded',()=>{if(!requireAuth(['admin']))return;updateNavbarUser();});</script>
+<script src="../assets/js/main.js"></script>
+<script>
+  document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+  const act = document.querySelector('.da-users');
+  if (act) act.classList.add('active');
+</script>
+</body>
+</html>

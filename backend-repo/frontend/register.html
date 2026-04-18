@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FixMate AI — Register as Worker</title>
+  <link rel="stylesheet" href="assets/css/global.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>🔧</text></svg>">
+  <style>
+    .reg-page{min-height:100vh;background:linear-gradient(135deg,#F5F3FF 0%,#EDE9FE 50%,#FFF7ED 100%);padding:40px 20px;}
+    .reg-card{max-width:720px;margin:0 auto;background:#fff;border-radius:var(--radius-2xl);padding:48px;box-shadow:var(--shadow-2xl);}
+    .reg-logo{display:flex;align-items:center;gap:10px;margin-bottom:28px;}
+    .reg-logo .li{width:44px;height:44px;background:var(--primary-gradient);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:22px;box-shadow:var(--shadow-purple);}
+    .reg-logo .lt{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:1.5rem;}
+    .reg-logo .lt span{color:var(--primary);}
+    .reg-card h1{font-size:1.75rem;margin-bottom:4px;}
+    .reg-card .sub{color:var(--text-muted);font-size:0.9375rem;margin-bottom:28px;}
+    .reg-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+    .reg-grid .full{grid-column:span 2;}
+    .reg-grid label{display:block;font-size:0.8125rem;font-weight:600;margin-bottom:5px;}
+    .reg-grid .input{padding:11px 14px;border:2px solid var(--border);border-radius:var(--radius-sm);width:100%;font-size:0.9375rem;transition:all 0.2s;}
+    .reg-grid .input:focus{border-color:var(--primary);box-shadow:0 0 0 3px var(--primary-glow);}
+    .skills-select{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px;}
+    .skill-tag{padding:8px 14px;border:2px solid var(--border);border-radius:var(--radius-sm);font-size:0.8125rem;font-weight:600;cursor:pointer;transition:all 0.2s;}
+    .skill-tag:hover,.skill-tag.active{border-color:var(--primary);background:var(--primary-glow);color:var(--primary);}
+    .benefits{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:24px 0;}
+    .benefit{display:flex;align-items:center;gap:10px;font-size:0.875rem;}
+    .benefit .bicon{width:36px;height:36px;background:rgba(16,185,129,0.1);border-radius:var(--radius-xs);display:flex;align-items:center;justify-content:center;}
+    @media(max-width:600px){.reg-grid{grid-template-columns:1fr;}.reg-grid .full{grid-column:1;}.reg-card{padding:28px 20px;}.benefits{grid-template-columns:1fr;}}
+  </style>
+</head>
+<body>
+<div class="reg-page">
+  <div class="reg-card">
+    <a href="index.html" class="reg-logo"><div class="li">F</div><div class="lt">Fix<span>Mate</span> AI</div></a>
+    <h1>Register as a Worker</h1>
+    <p class="sub">Join 12,000+ verified professionals. Earn ₹15,000-₹50,000/month with flexible hours.</p>
+
+    <form onsubmit="event.preventDefault();window.location.href='worker/dashboard.html';">
+      <div class="reg-grid">
+        <div><label>Full Name</label><input class="input" placeholder="Your full name" required></div>
+        <div><label>Phone Number</label><input class="input" type="tel" placeholder="+91 98765 43210" required></div>
+        <div><label>Email</label><input class="input" type="email" placeholder="your@email.com" required></div>
+        <div><label>City</label><select class="input" required><option value="">Select city</option><option>Hyderabad</option><option>Bangalore</option><option>Mumbai</option><option>Delhi NCR</option><option>Chennai</option><option>Pune</option><option>Kolkata</option></select></div>
+        <div class="full">
+          <label>Primary Skill</label>
+          <div class="skills-select">
+            <span class="skill-tag" onclick="this.classList.toggle('active')">⚡ Electrician</span>
+            <span class="skill-tag" onclick="this.classList.toggle('active')">🔧 Plumber</span>
+            <span class="skill-tag" onclick="this.classList.toggle('active')">🧹 Cleaner</span>
+            <span class="skill-tag" onclick="this.classList.toggle('active')">❄️ AC Technician</span>
+            <span class="skill-tag" onclick="this.classList.toggle('active')">🪚 Carpenter</span>
+            <span class="skill-tag" onclick="this.classList.toggle('active')">🎨 Painter</span>
+            <span class="skill-tag" onclick="this.classList.toggle('active')">💇 Beauty/Salon</span>
+            <span class="skill-tag" onclick="this.classList.toggle('active')">🐛 Pest Control</span>
+            <span class="skill-tag" onclick="this.classList.toggle('active')">📦 Movers/Packers</span>
+            <span class="skill-tag" onclick="this.classList.toggle('active')">🔌 Appliance Repair</span>
+          </div>
+        </div>
+        <div><label>Experience</label><select class="input"><option>Less than 1 year</option><option>1-3 years</option><option selected>3-5 years</option><option>5-10 years</option><option>10+ years</option></select></div>
+        <div><label>ID Proof Type</label><select class="input"><option>Aadhar Card</option><option>PAN Card</option><option>Driving License</option><option>Voter ID</option></select></div>
+        <div><label>ID Number</label><input class="input" placeholder="XXXX XXXX XXXX" required></div>
+        <div><label>Create Password</label><input class="input" type="password" placeholder="Min 8 characters" required></div>
+        <div class="full"><label>Address</label><textarea class="input" rows="2" placeholder="Your current address"></textarea></div>
+      </div>
+
+      <div class="benefits">
+        <div class="benefit"><div class="bicon">💰</div><span>Earn ₹15K-50K/month</span></div>
+        <div class="benefit"><div class="bicon">⏰</div><span>Flexible working hours</span></div>
+        <div class="benefit"><div class="bicon">🛡️</div><span>Insurance coverage</span></div>
+        <div class="benefit"><div class="bicon">🛒</div><span>Discounted tools & materials</span></div>
+        <div class="benefit"><div class="bicon">📈</div><span>Training & skill development</span></div>
+        <div class="benefit"><div class="bicon">🏆</div><span>Performance bonuses</span></div>
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-full btn-xl">Submit Application →</button>
+      <p style="text-align:center;margin-top:16px;font-size:0.8125rem;color:var(--text-muted);">
+        Already registered? <a href="login.html" style="color:var(--primary);font-weight:600;">Login here</a>
+      </p>
+    </form>
+  </div>
+</div>
+</body>
+</html>

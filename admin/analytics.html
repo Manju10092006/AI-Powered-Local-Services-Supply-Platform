@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FixMate AI — Admin Analytics</title>
+  <link rel="stylesheet" href="../assets/css/global.css">
+  <link rel="stylesheet" href="../assets/css/cards.css">
+  <link rel="stylesheet" href="../assets/css/admin.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>🔧</text></svg>">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+
+  <style>
+    :root {
+      --bg: #FAFAFA; --surface: #FFFFFF; --surface-frosted: rgba(255, 255, 255, 0.75);
+      --fg: #111827; --fg-muted: #6B7280; --border: #F3F4F6; --border-strong: #E5E7EB;
+      --accent: #5B7AF7; --accent-light: #EFF2FE; --success: #10B981; --warning: #F59E0B; --danger: #EF4444;
+      --font-display: 'Instrument Serif', serif; --font-body: 'Inter', sans-serif;
+      --radius-sm: 8px; --radius-md: 12px; --radius-lg: 20px; --radius-xl: 32px;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.05); --shadow-md: 0 10px 25px -5px rgba(0,0,0,0.02), 0 4px 10px -5px rgba(0,0,0,0.01);
+      --shadow-lg: 0 20px 40px -10px rgba(0,0,0,0.05); --shadow-glow: 0 10px 30px -10px rgba(91,122,247,0.3);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-body); background-color: var(--bg); color: var(--fg); line-height: 1.5; -webkit-font-smoothing: antialiased; background-image: radial-gradient(circle at 100% 0%, rgba(91,122,247,0.04) 0%, transparent 25%), radial-gradient(circle at 0% 100%, rgba(91,122,247,0.03) 0%, transparent 20%); background-attachment: fixed; }
+    .bg-shape { position: fixed; top: -20vh; right: -10vw; width: 60vw; height: 60vw; border-radius: 50%; background: radial-gradient(circle, rgba(91,122,247,0.08) 0%, transparent 60%); pointer-events: none; z-index: -1; filter: blur(40px); }
+    .app-container { display: flex; min-height: 100vh; max-width: 1600px; margin: 0 auto; }
+    .sidebar { width: 260px; background: var(--surface); border-right: 1px solid var(--border); display: flex; flex-direction: column; position: sticky; top: 0; height: 100vh; z-index: 50; }
+    .brand { height: 80px; display: flex; align-items: center; padding: 0 24px; font-family: var(--font-display); font-size: 28px; font-style: italic; color: var(--fg); letter-spacing: -0.5px; border-bottom: 1px solid var(--border); text-decoration: none; }
+    .nav-menu { padding: 24px 12px; flex: 1; display: flex; flex-direction: column; gap: 4px; }
+    .nav-label { font-size: 11px; font-weight: 700; color: var(--fg-muted); text-transform: uppercase; letter-spacing: 0.1em; padding: 12px 16px 4px; margin-top: 8px; }
+    .nav-item { display: flex; align-items: center; gap: 12px; padding: 10px 16px; border-radius: var(--radius-sm); color: var(--fg-muted); text-decoration: none; font-weight: 500; font-size: 14px; transition: all 0.2s ease; }
+    .nav-item svg { width: 18px; height: 18px; opacity: 0.7; }
+    .nav-item:hover { background: var(--bg); color: var(--fg); }
+    .nav-item.active { background: var(--accent-light); color: var(--accent); }
+    .nav-item.active svg { opacity: 1; stroke: var(--accent); }
+    .sidebar-footer { padding: 24px; border-top: 1px solid var(--border); }
+    .user-profile { display: flex; align-items: center; gap: 12px; cursor: pointer; }
+    .avatar { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), #9b87f5); color: white; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 14px; box-shadow: 0 4px 12px rgba(91,122,247,0.2); }
+    .user-info .name { font-weight: 600; font-size: 14px; color: var(--fg); }
+    .user-info .plan { font-size: 12px; color: var(--accent); font-weight: 500; display:flex; align-items:center; gap:4px; }
+    .main-content { flex: 1; padding: 40px clamp(20px, 4vw, 48px); overflow-y: auto; }
+    @media (max-width: 768px) { .sidebar { display: none; } }
+  </style>
+
+</head>
+<body>
+<div class="bg-shape"></div>
+<div class="app-container">
+  
+  <aside class="sidebar">
+    <a href="../index.html" class="brand">FixMate<span style="font-family: var(--font-body); font-size:12px; font-style:normal; margin-left:8px; font-weight:600; color:#EF4444; background:rgba(239,68,68,0.1); padding:2px 8px; border-radius:10px;">HQ</span></a>
+    <nav class="nav-menu">
+      <div class="nav-label">Core</div>
+      <a href="dashboard.html" class="nav-item da-dashboard">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1"></rect><rect x="14" y="3" width="7" height="5" rx="1"></rect><rect x="14" y="12" width="7" height="9" rx="1"></rect><rect x="3" y="16" width="7" height="5" rx="1"></rect></svg>
+        Overview
+      </a>
+      <a href="bookings.html" class="nav-item da-bookings">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+        Live Bookings
+      </a>
+      <a href="analytics.html" class="nav-item da-analytics">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"></path><path d="M18 17V9"></path><path d="M13 17V5"></path><path d="M8 17v-3"></path></svg>
+        Analytics
+      </a>
+      <div class="nav-label">Network</div>
+      <a href="users.html" class="nav-item da-users">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+        Customers
+      </a>
+      <a href="workers.html" class="nav-item da-workers">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+        Worker Fleet
+      </a>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="user-profile" onclick="Auth.logout()">
+        <div class="avatar" style="background:var(--danger);" id="sidebar-avatar">A</div>
+        <div class="user-info">
+          <div class="name" id="sidebar-name">Admin Control</div>
+          <div class="plan"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg> Master Access</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <main class="main-content">
+  
+    <div class="dash-header">
+      <div><h1>📈 Platform Analytics</h1><p style="color:var(--text-muted);font-size:0.875rem;">Comprehensive platform metrics and business insights</p></div>
+      <div style="display:flex;gap:8px;">
+        <select class="input" style="width:auto;padding:8px 14px;font-size:0.8125rem;"><option>This Month</option><option>Last Month</option><option>Last 3 Months</option><option>This Year</option></select>
+        <button class="btn btn-primary btn-sm">📥 Download Report</button>
+      </div>
+    </div>
+
+    <!-- KPI Cards -->
+    <div class="admin-stats-stripe" style="margin-bottom:28px;">
+      <div class="admin-stat purple"><div class="as-value">₹42.8L</div><div class="as-label">Monthly Revenue</div><span class="as-trend" style="color:var(--accent-green);">↑ 23%</span></div>
+      <div class="admin-stat green"><div class="as-value">18,450</div><div class="as-label">Bookings/Month</div><span class="as-trend" style="color:var(--accent-green);">↑ 15%</span></div>
+      <div class="admin-stat blue"><div class="as-value">4,890</div><div class="as-label">New Users/Month</div><span class="as-trend" style="color:var(--accent-green);">↑ 28%</span></div>
+      <div class="admin-stat orange"><div class="as-value">92%</div><div class="as-label">Completion Rate</div><span class="as-trend" style="color:var(--accent-green);">↑ 2%</span></div>
+      <div class="admin-stat red"><div class="as-value">8 min</div><div class="as-label">Avg. Response Time</div><span class="as-trend" style="color:var(--accent-green);">↓ 12%</span></div>
+    </div>
+
+    <!-- Charts Grid -->
+    <div class="admin-charts-grid" style="margin-bottom:28px;">
+      <!-- Revenue Chart -->
+      <div class="admin-chart-card">
+        <div class="chart-header"><h3>💰 Revenue Trend (Monthly)</h3></div>
+        <div class="chart-bars" style="height:200px;">
+          <div class="chart-bar" style="height:35%;background:var(--primary-glow);"><span class="bar-label">Jan</span><span class="bar-value">₹15L</span></div>
+          <div class="chart-bar" style="height:42%;background:var(--primary-glow);"><span class="bar-label">Feb</span><span class="bar-value">₹18L</span></div>
+          <div class="chart-bar" style="height:55%;background:var(--primary-glow);"><span class="bar-label">Mar</span><span class="bar-value">₹23L</span></div>
+          <div class="chart-bar" style="height:65%;background:var(--primary-glow);"><span class="bar-label">Apr</span><span class="bar-value">₹28L</span></div>
+          <div class="chart-bar" style="height:72%;background:var(--primary-glow);"><span class="bar-label">May</span><span class="bar-value">₹31L</span></div>
+          <div class="chart-bar" style="height:78%;background:var(--primary-glow);"><span class="bar-label">Jun</span><span class="bar-value">₹33L</span></div>
+          <div class="chart-bar" style="height:70%;background:var(--primary-glow);"><span class="bar-label">Jul</span><span class="bar-value">₹30L</span></div>
+          <div class="chart-bar" style="height:85%;background:var(--primary-glow);"><span class="bar-label">Aug</span><span class="bar-value">₹36L</span></div>
+          <div class="chart-bar" style="height:82%;background:var(--primary-glow);"><span class="bar-label">Sep</span><span class="bar-value">₹35L</span></div>
+          <div class="chart-bar" style="height:90%;background:var(--primary-gradient);"><span class="bar-label">Oct</span><span class="bar-value">₹38L</span></div>
+          <div class="chart-bar" style="height:95%;background:var(--primary-gradient);"><span class="bar-label">Nov</span><span class="bar-value">₹40L</span></div>
+          <div class="chart-bar" style="height:100%;background:var(--primary-gradient);"><span class="bar-label">Dec</span><span class="bar-value">₹42L</span></div>
+        </div>
+      </div>
+
+      <!-- User Growth -->
+      <div class="admin-chart-card">
+        <h3 style="margin-bottom:20px;">👥 User Growth</h3>
+        <div style="display:flex;flex-direction:column;gap:16px;">
+          <div style="display:flex;align-items:center;gap:12px;">
+            <div style="width:48px;height:48px;border-radius:50%;background:rgba(108,60,225,0.1);display:flex;align-items:center;justify-content:center;font-size:1.25rem;">👤</div>
+            <div style="flex:1;"><div style="font-weight:700;">52,430</div><div style="font-size:0.75rem;color:var(--text-muted);">Total Customers</div></div>
+            <span style="font-size:0.8125rem;color:var(--accent-green);font-weight:600;">+4,890 this month</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;">
+            <div style="width:48px;height:48px;border-radius:50%;background:rgba(16,185,129,0.1);display:flex;align-items:center;justify-content:center;font-size:1.25rem;">🔧</div>
+            <div style="flex:1;"><div style="font-weight:700;">12,450</div><div style="font-size:0.75rem;color:var(--text-muted);">Total Workers</div></div>
+            <span style="font-size:0.8125rem;color:var(--accent-green);font-weight:600;">+340 this month</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;">
+            <div style="width:48px;height:48px;border-radius:50%;background:rgba(245,158,11,0.1);display:flex;align-items:center;justify-content:center;font-size:1.25rem;">⭐</div>
+            <div style="flex:1;"><div style="font-weight:700;">3,450</div><div style="font-size:0.75rem;color:var(--text-muted);">Plus Members</div></div>
+            <span style="font-size:0.8125rem;color:var(--accent-green);font-weight:600;">+680 this month</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;">
+            <div style="width:48px;height:48px;border-radius:50%;background:rgba(239,68,68,0.1);display:flex;align-items:center;justify-content:center;font-size:1.25rem;">🚨</div>
+            <div style="flex:1;"><div style="font-weight:700;">1,230</div><div style="font-size:0.75rem;color:var(--text-muted);">Emergency Bookings/mo</div></div>
+            <span style="font-size:0.8125rem;color:var(--accent-green);font-weight:600;">↑ 18%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- City Performance -->
+    <div style="background:#fff;border-radius:var(--radius-lg);padding:28px;border:1px solid var(--border-light);margin-bottom:28px;">
+      <h3 style="margin-bottom:20px;">🏙️ City-wise Performance</h3>
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:16px;">
+        <div style="text-align:center;padding:16px;background:var(--bg-tertiary);border-radius:var(--radius-md);">
+          <div style="font-size:1.5rem;margin-bottom:4px;">🏙️</div>
+          <div style="font-weight:700;">Hyderabad</div>
+          <div style="font-size:0.75rem;color:var(--text-muted);">₹12.5L • 5,420 bookings</div>
+          <div style="font-size:0.75rem;color:var(--accent-green);font-weight:600;margin-top:4px;">↑ 25%</div>
+        </div>
+        <div style="text-align:center;padding:16px;background:var(--bg-tertiary);border-radius:var(--radius-md);">
+          <div style="font-size:1.5rem;margin-bottom:4px;">🏙️</div>
+          <div style="font-weight:700;">Bangalore</div>
+          <div style="font-size:0.75rem;color:var(--text-muted);">₹10.2L • 4,890 bookings</div>
+          <div style="font-size:0.75rem;color:var(--accent-green);font-weight:600;margin-top:4px;">↑ 20%</div>
+        </div>
+        <div style="text-align:center;padding:16px;background:var(--bg-tertiary);border-radius:var(--radius-md);">
+          <div style="font-size:1.5rem;margin-bottom:4px;">🏙️</div>
+          <div style="font-weight:700;">Mumbai</div>
+          <div style="font-size:0.75rem;color:var(--text-muted);">₹8.9L • 3,560 bookings</div>
+          <div style="font-size:0.75rem;color:var(--accent-green);font-weight:600;margin-top:4px;">↑ 18%</div>
+        </div>
+        <div style="text-align:center;padding:16px;background:var(--bg-tertiary);border-radius:var(--radius-md);">
+          <div style="font-size:1.5rem;margin-bottom:4px;">🏙️</div>
+          <div style="font-weight:700;">Delhi</div>
+          <div style="font-size:0.75rem;color:var(--text-muted);">₹6.4L • 2,890 bookings</div>
+          <div style="font-size:0.75rem;color:var(--accent-green);font-weight:600;margin-top:4px;">↑ 30%</div>
+        </div>
+        <div style="text-align:center;padding:16px;background:var(--bg-tertiary);border-radius:var(--radius-md);">
+          <div style="font-size:1.5rem;margin-bottom:4px;">🏙️</div>
+          <div style="font-weight:700;">Chennai</div>
+          <div style="font-size:0.75rem;color:var(--text-muted);">₹4.8L • 1,690 bookings</div>
+          <div style="font-size:0.75rem;color:var(--accent-green);font-weight:600;margin-top:4px;">↑ 22%</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Customer Satisfaction -->
+    <div class="admin-charts-grid">
+      <div class="admin-chart-card">
+        <h3 style="margin-bottom:20px;">⭐ Customer Satisfaction</h3>
+        <div style="text-align:center;margin-bottom:24px;">
+          <div style="font-size:3.5rem;font-weight:900;color:var(--primary);">4.7</div>
+          <div style="font-size:1.5rem;">★★★★★</div>
+          <div style="font-size:0.875rem;color:var(--text-muted);">Based on 85,430 reviews</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div style="display:flex;align-items:center;gap:8px;"><span style="width:40px;font-size:0.8125rem;">5 ★</span><div style="flex:1;height:10px;background:var(--bg-tertiary);border-radius:5px;overflow:hidden;"><div style="width:72%;height:100%;background:var(--accent-green);border-radius:5px;"></div></div><span style="width:40px;font-size:0.75rem;text-align:right;">72%</span></div>
+          <div style="display:flex;align-items:center;gap:8px;"><span style="width:40px;font-size:0.8125rem;">4 ★</span><div style="flex:1;height:10px;background:var(--bg-tertiary);border-radius:5px;overflow:hidden;"><div style="width:18%;height:100%;background:var(--accent-green);border-radius:5px;opacity:0.7;"></div></div><span style="width:40px;font-size:0.75rem;text-align:right;">18%</span></div>
+          <div style="display:flex;align-items:center;gap:8px;"><span style="width:40px;font-size:0.8125rem;">3 ★</span><div style="flex:1;height:10px;background:var(--bg-tertiary);border-radius:5px;overflow:hidden;"><div style="width:6%;height:100%;background:var(--secondary);border-radius:5px;"></div></div><span style="width:40px;font-size:0.75rem;text-align:right;">6%</span></div>
+          <div style="display:flex;align-items:center;gap:8px;"><span style="width:40px;font-size:0.8125rem;">2 ★</span><div style="flex:1;height:10px;background:var(--bg-tertiary);border-radius:5px;overflow:hidden;"><div style="width:3%;height:100%;background:var(--accent-orange);border-radius:5px;"></div></div><span style="width:40px;font-size:0.75rem;text-align:right;">3%</span></div>
+          <div style="display:flex;align-items:center;gap:8px;"><span style="width:40px;font-size:0.8125rem;">1 ★</span><div style="flex:1;height:10px;background:var(--bg-tertiary);border-radius:5px;overflow:hidden;"><div style="width:1%;height:100%;background:var(--accent-red);border-radius:5px;"></div></div><span style="width:40px;font-size:0.75rem;text-align:right;">1%</span></div>
+        </div>
+      </div>
+
+      <div class="admin-chart-card">
+        <h3 style="margin-bottom:20px;">📊 Platform Metrics</h3>
+        <div style="display:flex;flex-direction:column;gap:18px;">
+          <div><div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span style="font-size:0.875rem;font-weight:600;">Average Booking Value</span><span style="font-weight:800;color:var(--primary);">₹1,240</span></div><div style="height:6px;background:var(--bg-tertiary);border-radius:3px;overflow:hidden;"><div style="width:62%;height:100%;background:var(--primary);border-radius:3px;"></div></div></div>
+          <div><div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span style="font-size:0.875rem;font-weight:600;">Repeat Customer Rate</span><span style="font-weight:800;color:var(--accent-green);">68%</span></div><div style="height:6px;background:var(--bg-tertiary);border-radius:3px;overflow:hidden;"><div style="width:68%;height:100%;background:var(--accent-green);border-radius:3px;"></div></div></div>
+          <div><div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span style="font-size:0.875rem;font-weight:600;">Worker Utilization Rate</span><span style="font-weight:800;color:var(--secondary);">74%</span></div><div style="height:6px;background:var(--bg-tertiary);border-radius:3px;overflow:hidden;"><div style="width:74%;height:100%;background:var(--secondary);border-radius:3px;"></div></div></div>
+          <div><div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span style="font-size:0.875rem;font-weight:600;">Customer Retention (90d)</span><span style="font-weight:800;color:var(--accent-blue);">82%</span></div><div style="height:6px;background:var(--bg-tertiary);border-radius:3px;overflow:hidden;"><div style="width:82%;height:100%;background:var(--accent-blue);border-radius:3px;"></div></div></div>
+          <div><div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span style="font-size:0.875rem;font-weight:600;">Cancellation Rate</span><span style="font-weight:800;color:var(--accent-red);">4.2%</span></div><div style="height:6px;background:var(--bg-tertiary);border-radius:3px;overflow:hidden;"><div style="width:4.2%;height:100%;background:var(--accent-red);border-radius:3px;"></div></div></div>
+          <div><div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span style="font-size:0.875rem;font-weight:600;">Emergency Dispatch Success</span><span style="font-weight:800;color:var(--accent-green);">96%</span></div><div style="height:6px;background:var(--bg-tertiary);border-radius:3px;overflow:hidden;"><div style="width:96%;height:100%;background:var(--accent-green);border-radius:3px;"></div></div></div>
+        </div>
+      </div>
+    </div>
+  
+  </main>
+</div>
+<script src="../assets/js/api.js"></script>
+<script>document.addEventListener('DOMContentLoaded',()=>{if(!requireAuth(['admin']))return;updateNavbarUser();});</script>
+<script src="../assets/js/main.js"></script>
+<script>
+  document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+  const act = document.querySelector('.da-analytics');
+  if (act) act.classList.add('active');
+</script>
+</body>
+</html>

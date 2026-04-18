@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FixMate AI — Dashboard</title>
+  
+  <!-- Add Instrument Serif and Inter fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>🔧</text></svg>">
+
+  <style>
+    /* Premium SaaS Reset & Tokens */
+    :root {
+      --bg: #FAFAFA;
+      --surface: #FFFFFF;
+      --surface-frosted: rgba(255, 255, 255, 0.75);
+      --fg: #111827;
+      --fg-muted: #6B7280;
+      --border: #F3F4F6;
+      --border-strong: #E5E7EB;
+      --accent: #5B7AF7;
+      --accent-light: #EFF2FE;
+      --success: #10B981;
+      --warning: #F59E0B;
+      --font-display: 'Instrument Serif', serif;
+      --font-body: 'Inter', sans-serif;
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 20px;
+      --radius-xl: 32px;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+      --shadow-md: 0 10px 25px -5px rgba(0,0,0,0.02), 0 4px 10px -5px rgba(0,0,0,0.01);
+      --shadow-lg: 0 20px 40px -10px rgba(0,0,0,0.05);
+      --shadow-glow: 0 10px 30px -10px rgba(91,122,247,0.3);
+    }
+    
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      font-family: var(--font-body);
+      background-color: var(--bg);
+      color: var(--fg);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      /* Add subtle noise texture if you want */
+      background-image: radial-gradient(circle at 100% 0%, rgba(91,122,247,0.04) 0%, transparent 25%),
+                        radial-gradient(circle at 0% 100%, rgba(91,122,247,0.03) 0%, transparent 20%);
+      background-attachment: fixed;
+    }
+
+    /* Layout */
+    .app-container {
+      display: flex;
+      min-height: 100vh;
+      max-width: 1600px;
+      margin: 0 auto;
+    }
+
+    /* Sidebar Navigation */
+    .sidebar {
+      width: 260px;
+      background: var(--surface);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      z-index: 50;
+    }
+
+    .brand {
+      height: 80px;
+      display: flex;
+      align-items: center;
+      padding: 0 24px;
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-style: italic;
+      color: var(--fg);
+      letter-spacing: -0.5px;
+      border-bottom: 1px solid var(--border);
+      text-decoration: none;
+    }
+
+    .nav-menu {
+      padding: 24px 12px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 16px;
+      border-radius: var(--radius-sm);
+      color: var(--fg-muted);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 14px;
+      transition: all 0.2s ease;
+    }
+    .nav-item svg { width: 18px; height: 18px; opacity: 0.7; }
+    
+    .nav-item:hover {
+      background: var(--bg);
+      color: var(--fg);
+    }
+    .nav-item.active {
+      background: var(--accent-light);
+      color: var(--accent);
+    }
+    .nav-item.active svg { opacity: 1; stroke: var(--accent); }
+
+    .sidebar-footer {
+      padding: 24px;
+      border-top: 1px solid var(--border);
+    }
+    .user-profile {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+    }
+    .avatar {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), #9b87f5);
+      color: white; display: flex; align-items: center; justify-content: center;
+      font-weight: 600; font-size: 14px;
+      box-shadow: 0 4px 12px rgba(91,122,247,0.2);
+    }
+    .user-info .name { font-weight: 600; font-size: 14px; color: var(--fg); }
+    .user-info .plan { font-size: 12px; color: var(--accent); font-weight: 500; display:flex; align-items:center; gap:4px; }
+
+    /* Main Content Area */
+    .main-content {
+      flex: 1;
+      padding: 40px 48px;
+      overflow-y: auto;
+    }
+
+    /* Topbar Header */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 40px;
+    }
+    
+    .header h1 {
+      font-family: var(--font-display);
+      font-size: 48px;
+      font-weight: 400;
+      letter-spacing: -1px;
+      line-height: 1.1;
+      margin-bottom: 8px;
+    }
+    
+    .header p {
+      color: var(--fg-muted);
+      font-size: 15px;
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 20px;
+      border-radius: 100px;
+      font-weight: 500;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-decoration: none;
+      border: 1px solid transparent;
+    }
+    .btn-primary {
+      background: var(--fg);
+      color: white;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+    }
+    .btn-primary:hover {
+      background: #000;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    }
+    .btn-outline {
+      background: white;
+      border-color: var(--border-strong);
+      color: var(--fg);
+    }
+    .btn-outline:hover {
+      background: var(--bg);
+      border-color: #d1d5db;
+    }
+
+    /* Grid Layout */
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+
+    /* Glass Panels / Cards */
+    .glass-card {
+      background: var(--surface-frosted);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      box-shadow: var(--shadow-md);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .glass-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 1px;
+      background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,0.8), rgba(255,255,255,0));
+    }
+
+    /* Wallet Card - Takes up 4 columns */
+    .wallet-card {
+      grid-column: span 5;
+      background: linear-gradient(145deg, #18181B 0%, #27272A 100%);
+      color: white;
+      padding: 32px;
+    }
+    .wallet-card::before { display: none; }
+    
+    .wallet-label {
+      color: #A1A1AA;
+      font-size: 13px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+    }
+    .wallet-balance {
+      font-family: var(--font-display);
+      font-size: 56px;
+      line-height: 1;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: baseline;
+    }
+    .wallet-currency { font-size: 32px; margin-right: 4px; color: #D4D4D8; }
+
+    /* Stats Cards */
+    .stat-card {
+      grid-column: span 3;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .stat-icon {
+      width: 40px; height: 40px;
+      border-radius: 10px;
+      background: var(--bg);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 16px;
+      border: 1px solid var(--border);
+    }
+    .stat-value {
+      font-family: var(--font-display);
+      font-size: 36px;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .stat-label {
+      color: var(--fg-muted);
+      font-size: 14px;
+    }
+
+    /* Alert Card */
+    .alert-card {
+      grid-column: span 12;
+      background: linear-gradient(to right, rgba(245, 158, 11, 0.05), transparent);
+      border-left: 3px solid var(--warning);
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    }
+
+    /* Lists and Tables */
+    .section-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .list-container {
+      background: white;
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+
+    .list-item {
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+      transition: background 0.2s;
+    }
+    .list-item:hover { background: var(--bg); }
+    .list-item:last-child { border-bottom: none; }
+
+    .item-icon {
+      width: 48px; height: 48px;
+      border-radius: 12px;
+      background: var(--bg);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px;
+      margin-right: 16px;
+      border: 1px solid var(--border);
+    }
+
+    .item-content { flex: 1; }
+    .item-title { font-weight: 600; font-size: 15px; margin-bottom: 2px; }
+    .item-subtitle { color: var(--fg-muted); font-size: 13px; }
+    
+    .item-meta { text-align: right; }
+    .item-price { font-weight: 600; font-size: 16px; font-family: var(--font-body); }
+    
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 10px;
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 500;
+    }
+    .badge-success { background: rgba(16,185,129,0.1); color: var(--success); }
+    .badge-warning { background: rgba(245,158,11,0.1); color: var(--warning); }
+    .badge-info { background: rgba(91,122,247,0.1); color: var(--accent); }
+
+    /* Animated bg element */
+    .bg-shape {
+      position: fixed;
+      top: -20vh;
+      right: -10vw;
+      width: 60vw;
+      height: 60vw;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(91,122,247,0.08) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: -1;
+      filter: blur(40px);
+    }
+
+    /* Mobile handling */
+    .mobile-toggle { display: none; }
+    
+    @media (max-width: 1024px) {
+      .wallet-card { grid-column: span 12; }
+      .stat-card { grid-column: span 6; }
+    }
+    
+    @media (max-width: 768px) {
+      .sidebar { display: none; }
+      .main-content { padding: 24px 20px; }
+      .header h1 { font-size: 36px; }
+      .header { flex-direction: column; align-items: flex-start; gap: 20px; }
+      .mobile-toggle { display: block; position: fixed; bottom: 24px; right: 24px; width: 56px; height: 56px; border-radius: 50%; background: var(--fg); color: white; border:none; box-shadow: var(--shadow-lg); z-index: 100; font-size:24px; display:flex; align-items:center; justify-content:center; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="bg-shape"></div>
+
+<button class="mobile-toggle">⌘</button>
+
+<div class="app-container">
+  
+  <!-- Sleek Sidebar -->
+  <aside class="sidebar">
+    <a href="../index.html" class="brand">FixMate</a>
+    
+    <nav class="nav-menu">
+      <a href="dashboard.html" class="nav-item active">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1"></rect><rect x="14" y="3" width="7" height="5" rx="1"></rect><rect x="14" y="12" width="7" height="9" rx="1"></rect><rect x="3" y="16" width="7" height="5" rx="1"></rect></svg>
+        Overview
+      </a>
+      <a href="booking.html" class="nav-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"></path></svg>
+        Book Service
+      </a>
+      <a href="history.html" class="nav-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+        History
+      </a>
+      <a href="track.html" class="nav-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+        Track Worker
+      </a>
+      <a href="claims.html" class="nav-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+        Protection
+      </a>
+      <a href="profile.html" class="nav-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+        Settings
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="user-profile" onclick="Auth.logout()">
+        <div class="avatar" id="sidebar-avatar">M</div>
+        <div class="user-info">
+          <div class="name" id="sidebar-name">Manjunath</div>
+          <div class="plan"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg> Premium Member</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    
+    <div class="header">
+      <div>
+        <h1 id="greeting-title">Good morning, Manjunath.</h1>
+        <p>Your home is perfectly maintained. What's next?</p>
+      </div>
+      <div class="header-actions">
+        <a href="profile.html#membership-section" class="btn btn-outline" style="color: var(--accent); border-color: var(--accent-light); background: var(--accent-light);">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          Pro Active
+        </a>
+        <a href="booking.html" class="btn btn-primary">+ Book Service</a>
+      </div>
+    </div>
+
+    <!-- Alert -->
+    <div class="alert-card" style="margin-bottom: 24px;">
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <span style="font-size: 20px;">🛡️</span>
+        <div>
+          <div style="font-weight: 600; font-size: 14px; color: #92400e;">1 Dashboard Alert</div>
+          <div style="font-size: 13px; color: #B45309;">An active claim requires your attention.</div>
+        </div>
+      </div>
+      <a href="claims.html" class="btn btn-outline" style="padding: 6px 12px; font-size: 12px; border-color: #FCD34D;">View Claim</a>
+    </div>
+
+    <div class="dashboard-grid">
+      
+      <!-- Wallet Panel (Dark SaaS style) -->
+      <div class="glass-card wallet-card">
+        <div class="wallet-label">FixMate Wallet Balance</div>
+        <div class="wallet-balance"><span class="wallet-currency">₹</span><span class="stat-card-value">4,500</span><span style="font-size:32px; color:#A1A1AA;">.00</span></div>
+        <div style="display: flex; gap: 12px; margin-top: auto;">
+          <button class="btn btn-primary" style="flex:1; background: white; color: black;" onclick="alert('Wallet API Mock')">Add Funds</button>
+          <a href="history.html#payments" class="btn" style="flex:1; border: 1px solid rgba(255,255,255,0.2); color: white;">History</a>
+        </div>
+      </div>
+
+      <!-- Quick Metrics (Minimal Apple style) -->
+      <div class="glass-card stat-card">
+        <div class="stat-icon">👨‍🔧</div>
+        <div class="stat-value"><span class="stat-card-value">24</span></div>
+        <div class="stat-label">Total Bookings</div>
+      </div>
+      
+      <div class="glass-card stat-card">
+        <div class="stat-icon" style="background:#FFFBF1; color:#F59E0B; border-color:#FEF3C7;">⭐</div>
+        <div class="stat-value"><span class="stat-card-value">320</span></div>
+        <div class="stat-label">Reward Points</div>
+      </div>
+
+      <!-- AI Box -->
+      <div class="glass-card" style="grid-column: span 12; background: linear-gradient(120deg, var(--accent-light), white); border:1px solid #E0E7FF; display: flex; align-items: center; justify-content: space-between; padding: 24px 32px;">
+        <div style="display: flex; align-items: center; gap: 20px;">
+          <div style="font-size: 32px;">✨</div>
+          <div>
+            <h3 style="font-family: var(--font-display); font-size: 24px; font-weight: 400; margin-bottom: 4px;">Smart Insight</h3>
+            <p style="color: var(--fg-muted); font-size: 14px;">Based on your timeline, your AC filters may need cleaning. Save 20% by booking today.</p>
+          </div>
+        </div>
+        <a href="booking.html" class="btn btn-primary" style="background: var(--accent); box-shadow: var(--shadow-glow);">Book AC Service</a>
+      </div>
+
+    </div>
+
+    <!-- Active and Recent split -->
+    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px;">
+      
+      <!-- Left Column: Active Job -->
+      <div>
+        <div class="section-title">
+          <span>Active Booking</span>
+          <a href="track.html" style="font-size: 13px; color: var(--accent); text-decoration: none; font-weight: 500;">Track live →</a>
+        </div>
+        
+        <div class="list-container" style="border-left: 3px solid var(--success);">
+          <div style="padding: 24px;">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 16px;">
+              <span class="badge badge-success">In Progress</span>
+              <span style="font-size: 12px; color: var(--fg-muted);">Started 25 min ago</span>
+            </div>
+            
+            <h3 style="font-size: 18px; margin-bottom: 8px;">Full Home Deep Cleaning — 2BHK</h3>
+            
+            <div style="display: flex; flex-direction: column; gap: 6px; margin-bottom: 24px; font-size: 14px; color: var(--fg-muted);">
+              <div><span style="display:inline-block; width:20px;">👷</span> Rajesh Kumar (⭐ 4.9)</div>
+              <div><span style="display:inline-block; width:20px;">⏱</span> 2 hrs remaining</div>
+            </div>
+            
+            <div style="display: flex; gap: 12px;">
+              <a href="track.html" class="btn btn-primary" style="flex:1;">View Map</a>
+              <button class="btn btn-outline" style="flex:1;">Call Worker</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Recent Activity -->
+      <div>
+        <div class="section-title">
+          <span>Recent Activity</span>
+          <a href="history.html" style="font-size: 13px; color: var(--fg-muted); text-decoration: none;">View all</a>
+        </div>
+
+        <div class="list-container">
+          <div class="list-item">
+            <div class="item-icon" style="color: var(--success); background: #ECFDF5; border:none;">✓</div>
+            <div class="item-content">
+              <div class="item-title">Bathroom Cleaning</div>
+              <div class="item-subtitle">2 days ago • Rated ⭐⭐⭐⭐⭐</div>
+            </div>
+            <div class="item-meta">
+              <div class="item-price">-₹499</div>
+            </div>
+          </div>
+          
+          <div class="list-item">
+            <div class="item-icon" style="color: var(--success); background: #ECFDF5; border:none;">✓</div>
+            <div class="item-content">
+              <div class="item-title">Fan Installation</div>
+              <div class="item-subtitle">5 days ago • Rated ⭐⭐⭐⭐</div>
+            </div>
+            <div class="item-meta">
+              <div class="item-price">-₹199</div>
+            </div>
+          </div>
+          
+          <div class="list-item">
+            <div class="item-icon" style="color: var(--success); background: #ECFDF5; border:none;">✓</div>
+            <div class="item-content">
+              <div class="item-title">Pest Control (2BHK)</div>
+              <div class="item-subtitle">1 week ago • Rated ⭐⭐⭐⭐⭐</div>
+            </div>
+            <div class="item-meta">
+              <div class="item-price">-₹799</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+
+  </main>
+</div>
+
+<script src="../assets/js/api.js"></script>
+<script src="../assets/js/main.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", async () => {
+  if (typeof requireAuth === 'function' && !requireAuth(["customer"])) return;
+
+  const setGreeting = () => {
+    const hr = new Date().getHours();
+    if(hr < 12) return 'Good morning';
+    if(hr < 18) return 'Good afternoon';
+    return 'Good evening';
+  };
+
+  const user = typeof Auth !== 'undefined' ? Auth.getUser() : null;
+  if (user) {
+    document.getElementById('greeting-title').textContent = `${setGreeting()}, ${user.name.split(' ')[0]}.`;
+    const initials = user.name.split(' ').map(n=>n[0]).join('');
+    document.getElementById('sidebar-avatar').textContent = initials;
+    document.getElementById('sidebar-name').textContent = user.name;
+  }
+
+  // Fetch live stats from backend
+  try {
+    if (typeof UserAPI !== 'undefined') {
+      const stats = await UserAPI.getStats();
+      if (stats) {
+        const valueEls = document.querySelectorAll('.stat-card-value');
+        if (valueEls[0]) valueEls[0].textContent = stats.totalSpent ? stats.totalSpent.toLocaleString('en-IN') : '4,500';
+        if (valueEls[1]) valueEls[1].textContent = stats.activeBookings || 24;
+        if (valueEls[2]) valueEls[2].textContent = stats.savings || 320;
+      }
+    }
+  } catch(e) { console.warn('Stats API fetch failed, using demo data'); }
+});
+</script>
+</body>
+</html>

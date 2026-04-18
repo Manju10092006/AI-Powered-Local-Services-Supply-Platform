@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FixMate AI — Booking History</title>
+  <link rel="stylesheet" href="../assets/css/global.css">
+  <link rel="stylesheet" href="../assets/css/navbar.css">
+  <link rel="stylesheet" href="../assets/css/cards.css">
+  <link rel="stylesheet" href="../assets/css/customer.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>🔧</text></svg>">
+</head>
+<body>
+<nav class="navbar"><div class="container">
+  <a href="../index.html" class="nav-logo"><div class="nav-logo-icon">F</div><div><div class="nav-logo-text">Fix<span>Mate</span></div></div><span class="nav-logo-badge">AI</span></a>
+  <div class="nav-search"><span class="nav-search-icon">🔍</span><input type="text" class="nav-search-input" placeholder="Search bookings..."><button class="nav-search-btn">→</button></div>
+  <div class="nav-links">
+    <a href="dashboard.html" class="nav-link"><span class="nav-icon">📊</span><span>Dashboard</span></a>
+    <a href="history.html" class="nav-link" style="color:var(--primary);"><span class="nav-icon">🕐</span><span>History</span></a>
+  </div>
+  <a href="../login.html" class="nav-auth-btn"><span>👤</span> Manjunath</a>
+  <button class="nav-mobile-toggle">☰</button>
+</div></nav>
+
+<div class="dashboard-layout">
+  <aside class="dash-sidebar">
+    <div class="dash-sidebar-menu">
+      <a href="dashboard.html" class="dash-menu-item"><span class="dm-icon">📊</span> Dashboard</a>
+      <a href="booking.html" class="dash-menu-item"><span class="dm-icon">📋</span> Book Service</a>
+      <a href="track.html" class="dash-menu-item"><span class="dm-icon">📍</span> Track Worker</a>
+      <a href="history.html" class="dash-menu-item active"><span class="dm-icon">🕐</span> My Bookings</a>
+      <a href="profile.html" class="dash-menu-item"><span class="dm-icon">👤</span> Profile</a>
+      <a href="../index.html" class="dash-menu-item"><span class="dm-icon">🏠</span> Home</a>
+    </div>
+  </aside>
+
+  <main class="dash-main">
+    <div class="dash-header">
+      <h1>🕐 Booking History</h1>
+      <div style="display:flex;gap:8px;">
+        <select class="input" style="width:auto;padding:8px 16px;font-size:0.8125rem;">
+          <option>All Status</option><option>Completed</option><option>Cancelled</option><option>In Progress</option>
+        </select>
+        <select class="input" style="width:auto;padding:8px 16px;font-size:0.8125rem;">
+          <option>Last 30 days</option><option>Last 3 months</option><option>Last 6 months</option><option>All time</option>
+        </select>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:14px;">
+      <!-- Booking Items -->
+      <div style="background:#fff;border-radius:var(--radius-lg);padding:24px;border:1px solid var(--border-light);display:flex;align-items:center;gap:20px;">
+        <div style="width:80px;height:80px;border-radius:var(--radius-md);overflow:hidden;flex-shrink:0;">
+          <img src="../Images/img_3.jpeg" alt="Cleaning" style="width:100%;height:100%;object-fit:cover;">
+        </div>
+        <div style="flex:1;">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+            <span class="badge badge-success">Completed</span>
+            <span style="font-size:0.75rem;color:var(--text-muted);">2 days ago</span>
+          </div>
+          <div style="font-weight:700;font-size:1rem;margin-bottom:4px;">Full Home Deep Cleaning — 2BHK</div>
+          <div style="font-size:0.8125rem;color:var(--text-muted);">👷 Rajesh Kumar • ⭐ Rated 5/5 • #FX-28473</div>
+        </div>
+        <div style="text-align:right;">
+          <div style="font-weight:800;font-size:1.125rem;">₹1,999</div>
+          <div style="display:flex;gap:6px;margin-top:8px;">
+            <button class="btn btn-primary btn-sm">Rebook</button>
+            <button class="btn btn-secondary btn-sm">Receipt</button>
+          </div>
+        </div>
+      </div>
+
+      <div style="background:#fff;border-radius:var(--radius-lg);padding:24px;border:1px solid var(--border-light);display:flex;align-items:center;gap:20px;">
+        <div style="width:80px;height:80px;border-radius:var(--radius-md);overflow:hidden;flex-shrink:0;">
+          <img src="../Images/img (21).jpeg" alt="Electrician" style="width:100%;height:100%;object-fit:cover;">
+        </div>
+        <div style="flex:1;">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+            <span class="badge badge-success">Completed</span>
+            <span style="font-size:0.75rem;color:var(--text-muted);">5 days ago</span>
+          </div>
+          <div style="font-weight:700;font-size:1rem;margin-bottom:4px;">Fan Installation — Ceiling Fan</div>
+          <div style="font-size:0.8125rem;color:var(--text-muted);">👷 Sunil Electrician • ⭐ Rated 4/5 • #FX-28450</div>
+        </div>
+        <div style="text-align:right;">
+          <div style="font-weight:800;font-size:1.125rem;">₹199</div>
+          <div style="display:flex;gap:6px;margin-top:8px;">
+            <button class="btn btn-primary btn-sm">Rebook</button>
+            <button class="btn btn-secondary btn-sm">Receipt</button>
+          </div>
+        </div>
+      </div>
+
+      <div style="background:#fff;border-radius:var(--radius-lg);padding:24px;border:1px solid var(--border-light);display:flex;align-items:center;gap:20px;">
+        <div style="width:80px;height:80px;border-radius:var(--radius-md);overflow:hidden;flex-shrink:0;">
+          <img src="../Images/img_43.jpeg" alt="Pest" style="width:100%;height:100%;object-fit:cover;">
+        </div>
+        <div style="flex:1;">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+            <span class="badge badge-success">Completed</span>
+            <span style="font-size:0.75rem;color:var(--text-muted);">1 week ago</span>
+          </div>
+          <div style="font-weight:700;font-size:1rem;margin-bottom:4px;">General Pest Control — 2BHK</div>
+          <div style="font-size:0.8125rem;color:var(--text-muted);">👷 PestShield Team • ⭐ Rated 5/5 • #FX-28412</div>
+        </div>
+        <div style="text-align:right;">
+          <div style="font-weight:800;font-size:1.125rem;">₹799</div>
+          <div style="display:flex;gap:6px;margin-top:8px;">
+            <button class="btn btn-primary btn-sm">Rebook</button>
+            <button class="btn btn-secondary btn-sm">Receipt</button>
+          </div>
+        </div>
+      </div>
+
+      <div style="background:#fff;border-radius:var(--radius-lg);padding:24px;border:1px solid var(--border-light);display:flex;align-items:center;gap:20px;">
+        <div style="width:80px;height:80px;border-radius:var(--radius-md);overflow:hidden;flex-shrink:0;">
+          <img src="../Images/img_24.jpeg" alt="AC" style="width:100%;height:100%;object-fit:cover;">
+        </div>
+        <div style="flex:1;">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+            <span class="badge badge-success">Completed</span>
+            <span style="font-size:0.75rem;color:var(--text-muted);">2 weeks ago</span>
+          </div>
+          <div style="font-weight:700;font-size:1rem;margin-bottom:4px;">AC Deep Cleaning — Split AC (2 units)</div>
+          <div style="font-size:0.8125rem;color:var(--text-muted);">👷 CoolFix Technician • ⭐ Rated 5/5 • #FX-28390</div>
+        </div>
+        <div style="text-align:right;">
+          <div style="font-weight:800;font-size:1.125rem;">₹1,098</div>
+          <div style="display:flex;gap:6px;margin-top:8px;">
+            <button class="btn btn-primary btn-sm">Rebook</button>
+            <button class="btn btn-secondary btn-sm">Receipt</button>
+          </div>
+        </div>
+      </div>
+
+      <div style="background:#fff;border-radius:var(--radius-lg);padding:24px;border:1px solid var(--border-light);display:flex;align-items:center;gap:20px;">
+        <div style="width:80px;height:80px;border-radius:var(--radius-md);overflow:hidden;flex-shrink:0;">
+          <img src="../Images/img_8.jpeg" alt="Plumber" style="width:100%;height:100%;object-fit:cover;">
+        </div>
+        <div style="flex:1;">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+            <span class="badge badge-danger">Cancelled</span>
+            <span style="font-size:0.75rem;color:var(--text-muted);">3 weeks ago</span>
+          </div>
+          <div style="font-weight:700;font-size:1rem;margin-bottom:4px;">Tap Repair — Kitchen Faucet</div>
+          <div style="font-size:0.8125rem;color:var(--text-muted);">Cancelled by you • Refund ₹199 processed • #FX-28345</div>
+        </div>
+        <div style="text-align:right;">
+          <div style="font-weight:800;font-size:1.125rem;text-decoration:line-through;color:var(--text-muted);">₹199</div>
+          <div style="display:flex;gap:6px;margin-top:8px;">
+            <button class="btn btn-primary btn-sm">Rebook</button>
+          </div>
+        </div>
+      </div>
+
+      <div style="background:#fff;border-radius:var(--radius-lg);padding:24px;border:1px solid var(--border-light);display:flex;align-items:center;gap:20px;">
+        <div style="width:80px;height:80px;border-radius:var(--radius-md);overflow:hidden;flex-shrink:0;">
+          <img src="../Images/img_32.jpeg" alt="Salon" style="width:100%;height:100%;object-fit:cover;">
+        </div>
+        <div style="flex:1;">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+            <span class="badge badge-success">Completed</span>
+            <span style="font-size:0.75rem;color:var(--text-muted);">1 month ago</span>
+          </div>
+          <div style="font-weight:700;font-size:1rem;margin-bottom:4px;">Facial & Cleanup — Gold Facial</div>
+          <div style="font-size:0.8125rem;color:var(--text-muted);">👷 Meera Beauty Expert • ⭐ Rated 5/5 • #FX-28210</div>
+        </div>
+        <div style="text-align:right;">
+          <div style="font-weight:800;font-size:1.125rem;">₹599</div>
+          <div style="display:flex;gap:6px;margin-top:8px;">
+            <button class="btn btn-primary btn-sm">Rebook</button>
+            <button class="btn btn-secondary btn-sm">Receipt</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pagination -->
+    <div style="display:flex;justify-content:center;gap:8px;margin-top:28px;">
+      <button class="btn btn-secondary btn-sm">← Previous</button>
+      <button class="btn btn-primary btn-sm">1</button>
+      <button class="btn btn-secondary btn-sm">2</button>
+      <button class="btn btn-secondary btn-sm">3</button>
+      <button class="btn btn-secondary btn-sm">Next →</button>
+    </div>
+  </main>
+</div>
+
+<div class="mobile-bottom-nav"><div class="container">
+  <a href="../index.html" class="mobile-nav-item"><span class="mnav-icon">🏠</span>Home</a>
+  <a href="booking.html" class="mobile-nav-item"><span class="mnav-icon">📋</span>Book</a>
+  <a href="dashboard.html" class="mobile-nav-item"><span class="mnav-icon">📊</span>Dashboard</a>
+  <a href="history.html" class="mobile-nav-item active"><span class="mnav-icon">🕐</span>History</a>
+  <a href="profile.html" class="mobile-nav-item"><span class="mnav-icon">👤</span>Profile</a>
+</div></div>
+<script src="../assets/js/api.js"></script>
+<script>document.addEventListener('DOMContentLoaded',()=>{if(!requireAuth(['customer']))return;updateNavbarUser();});</script>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

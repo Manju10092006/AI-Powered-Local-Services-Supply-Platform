@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FixMate AI — Worker Jobs</title>
+  <link rel="stylesheet" href="../assets/css/global.css">
+  <link rel="stylesheet" href="../assets/css/cards.css">
+  <link rel="stylesheet" href="../assets/css/worker.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>🔧</text></svg>">
+</head>
+<body>
+<nav class="worker-navbar"><div class="container">
+  <a href="../index.html" class="worker-nav-logo"><div class="logo-icon">F</div><div><div class="logo-text">FixMate</div><div class="logo-sub">Worker Portal</div></div></a>
+  <div class="worker-nav-right">
+    <a href="dashboard.html" class="worker-nav-item"><span class="wnav-icon">📊</span><span>Dashboard</span></a>
+    <a href="earnings.html" class="worker-nav-item"><span class="wnav-icon">💰</span><span>Earnings</span></a>
+    <a href="profile.html" class="worker-nav-item"><span class="wnav-icon">👤</span><span>Profile</span></a>
+  </div>
+</div></nav>
+
+<div class="worker-layout">
+  <aside class="worker-sidebar">
+    <div class="worker-sidebar-menu">
+      <div class="worker-menu-label">Main Menu</div>
+      <a href="dashboard.html" class="worker-menu-item"><span class="wm-icon">📊</span> Dashboard</a>
+      <a href="jobs.html" class="worker-menu-item active"><span class="wm-icon">📋</span> Job Requests<span class="wm-badge">5</span></a>
+      <a href="earnings.html" class="worker-menu-item"><span class="wm-icon">💰</span> Earnings</a>
+      <a href="availability.html" class="worker-menu-item"><span class="wm-icon">🕐</span> Availability</a>
+      <div class="worker-menu-label">Marketplace</div>
+      <a href="tools-store.html" class="worker-menu-item"><span class="wm-icon">🛒</span> Tools Store</a>
+      <div class="worker-menu-label">Support</div>
+      <a href="../index.html" class="worker-menu-item"><span class="wm-icon">🏠</span> Customer Site</a>
+    </div>
+  </aside>
+
+  <main class="worker-main">
+    <div class="section-header">
+      <h2>📋 Job Requests</h2>
+      <div style="display:flex;gap:8px;">
+        <span class="tools-filter active">All (5)</span>
+        <span class="tools-filter">Urgent (2)</span>
+        <span class="tools-filter">Scheduled (2)</span>
+        <span class="tools-filter">Tomorrow (1)</span>
+      </div>
+    </div>
+
+    <div class="jobs-list">
+      <div class="job-card urgent">
+        <div class="job-card-header"><span class="job-card-type badge badge-danger">⚡ URGENT — 10 min</span><span class="job-card-time">Just now</span></div>
+        <h4 class="job-card-title">Power Failure — Complete Blackout in Apartment</h4>
+        <div class="job-card-details">
+          <span class="detail">📍 Kondapur, 0.8 km</span><span class="detail">⏱ Est. 1 hr</span><span class="detail">👤 Amit Sharma</span><span class="detail">📞 +91 9876543210</span>
+        </div>
+        <p style="font-size:0.8125rem;color:var(--text-secondary);margin-bottom:12px;background:var(--bg-tertiary);padding:10px;border-radius:var(--radius-sm);">
+          "Complete power failure in my apartment. MCB keeps tripping. Need urgent help."
+        </p>
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;">
+          <img src="../Images/img (22).jpeg" alt="Issue photo" style="width:80px;height:60px;border-radius:var(--radius-sm);object-fit:cover;">
+          <div style="font-size:0.75rem;color:var(--primary);font-weight:600;">📸 Customer uploaded issue photo</div>
+        </div>
+        <div class="job-card-pay">₹349 — ₹699</div>
+        <div class="job-card-actions">
+          <button class="btn btn-success btn-lg" onclick="acceptJob(this)">✓ Accept Job</button>
+          <button class="btn btn-danger" onclick="rejectJob(this)">✕ Reject</button>
+          <button class="btn btn-secondary">📍 View Location</button>
+        </div>
+      </div>
+
+      <div class="job-card urgent">
+        <div class="job-card-header"><span class="job-card-type badge badge-danger">⚡ URGENT — 10 min</span><span class="job-card-time">3 min ago</span></div>
+        <h4 class="job-card-title">Water Pipe Burst — Kitchen Flooding</h4>
+        <div class="job-card-details">
+          <span class="detail">📍 Madhapur, 1.5 km</span><span class="detail">⏱ Est. 1-2 hrs</span><span class="detail">👤 Sunita Reddy</span>
+        </div>
+        <div class="job-card-pay">₹499 — ₹899</div>
+        <div class="job-card-actions">
+          <button class="btn btn-success btn-lg" onclick="acceptJob(this)">✓ Accept Job</button>
+          <button class="btn btn-danger" onclick="rejectJob(this)">✕ Reject</button>
+        </div>
+      </div>
+
+      <div class="job-card">
+        <div class="job-card-header"><span class="job-card-type badge badge-primary">🕐 Scheduled — 2:00 PM</span><span class="job-card-time">30 min ago</span></div>
+        <h4 class="job-card-title">Bathroom Deep Cleaning — 2 Bathrooms</h4>
+        <div class="job-card-details">
+          <span class="detail">📍 Gachibowli, 4.2 km</span><span class="detail">⏱ Est. 2-3 hrs</span><span class="detail">👤 Meera Iyer</span>
+        </div>
+        <div class="job-card-pay">₹998</div>
+        <div class="job-card-actions">
+          <button class="btn btn-success" onclick="acceptJob(this)">✓ Accept</button>
+          <button class="btn btn-danger btn-sm" onclick="rejectJob(this)">✕ Reject</button>
+        </div>
+      </div>
+
+      <div class="job-card">
+        <div class="job-card-header"><span class="job-card-type badge badge-primary">🕐 Scheduled — 5:00 PM</span><span class="job-card-time">1 hr ago</span></div>
+        <h4 class="job-card-title">Fan Installation — 2 Ceiling Fans</h4>
+        <div class="job-card-details">
+          <span class="detail">📍 Kukatpally, 6.1 km</span><span class="detail">⏱ Est. 1 hr</span><span class="detail">👤 Vikram Singh</span>
+        </div>
+        <div class="job-card-pay">₹398</div>
+        <div class="job-card-actions">
+          <button class="btn btn-success" onclick="acceptJob(this)">✓ Accept</button>
+          <button class="btn btn-danger btn-sm" onclick="rejectJob(this)">✕ Reject</button>
+        </div>
+      </div>
+
+      <div class="job-card">
+        <div class="job-card-header"><span class="job-card-type badge badge-warning">📅 Tomorrow — 9:00 AM</span><span class="job-card-time">2 hrs ago</span></div>
+        <h4 class="job-card-title">AC Gas Refill + Service — 3 Split ACs</h4>
+        <div class="job-card-details">
+          <span class="detail">📍 Banjara Hills, 7.8 km</span><span class="detail">⏱ Est. 4-5 hrs</span><span class="detail">👤 Ravi Teja</span>
+        </div>
+        <div class="job-card-pay">₹5,547</div>
+        <div class="job-card-actions">
+          <button class="btn btn-success" onclick="acceptJob(this)">✓ Accept</button>
+          <button class="btn btn-danger btn-sm" onclick="rejectJob(this)">✕ Reject</button>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+<script src="../assets/js/api.js"></script>
+<script>document.addEventListener('DOMContentLoaded',()=>{if(!requireAuth(['worker']))return;updateNavbarUser();});</script>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FixMate AI — Admin Analytics</title>
+  <link rel="stylesheet" href="../assets/css/global.css">
+  <link rel="stylesheet" href="../assets/css/cards.css">
+  <link rel="stylesheet" href="../assets/css/admin.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>🔧</text></svg>">
+</head>
+<body>
+<nav class="admin-navbar"><div class="container">
+  <a href="../index.html" class="admin-nav-logo"><span class="logo-text">🔧 FixMate AI</span><span class="logo-badge">ADMIN</span></a>
+  <div class="admin-nav-right"><a href="dashboard.html" class="worker-nav-item"><span class="wnav-icon">📊</span><span>Dashboard</span></a></div>
+</div></nav>
+<div class="admin-layout">
+  <aside class="admin-sidebar">
+    <div style="padding:20px 24px;border-bottom:1px solid rgba(255,255,255,0.06);"><div style="color:#fff;font-weight:700;">Admin Panel</div></div>
+    <a href="dashboard.html" class="admin-menu-item"><span class="am-icon">📊</span> Dashboard</a>
+    <a href="users.html" class="admin-menu-item"><span class="am-icon">👥</span> Users</a>
+    <a href="workers.html" class="admin-menu-item"><span class="am-icon">🔧</span> Workers</a>
+    <a href="bookings.html" class="admin-menu-item"><span class="am-icon">📋</span> Bookings</a>
+    <a href="analytics.html" class="admin-menu-item active"><span class="am-icon">📈</span> Analytics</a>
+    <a href="../index.html" class="admin-menu-item"><span class="am-icon">🏠</span> Customer Site</a>
+  </aside>
+  <main class="admin-main">
+    <div class="dash-header">
+      <div><h1>📈 Platform Analytics</h1><p style="color:var(--text-muted);font-size:0.875rem;">Comprehensive platform metrics and business insights</p></div>
+      <div style="display:flex;gap:8px;">
+        <select class="input" style="width:auto;padding:8px 14px;font-size:0.8125rem;"><option>This Month</option><option>Last Month</option><option>Last 3 Months</option><option>This Year</option></select>
+        <button class="btn btn-primary btn-sm">📥 Download Report</button>
+      </div>
+    </div>
+
+    <!-- KPI Cards -->
+    <div class="admin-stats-stripe" style="margin-bottom:28px;">
+      <div class="admin-stat purple"><div class="as-value">₹42.8L</div><div class="as-label">Monthly Revenue</div><span class="as-trend" style="color:var(--accent-green);">↑ 23%</span></div>
+      <div class="admin-stat green"><div class="as-value">18,450</div><div class="as-label">Bookings/Month</div><span class="as-trend" style="color:var(--accent-green);">↑ 15%</span></div>
+      <div class="admin-stat blue"><div class="as-value">4,890</div><div class="as-label">New Users/Month</div><span class="as-trend" style="color:var(--accent-green);">↑ 28%</span></div>
+      <div class="admin-stat orange"><div class="as-value">92%</div><div class="as-label">Completion Rate</div><span class="as-trend" style="color:var(--accent-green);">↑ 2%</span></div>
+      <div class="admin-stat red"><div class="as-value">8 min</div><div class="as-label">Avg. Response Time</div><span class="as-trend" style="color:var(--accent-green);">↓ 12%</span></div>
+    </div>
+
+    <!-- Charts Grid -->
+    <div class="admin-charts-grid" style="margin-bottom:28px;">
+      <!-- Revenue Chart -->
+      <div class="admin-chart-card">
+        <div class="chart-header"><h3>💰 Revenue Trend (Monthly)</h3></div>
+        <div class="chart-bars" style="height:200px;">
+          <div class="chart-bar" style="height:35%;background:var(--primary-glow);"><span class="bar-label">Jan</span><span class="bar-value">₹15L</span></div>
+          <div class="chart-bar" style="height:42%;background:var(--primary-glow);"><span class="bar-label">Feb</span><span class="bar-value">₹18L</span></div>
+          <div class="chart-bar" style="height:55%;background:var(--primary-glow);"><span class="bar-label">Mar</span><span class="bar-value">₹23L</span></div>
+          <div class="chart-bar" style="height:65%;background:var(--primary-glow);"><span class="bar-label">Apr</span><span class="bar-value">₹28L</span></div>
+          <div class="chart-bar" style="height:72%;background:var(--primary-glow);"><span class="bar-label">May</span><span class="bar-value">₹31L</span></div>
+          <div class="chart-bar" style="height:78%;background:var(--primary-glow);"><span class="bar-label">Jun</span><span class="bar-value">₹33L</span></div>
+          <div class="chart-bar" style="height:70%;background:var(--primary-glow);"><span class="bar-label">Jul</span><span class="bar-value">₹30L</span></div>
+          <div class="chart-bar" style="height:85%;background:var(--primary-glow);"><span class="bar-label">Aug</span><span class="bar-value">₹36L</span></div>
+          <div class="chart-bar" style="height:82%;background:var(--primary-glow);"><span class="bar-label">Sep</span><span class="bar-value">₹35L</span></div>
+          <div class="chart-bar" style="height:90%;background:var(--primary-gradient);"><span class="bar-label">Oct</span><span class="bar-value">₹38L</span></div>
+          <div class="chart-bar" style="height:95%;background:var(--primary-gradient);"><span class="bar-label">Nov</span><span class="bar-value">₹40L</span></div>
+          <div class="chart-bar" style="height:100%;background:var(--primary-gradient);"><span class="bar-label">Dec</span><span class="bar-value">₹42L</span></div>
+        </div>
+      </div>
+
+      <!-- User Growth -->
+      <div class="admin-chart-card">
+        <h3 style="margin-bottom:20px;">👥 User Growth</h3>
+        <div style="display:flex;flex-direction:column;gap:16px;">
+          <div style="display:flex;align-items:center;gap:12px;">
+            <div style="width:48px;height:48px;border-radius:50%;background:rgba(108,60,225,0.1);display:flex;align-items:center;justify-content:center;font-size:1.25rem;">👤</div>
+            <div style="flex:1;"><div style="font-weight:700;">52,430</div><div style="font-size:0.75rem;color:var(--text-muted);">Total Customers</div></div>
+            <span style="font-size:0.8125rem;color:var(--accent-green);font-weight:600;">+4,890 this month</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;">
+            <div style="width:48px;height:48px;border-radius:50%;background:rgba(16,185,129,0.1);display:flex;align-items:center;justify-content:center;font-size:1.25rem;">🔧</div>
+            <div style="flex:1;"><div style="font-weight:700;">12,450</div><div style="font-size:0.75rem;color:var(--text-muted);">Total Workers</div></div>
+            <span style="font-size:0.8125rem;color:var(--accent-green);font-weight:600;">+340 this month</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;">
+            <div style="width:48px;height:48px;border-radius:50%;background:rgba(245,158,11,0.1);display:flex;align-items:center;justify-content:center;font-size:1.25rem;">⭐</div>
+            <div style="flex:1;"><div style="font-weight:700;">3,450</div><div style="font-size:0.75rem;color:var(--text-muted);">Plus Members</div></div>
+            <span style="font-size:0.8125rem;color:var(--accent-green);font-weight:600;">+680 this month</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;">
+            <div style="width:48px;height:48px;border-radius:50%;background:rgba(239,68,68,0.1);display:flex;align-items:center;justify-content:center;font-size:1.25rem;">🚨</div>
+            <div style="flex:1;"><div style="font-weight:700;">1,230</div><div style="font-size:0.75rem;color:var(--text-muted);">Emergency Bookings/mo</div></div>
+            <span style="font-size:0.8125rem;color:var(--accent-green);font-weight:600;">↑ 18%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- City Performance -->
+    <div style="background:#fff;border-radius:var(--radius-lg);padding:28px;border:1px solid var(--border-light);margin-bottom:28px;">
+      <h3 style="margin-bottom:20px;">🏙️ City-wise Performance</h3>
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:16px;">
+        <div style="text-align:center;padding:16px;background:var(--bg-tertiary);border-radius:var(--radius-md);">
+          <div style="font-size:1.5rem;margin-bottom:4px;">🏙️</div>
+          <div style="font-weight:700;">Hyderabad</div>
+          <div style="font-size:0.75rem;color:var(--text-muted);">₹12.5L • 5,420 bookings</div>
+          <div style="font-size:0.75rem;color:var(--accent-green);font-weight:600;margin-top:4px;">↑ 25%</div>
+        </div>
+        <div style="text-align:center;padding:16px;background:var(--bg-tertiary);border-radius:var(--radius-md);">
+          <div style="font-size:1.5rem;margin-bottom:4px;">🏙️</div>
+          <div style="font-weight:700;">Bangalore</div>
+          <div style="font-size:0.75rem;color:var(--text-muted);">₹10.2L • 4,890 bookings</div>
+          <div style="font-size:0.75rem;color:var(--accent-green);font-weight:600;margin-top:4px;">↑ 20%</div>
+        </div>
+        <div style="text-align:center;padding:16px;background:var(--bg-tertiary);border-radius:var(--radius-md);">
+          <div style="font-size:1.5rem;margin-bottom:4px;">🏙️</div>
+          <div style="font-weight:700;">Mumbai</div>
+          <div style="font-size:0.75rem;color:var(--text-muted);">₹8.9L • 3,560 bookings</div>
+          <div style="font-size:0.75rem;color:var(--accent-green);font-weight:600;margin-top:4px;">↑ 18%</div>
+        </div>
+        <div style="text-align:center;padding:16px;background:var(--bg-tertiary);border-radius:var(--radius-md);">
+          <div style="font-size:1.5rem;margin-bottom:4px;">🏙️</div>
+          <div style="font-weight:700;">Delhi</div>
+          <div style="font-size:0.75rem;color:var(--text-muted);">₹6.4L • 2,890 bookings</div>
+          <div style="font-size:0.75rem;color:var(--accent-green);font-weight:600;margin-top:4px;">↑ 30%</div>
+        </div>
+        <div style="text-align:center;padding:16px;background:var(--bg-tertiary);border-radius:var(--radius-md);">
+          <div style="font-size:1.5rem;margin-bottom:4px;">🏙️</div>
+          <div style="font-weight:700;">Chennai</div>
+          <div style="font-size:0.75rem;color:var(--text-muted);">₹4.8L • 1,690 bookings</div>
+          <div style="font-size:0.75rem;color:var(--accent-green);font-weight:600;margin-top:4px;">↑ 22%</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Customer Satisfaction -->
+    <div class="admin-charts-grid">
+      <div class="admin-chart-card">
+        <h3 style="margin-bottom:20px;">⭐ Customer Satisfaction</h3>
+        <div style="text-align:center;margin-bottom:24px;">
+          <div style="font-size:3.5rem;font-weight:900;color:var(--primary);">4.7</div>
+          <div style="font-size:1.5rem;">★★★★★</div>
+          <div style="font-size:0.875rem;color:var(--text-muted);">Based on 85,430 reviews</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div style="display:flex;align-items:center;gap:8px;"><span style="width:40px;font-size:0.8125rem;">5 ★</span><div style="flex:1;height:10px;background:var(--bg-tertiary);border-radius:5px;overflow:hidden;"><div style="width:72%;height:100%;background:var(--accent-green);border-radius:5px;"></div></div><span style="width:40px;font-size:0.75rem;text-align:right;">72%</span></div>
+          <div style="display:flex;align-items:center;gap:8px;"><span style="width:40px;font-size:0.8125rem;">4 ★</span><div style="flex:1;height:10px;background:var(--bg-tertiary);border-radius:5px;overflow:hidden;"><div style="width:18%;height:100%;background:var(--accent-green);border-radius:5px;opacity:0.7;"></div></div><span style="width:40px;font-size:0.75rem;text-align:right;">18%</span></div>
+          <div style="display:flex;align-items:center;gap:8px;"><span style="width:40px;font-size:0.8125rem;">3 ★</span><div style="flex:1;height:10px;background:var(--bg-tertiary);border-radius:5px;overflow:hidden;"><div style="width:6%;height:100%;background:var(--secondary);border-radius:5px;"></div></div><span style="width:40px;font-size:0.75rem;text-align:right;">6%</span></div>
+          <div style="display:flex;align-items:center;gap:8px;"><span style="width:40px;font-size:0.8125rem;">2 ★</span><div style="flex:1;height:10px;background:var(--bg-tertiary);border-radius:5px;overflow:hidden;"><div style="width:3%;height:100%;background:var(--accent-orange);border-radius:5px;"></div></div><span style="width:40px;font-size:0.75rem;text-align:right;">3%</span></div>
+          <div style="display:flex;align-items:center;gap:8px;"><span style="width:40px;font-size:0.8125rem;">1 ★</span><div style="flex:1;height:10px;background:var(--bg-tertiary);border-radius:5px;overflow:hidden;"><div style="width:1%;height:100%;background:var(--accent-red);border-radius:5px;"></div></div><span style="width:40px;font-size:0.75rem;text-align:right;">1%</span></div>
+        </div>
+      </div>
+
+      <div class="admin-chart-card">
+        <h3 style="margin-bottom:20px;">📊 Platform Metrics</h3>
+        <div style="display:flex;flex-direction:column;gap:18px;">
+          <div><div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span style="font-size:0.875rem;font-weight:600;">Average Booking Value</span><span style="font-weight:800;color:var(--primary);">₹1,240</span></div><div style="height:6px;background:var(--bg-tertiary);border-radius:3px;overflow:hidden;"><div style="width:62%;height:100%;background:var(--primary);border-radius:3px;"></div></div></div>
+          <div><div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span style="font-size:0.875rem;font-weight:600;">Repeat Customer Rate</span><span style="font-weight:800;color:var(--accent-green);">68%</span></div><div style="height:6px;background:var(--bg-tertiary);border-radius:3px;overflow:hidden;"><div style="width:68%;height:100%;background:var(--accent-green);border-radius:3px;"></div></div></div>
+          <div><div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span style="font-size:0.875rem;font-weight:600;">Worker Utilization Rate</span><span style="font-weight:800;color:var(--secondary);">74%</span></div><div style="height:6px;background:var(--bg-tertiary);border-radius:3px;overflow:hidden;"><div style="width:74%;height:100%;background:var(--secondary);border-radius:3px;"></div></div></div>
+          <div><div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span style="font-size:0.875rem;font-weight:600;">Customer Retention (90d)</span><span style="font-weight:800;color:var(--accent-blue);">82%</span></div><div style="height:6px;background:var(--bg-tertiary);border-radius:3px;overflow:hidden;"><div style="width:82%;height:100%;background:var(--accent-blue);border-radius:3px;"></div></div></div>
+          <div><div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span style="font-size:0.875rem;font-weight:600;">Cancellation Rate</span><span style="font-weight:800;color:var(--accent-red);">4.2%</span></div><div style="height:6px;background:var(--bg-tertiary);border-radius:3px;overflow:hidden;"><div style="width:4.2%;height:100%;background:var(--accent-red);border-radius:3px;"></div></div></div>
+          <div><div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span style="font-size:0.875rem;font-weight:600;">Emergency Dispatch Success</span><span style="font-weight:800;color:var(--accent-green);">96%</span></div><div style="height:6px;background:var(--bg-tertiary);border-radius:3px;overflow:hidden;"><div style="width:96%;height:100%;background:var(--accent-green);border-radius:3px;"></div></div></div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+<script src="../assets/js/api.js"></script>
+<script>document.addEventListener('DOMContentLoaded',()=>{if(!requireAuth(['admin']))return;updateNavbarUser();});</script>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

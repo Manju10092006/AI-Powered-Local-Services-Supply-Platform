@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FixMate — Home Services at Your Doorstep | Book Trusted Professionals</title>
+  <meta name="description" content="Book expert professionals for salon, cleaning, plumbing, electrical, AC repair and more. Rated 4.8★ by 50,000+ customers. Transparent pricing, verified workers.">
+  <link rel="stylesheet" href="assets/css/global.css">
+  <link rel="stylesheet" href="assets/css/carousel.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- Header -->
+<header class="fm-header">
+  <nav class="fm-nav">
+    <div class="fm-nav-left">
+      <a href="index.html" class="fm-logo">FixMate<span>.</span></a>
+      <div class="fm-location">
+        <span class="fm-location-icon">📍</span>
+        <span>Hyderabad</span>
+      </div>
+    </div>
+    
+    <div class="fm-search">
+      <input type="text" class="fm-search-input" placeholder="Search for 'Men's Salon', 'AC Repair' etc." id="search-input">
+      <button class="fm-search-btn" id="search-btn">Search</button>
+    </div>
+
+    <div class="fm-nav-right">
+      <a href="customer/history.html" class="fm-nav-link">Bookings</a>
+      <a href="login.html" class="fm-nav-link">Login</a>
+      <a href="worker/index.html" class="btn-primary">Become a Professional</a>
+    </div>
+  </nav>
+
+  <div class="fm-catnav" id="cat-nav">
+    <a href="#cat-all">All Services</a>
+    <a href="#shelf-cleaning">Cleaning</a>
+    <a href="#shelf-plumbing">Plumbing</a>
+    <a href="#shelf-electrical">Electrician</a>
+    <a href="#shelf-ac-repair">AC Repair</a>
+    <a href="#shelf-salon">Salon at Home</a>
+    <a href="#shelf-painting">Painting</a>
+    <a href="#shelf-carpentry">Carpentry</a>
+    <a href="#shelf-appliance">Appliance Repair</a>
+  </div>
+</header>
+
+<!-- Hero Carousel with Auto-Play -->
+<section class="fm-hero-carousel" id="hero-carousel">
+  <div class="fm-hero-slides" id="hero-slides">
+    <!-- Slide 1 -->
+    <div class="fm-hero-slide">
+      <div class="fm-hero-content">
+        <h1>Home repairs &amp; services,<br>on demand.</h1>
+        <p>Book expert professionals for salon, cleaning, repairs, and more. Rated 4.8 out of 5 by our regular customers.</p>
+        <div class="fm-hero-btn-group">
+          <a href="#cat-all" class="btn-primary">Explore Services</a>
+        </div>
+      </div>
+      <div class="fm-hero-img">
+        <img src="Images/img_19.jpeg" alt="Home services by FixMate" loading="eager">
+      </div>
+    </div>
+    <!-- Slide 2 -->
+    <div class="fm-hero-slide">
+      <div class="fm-hero-content">
+        <h1>AC & Appliance<br>experts, 45 min away.</h1>
+        <p>Split AC service starting ₹549. Deep foam-jet cleaning, gas refill, and diagnostics by certified technicians.</p>
+        <div class="fm-hero-btn-group">
+          <a href="#shelf-ac-repair" class="btn-primary">Book AC Service</a>
+        </div>
+      </div>
+      <div class="fm-hero-img">
+        <img src="Images/img_24.jpeg" alt="AC repair service" loading="lazy">
+      </div>
+    </div>
+    <!-- Slide 3 -->
+    <div class="fm-hero-slide">
+      <div class="fm-hero-content">
+        <h1>Salon at home,<br>luxury redefined.</h1>
+        <p>Bridal makeup, hair spa, facials, waxing — all premium salon services at your doorstep by trained artists.</p>
+        <div class="fm-hero-btn-group">
+          <a href="#shelf-salon" class="btn-primary">Book Salon</a>
+        </div>
+      </div>
+      <div class="fm-hero-img">
+        <img src="Images/img_62.jpeg" alt="Salon at home" loading="lazy">
+      </div>
+    </div>
+    <!-- Slide 4 -->
+    <div class="fm-hero-slide">
+      <div class="fm-hero-content">
+        <h1>Wall painting &amp;<br>waterproofing.</h1>
+        <p>Premium wall finishes, texture painting, and waterproofing. Pay after 100% satisfaction.</p>
+        <div class="fm-hero-btn-group">
+          <a href="#shelf-painting" class="btn-primary">Get Estimate</a>
+        </div>
+      </div>
+      <div class="fm-hero-img">
+        <img src="Images/img_46.jpeg" alt="Home painting service" loading="lazy">
+      </div>
+    </div>
+  </div>
+  <div class="fm-hero-dots" id="hero-dots"></div>
+  <div class="fm-hero-progress" id="hero-progress"></div>
+</section>
+
+<!-- Promotional Banners Mini Carousel -->
+<div class="fm-promo-carousel fm-reveal">
+  <div class="fm-promo-track" id="promo-track">
+    <div class="fm-promo-banner" onclick="location.href='#shelf-ac-repair'">
+      <img src="Images/img_24.jpeg" alt="AC Service Offer" loading="lazy">
+    </div>
+    <div class="fm-promo-banner" onclick="location.href='#shelf-painting'">
+      <img src="Images/img_46.jpeg" alt="Painting Service" loading="lazy">
+    </div>
+    <div class="fm-promo-banner" onclick="location.href='#shelf-salon'">
+      <img src="Images/img_2.jpeg" alt="Revamp Interiors" loading="lazy">
+    </div>
+    <div class="fm-promo-banner" onclick="location.href='#shelf-appliance'">
+      <img src="Images/img_11.jpeg" alt="Water Purifier" loading="lazy">
+    </div>
+  </div>
+</div>
+
+<!-- Category Grid -->
+<section class="fm-section fm-reveal" id="cat-all">
+  <div class="fm-section-head-v2">
+    <h2 class="fm-section-title">What are you looking for?</h2>
+  </div>
+  <div class="fm-cat-grid-wrapper">
+    <div class="fm-cat-grid" id="category-grid">
+      <!-- Skeleton loaders shown until JS loads -->
+      <div class="fm-skeleton" style="width:72px;height:72px;border-radius:50%;margin:0 auto"></div>
+      <div class="fm-skeleton" style="width:72px;height:72px;border-radius:50%;margin:0 auto"></div>
+      <div class="fm-skeleton" style="width:72px;height:72px;border-radius:50%;margin:0 auto"></div>
+      <div class="fm-skeleton" style="width:72px;height:72px;border-radius:50%;margin:0 auto"></div>
+      <div class="fm-skeleton" style="width:72px;height:72px;border-radius:50%;margin:0 auto"></div>
+      <div class="fm-skeleton" style="width:72px;height:72px;border-radius:50%;margin:0 auto"></div>
+    </div>
+  </div>
+</section>
+
+<!-- Trust Strip -->
+<div class="fm-trust-strip fm-reveal">
+  <div class="fm-trust-item">
+    <div class="fm-trust-icon" style="color: var(--uc-blue);">🛡️</div>
+    <div class="fm-trust-text">
+      <h4>Verified Professionals</h4>
+      <p>Background checked and trained experts</p>
+    </div>
+  </div>
+  <div class="fm-trust-item">
+    <div class="fm-trust-icon" style="color: var(--uc-star);">⭐</div>
+    <div class="fm-trust-text">
+      <h4>High Quality Standards</h4>
+      <p>Continuous training and quality monitoring</p>
+    </div>
+  </div>
+  <div class="fm-trust-item">
+    <div class="fm-trust-icon" style="color: var(--uc-green);">💳</div>
+    <div class="fm-trust-text">
+      <h4>Transparent Pricing</h4>
+      <p>No hidden costs, what you see is what you pay</p>
+    </div>
+  </div>
+</div>
+
+<!-- Dynamic Shelves (Populated by JS) -->
+<div id="dynamic-shelves">
+  <!-- Skeleton loaders -->
+  <section class="fm-section">
+    <div class="fm-section-head-v2">
+      <div class="fm-skeleton" style="width:200px;height:28px;border-radius:8px"></div>
+    </div>
+    <div style="display:flex;gap:20px;overflow:hidden">
+      <div class="fm-skeleton fm-skeleton-card"></div>
+      <div class="fm-skeleton fm-skeleton-card"></div>
+      <div class="fm-skeleton fm-skeleton-card"></div>
+      <div class="fm-skeleton fm-skeleton-card"></div>
+    </div>
+  </section>
+</div>
+
+<!-- Footer -->
+<footer class="fm-footer">
+  <div class="fm-footer-inner">
+    <div class="fm-footer-col">
+      <h4>Company</h4>
+      <a href="#">About Us</a>
+      <a href="#">Terms & Conditions</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Anti-discrimination Policy</a>
+    </div>
+    <div class="fm-footer-col">
+      <h4>For Customers</h4>
+      <a href="#">UC Reviews</a>
+      <a href="#">Categories near you</a>
+      <a href="#">Blog</a>
+      <a href="#">Contact Us</a>
+    </div>
+    <div class="fm-footer-col">
+      <h4>For Partners</h4>
+      <a href="#">Register as a professional</a>
+    </div>
+    <div class="fm-footer-col">
+      <h4>Social Links</h4>
+      <a href="#">Twitter</a>
+      <a href="#">Facebook</a>
+      <a href="#">Instagram</a>
+      <a href="#">LinkedIn</a>
+    </div>
+  </div>
+  <div class="fm-footer-bottom">
+    <div class="fm-logo" style="color:var(--uc-light);">FixMate<span>.</span></div>
+    <div>© 2026 FixMate Technologies. All rights reserved.</div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+// =====================================================
+// FIXMATE PREMIUM HOMEPAGE — CAROUSEL & SLIDER ENGINE
+// =====================================================
+
+// ——— STRUCTURED IMAGE POOLS — each category rotates its own set ———
+const serviceImages = {
+  'cleaning': [
+    'Images/img_3.jpeg',      // Cleaning lady with mop
+    'Images/img_9.jpeg',      // Bathroom deep clean
+    'Images/img_50.jpeg',     // Kitchen chimney cleaning
+    'Images/img_35.jpeg',     // House help washing dishes
+    'Images/img_19.jpeg',     // Service collage — multi service
+  ],
+  'plumbing': [
+    'Images/img_7.jpeg',      // Plumber with wrench
+    'Images/img_9.jpeg',      // Bathroom fitting / toilet
+    'Images/img_45.jpeg',     // RO water purifier product
+    'Images/img_11.jpeg',     // Water purifier banner
+    'Images/img_35.jpeg',     // Sink / kitchen tap
+  ],
+  'electrical': [
+    'Images/img_36.jpeg',     // Electrician with yellow cable
+    'Images/img_48.jpeg',     // Switchboard / socket
+    'Images/img_42.jpeg',     // Smart lock / doorbell
+    'Images/img_34.jpeg',     // Smart lock banner (dark)
+    'Images/img_59.jpeg',     // Smart door lock close-up
+  ],
+  'ac-repair': [
+    'Images/img_10.jpeg',     // AC unit blowing cool air
+    'Images/img_24.jpeg',     // AC foam-jet deep clean banner
+    'Images/img_19.jpeg',     // Service collage with AC tech
+    'Images/img_64.jpeg',     // Technician repairing appliance
+  ],
+  'salon': [
+    'Images/img_62.jpeg',     // Woman beauty treatment
+    'Images/img_8.jpeg',      // Girl with face cream
+    'Images/img_31.jpeg',     // Hair styling back view
+    'Images/img_32.jpeg',     // Waxing banner (luxe)
+    'Images/img_37.jpeg',     // Pedicure / feet care
+    'Images/img_47.jpeg',     // Woman body massage
+    'Images/img_6.jpeg',      // Woman shoulder massage
+    'Images/img_5.jpeg',      // Men's leg massage
+    'Images/img_30.jpeg',     // Laser / detan device
+    'Images/img_38.jpeg',     // Arm waxing
+    'Images/img_4.jpeg',      // Men's neck massage
+    'Images/img_33.jpeg',     // Men's massage banner
+    'Images/img_56.jpeg',     // Men's back massage
+    'Images/img_61.jpeg',     // Older man shoulder massage
+    'Images/img_58.jpeg',     // Woman massage with gloves
+  ],
+  'painting': [
+    'Images/img_46.jpeg',     // Wall painting with roller
+    'Images/img_57.jpeg',     // Home painting banner (room)
+    'Images/img_67.jpeg',     // Interior room (wallpaper)
+    'Images/img_2.jpeg',      // Revamp interiors banner
+  ],
+  'carpentry': [
+    'Images/img_65.jpeg',     // Man fixing cabinet hinge
+    'Images/img_55.jpeg',     // Furniture drawer / nightstand
+    'Images/img_44.jpeg',     // TV unit with NEW tag
+    'Images/img_50.jpeg',     // Kitchen chimney area (cabinet)
+  ],
+  'pest-control': [
+    'Images/img_9.jpeg',      // Power tool bathroom spray
+    'Images/img_3.jpeg',      // Home cleaning (sanitizing)
+    'Images/img_35.jpeg',     // Kitchen sanitation
+    'Images/img_19.jpeg',     // Service collage
+  ],
+  'appliance': [
+    'Images/img_64.jpeg',     // Man repairing washing machine
+    'Images/img_43.jpeg',     // Gas stove / burner
+    'Images/img_49.jpeg',     // TV repair from behind
+    'Images/img_22.jpeg',     // Laptop / computer
+    'Images/img_45.jpeg',     // Water purifier product
+    'Images/img_50.jpeg',     // Kitchen chimney
+  ],
+  'shifting': [
+    'Images/img_55.jpeg',     // Furniture drawer / nightstand
+    'Images/img_44.jpeg',     // TV unit furniture
+    'Images/img_67.jpeg',     // Interior room with furniture
+    'Images/img_2.jpeg',      // Revamp / transformations
+  ],
+  'interiors': [
+    'Images/img_67.jpeg',     // Interior dining room
+    'Images/img_44.jpeg',     // TV unit premium
+    'Images/img_57.jpeg',     // Home painting / room banner
+    'Images/img_2.jpeg',      // Revamp interiors banner
+    'Images/img_55.jpeg',     // Furniture piece
+  ],
+  'emergency': [
+    'Images/img_36.jpeg',     // Electrician (emergency electric)
+    'Images/img_7.jpeg',      // Plumber (emergency plumbing)
+    'Images/img_42.jpeg',     // Smart lock (door lock emergency)
+    'Images/img_10.jpeg',     // AC unit (emergency AC)
+    'Images/img_59.jpeg',     // Door lock close-up
+  ]
+};
+
+// Category grid thumbnails — one best image per category
+const catImages = {
+  'cleaning':     'Images/img_3.jpeg',
+  'plumbing':     'Images/img_7.jpeg',
+  'electrical':   'Images/img_36.jpeg',
+  'ac-repair':    'Images/img_10.jpeg',
+  'salon':        'Images/img_62.jpeg',
+  'painting':     'Images/img_46.jpeg',
+  'carpentry':    'Images/img_65.jpeg',
+  'pest-control': 'Images/img_9.jpeg',
+  'appliance':    'Images/img_64.jpeg',
+  'shifting':     'Images/img_55.jpeg',
+  'interiors':    'Images/img_67.jpeg',
+  'emergency':    'Images/img_42.jpeg'
+};
+
+// ——— IMAGE RESOLVER — rotates through category pool, no repeats side-by-side ———
+const _catCounters = {};
+function getServiceImage(service) {
+  const cat = service.category;
+  const pool = serviceImages[cat];
+  if (!pool || pool.length === 0) return 'Images/img_19.jpeg'; // ultimate fallback
+  if (!_catCounters[cat]) _catCounters[cat] = 0;
+  const img = pool[_catCounters[cat] % pool.length];
+  _catCounters[cat]++;
+  return img;
+}
+
+// ——— HERO CAROUSEL ENGINE ———
+(function initHeroCarousel() {
+  const slides = document.getElementById('hero-slides');
+  const dotsContainer = document.getElementById('hero-dots');
+  const progressBar = document.getElementById('hero-progress');
+  const slideElements = slides.querySelectorAll('.fm-hero-slide');
+  const totalSlides = slideElements.length;
+  let currentSlide = 0;
+  let autoplayInterval;
+  const AUTOPLAY_DELAY = 5000;
+  let progressStart;
+
+  // Create dots
+  for (let i = 0; i < totalSlides; i++) {
+    const dot = document.createElement('button');
+    dot.className = 'fm-hero-dot' + (i === 0 ? ' active' : '');
+    dot.setAttribute('aria-label', 'Go to slide ' + (i+1));
+    dot.onclick = () => goToSlide(i);
+    dotsContainer.appendChild(dot);
+  }
+
+  function goToSlide(n) {
+    currentSlide = n;
+    slides.style.transform = `translateX(-${currentSlide * 100}%)`;
+    dotsContainer.querySelectorAll('.fm-hero-dot').forEach((d,i) => {
+      d.classList.toggle('active', i === currentSlide);
+    });
+    resetAutoplay();
+  }
+
+  function nextSlide() {
+    goToSlide((currentSlide + 1) % totalSlides);
+  }
+
+  // Progress bar animation
+  function animateProgress() {
+    progressStart = Date.now();
+    function tick() {
+      const elapsed = Date.now() - progressStart;
+      const pct = Math.min((elapsed / AUTOPLAY_DELAY) * 100, 100);
+      progressBar.style.width = pct + '%';
+      if (pct < 100) requestAnimationFrame(tick);
+    }
+    tick();
+  }
+
+  function startAutoplay() {
+    animateProgress();
+    autoplayInterval = setInterval(() => {
+      nextSlide();
+      animateProgress();
+    }, AUTOPLAY_DELAY);
+  }
+
+  function resetAutoplay() {
+    clearInterval(autoplayInterval);
+    startAutoplay();
+  }
+
+  // Touch/Swipe support for hero
+  let touchStartX = 0;
+  const carousel = document.getElementById('hero-carousel');
+  carousel.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, {passive: true});
+  carousel.addEventListener('touchend', e => {
+    const diff = touchStartX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) goToSlide((currentSlide + 1) % totalSlides);
+      else goToSlide((currentSlide - 1 + totalSlides) % totalSlides);
+    }
+  });
+
+  startAutoplay();
+})();
+
+// ——— DATA FETCH & RENDER ———
+fetch('assets/data/services.json')
+  .then(r => r.json())
+  .then(data => {
+    renderCategories(data.categories);
+    renderShelves(data.services, data.categories);
+    // Init scroll reveal after render
+    setTimeout(initScrollReveal, 100);
+  });
+
+// ——— CATEGORY GRID RENDER ———  
+function renderCategories(cats) {
+  const grid = document.getElementById('category-grid');
+  grid.innerHTML = cats.map(c => `
+    <a href="#shelf-${c.id}" class="fm-cat-card-v2">
+      <div class="fm-cat-img-wrap-v2">
+        <img src="${catImages[c.id] || catImages['cleaning']}" alt="${c.name}" loading="lazy">
+      </div>
+      <span class="fm-cat-name-v2">${c.name}</span>
+    </a>
+  `).join('');
+}
+
+// ——— STAR RATING HTML ———
+function starHTML(rating) {
+  const full = Math.floor(rating);
+  const hasHalf = rating % 1 >= 0.3;
+  let stars = '';
+  for (let i = 0; i < full; i++) stars += '★';
+  if (hasHalf) stars += '½';
+  return stars;
+}
+
+// ——— PREMIUM SHELF RENDER (SWIPER JS) ———
+function renderShelves(services, cats) {
+  const container = document.getElementById('dynamic-shelves');
+  let html = '';
+
+  cats.forEach(cat => {
+    const items = services.filter(s => s.category === cat.id);
+    if (items.length === 0) return;
+
+    html += `
+      <section class="fm-section fm-section-gradient ${cat.id} fm-reveal" id="shelf-${cat.id}">
+        <div class="fm-section-head-v2">
+          <h2 class="fm-section-title">
+            ${cat.name} Services
+            <span class="fm-cat-badge">${cat.emoji} ${items.length} Options</span>
+          </h2>
+          <div class="fm-section-controls">
+            <a href="#shelf-${cat.id}" class="fm-view-all">View All</a>
+            <button class="fm-arrow swiper-prev-${cat.id}" aria-label="Previous">←</button>
+            <button class="fm-arrow swiper-next-${cat.id}" aria-label="Next">→</button>
+          </div>
+        </div>
+        <div class="fm-shelf-container" id="shelf-container-${cat.id}">
+          <div class="swiper fm-shelf-swiper" id="swiper-${cat.id}">
+            <div class="swiper-wrapper">
+              ${items.map(s => {
+                const rRating = s.rating || 4.5;
+                const reviewCount = s.reviews || Math.floor(Math.random() * 500) + 50;
+                // Rotate through category image pool
+                const rImg = getServiceImage(s);
+
+                return `
+                <div class="swiper-slide fm-card-v2" onclick="window.location.href='customer/booking.html?service=${s.id}'">
+                  <div class="fm-card-img">
+                    <img src="${rImg}" alt="${s.title}" loading="lazy">
+                    ${s.badge ? `<span class="fm-card-badge ${s.badgeType}">${s.badge}</span>` : ''}
+                    ${s.duration ? `<span class="fm-card-duration">${s.duration}</span>` : ''}
+                    <div class="fm-card-quick-book">
+                      <button onclick="event.stopPropagation(); window.location.href='customer/booking.html?service=${s.id}'">Quick Book →</button>
+                    </div>
+                  </div>
+                  <div class="fm-card-body">
+                    <div class="fm-card-title">${s.title}</div>
+                    <div class="fm-card-rating">
+                      <span class="stars">${starHTML(rRating)}</span>
+                      <span class="reviews">${rRating} (${reviewCount.toLocaleString()} reviews)</span>
+                    </div>
+                    <div class="fm-card-price-row">
+                      <span class="fm-card-price">₹${s.price.toLocaleString()}</span>
+                      ${s.originalPrice ? `<span class="fm-card-mrp">₹${s.originalPrice.toLocaleString()}</span>` : ''}
+                      ${s.discount ? `<span class="fm-card-discount">${s.discount}% OFF</span>` : ''}
+                    </div>
+                    <button class="fm-card-btn" onclick="event.stopPropagation();">Add to Cart</button>
+                  </div>
+                </div>`;
+              }).join('')}
+            </div>
+            <!-- Pagination dots for mobile -->
+            <div class="swiper-pagination fm-shelf-pagination"></div>
+          </div>
+        </div>
+      </section>
+    `;
+  });
+
+  container.innerHTML = html;
+
+  // Init Swipers instance for each shelf
+  cats.forEach(cat => {
+    if (document.getElementById(`swiper-${cat.id}`)) {
+      new Swiper(`#swiper-${cat.id}`, {
+        slidesPerView: 'auto',
+        spaceBetween: 24,
+        freeMode: true,
+        grabCursor: true,
+        navigation: {
+          nextEl: `.swiper-next-${cat.id}`,
+          prevEl: `.swiper-prev-${cat.id}`,
+        },
+        pagination: {
+          el: `#swiper-${cat.id} .swiper-pagination`,
+          clickable: true,
+          dynamicBullets: true,
+        },
+        mousewheel: {
+          forceToAxis: true,
+        },
+        keyboard: {
+          enabled: true,
+          onlyInViewport: false,
+        },
+        breakpoints: {
+          0: { spaceBetween: 16 },
+          768: { spaceBetween: 24 }
+        }
+      });
+    }
+  });
+}
+
+// ——— SCROLL REVEAL ANIMATION ———
+function initScrollReveal() {
+  const reveals = document.querySelectorAll('.fm-reveal');
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  reveals.forEach(el => observer.observe(el));
+}
+// Init reveals for static elements
+initScrollReveal();
+
+// ——— SEARCH FUNCTIONALITY ———
+document.getElementById('search-input').addEventListener('keyup', function(e) {
+  if (e.key === 'Enter') {
+    const query = this.value.toLowerCase().trim();
+    if (!query) return;
+    // Find matching category
+    const catMap = {
+      'clean': 'cleaning', 'plumb': 'plumbing', 'electric': 'electrical',
+      'ac': 'ac-repair', 'salon': 'salon', 'paint': 'painting',
+      'carpenter': 'carpentry', 'pest': 'pest-control', 'appliance': 'appliance',
+      'shift': 'shifting', 'interior': 'interiors', 'emergency': 'emergency',
+      'wash': 'appliance', 'fridge': 'appliance', 'fan': 'electrical',
+      'tap': 'plumbing', 'pipe': 'plumbing', 'hair': 'salon', 'facial': 'salon',
+      'makeup': 'salon', 'wax': 'salon', 'wall': 'painting'
+    };
+    for (const [key, val] of Object.entries(catMap)) {
+      if (query.includes(key)) {
+        const target = document.getElementById('shelf-' + val);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          // Highlight effect
+          target.style.boxShadow = '0 0 0 3px rgba(0,0,0,0.15)';
+          setTimeout(() => { target.style.boxShadow = ''; }, 2000);
+        }
+        return;
+      }
+    }
+  }
+});
+
+// ——— CATEGORY NAV HIGHLIGHT ON SCROLL ———
+const catNavLinks = document.querySelectorAll('.fm-catnav a');
+window.addEventListener('scroll', () => {
+  let current = '';
+  document.querySelectorAll('[id^="shelf-"]').forEach(section => {
+    const top = section.offsetTop - 200;
+    if (window.scrollY >= top) current = section.id;
+  });
+  catNavLinks.forEach(link => {
+    link.style.color = '';
+    link.style.borderBottom = '';
+    if (link.getAttribute('href') === '#' + current) {
+      link.style.color = 'var(--uc-dark)';
+      link.style.borderBottom = '2px solid var(--uc-dark)';
+    }
+  });
+});
+</script>
+</body>
+</html>

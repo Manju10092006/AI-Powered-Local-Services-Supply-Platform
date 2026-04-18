@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FixMate AI — Customer Dashboard</title>
+  <meta name="description" content="Manage your FixMate AI bookings, track workers, and view history.">
+  <link rel="stylesheet" href="../assets/css/global.css">
+  <link rel="stylesheet" href="../assets/css/navbar.css">
+  <link rel="stylesheet" href="../assets/css/cards.css">
+  <link rel="stylesheet" href="../assets/css/customer.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>🔧</text></svg>">
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar" id="main-navbar">
+  <div class="container">
+    <a href="../index.html" class="nav-logo">
+      <div class="nav-logo-icon">F</div>
+      <div><div class="nav-logo-text">Fix<span>Mate</span></div></div>
+      <span class="nav-logo-badge">AI</span>
+    </a>
+    <div class="nav-search">
+      <span class="nav-search-icon">🔍</span>
+      <input type="text" class="nav-search-input" placeholder="Search services...">
+      <button class="nav-search-btn">→</button>
+    </div>
+    <div class="nav-links">
+      <a href="dashboard.html" class="nav-link" style="color:var(--primary);"><span class="nav-icon">📊</span><span>Dashboard</span></a>
+      <a href="booking.html" class="nav-link"><span class="nav-icon">📋</span><span>Book</span></a>
+      <a href="history.html" class="nav-link"><span class="nav-icon">🕐</span><span>History</span></a>
+    </div>
+    <a href="../login.html" class="nav-auth-btn"><span>👤</span> Manjunath</a>
+    <button class="nav-mobile-toggle">☰</button>
+  </div>
+</nav>
+
+<div class="dashboard-layout">
+  <!-- Sidebar -->
+  <aside class="dash-sidebar">
+    <div style="padding:20px 24px;border-bottom:1px solid var(--border);">
+      <div style="display:flex;align-items:center;gap:12px;">
+        <div style="width:48px;height:48px;background:var(--primary-gradient);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:18px;">M</div>
+        <div>
+          <div style="font-weight:700;font-size:0.9375rem;">Manjunath</div>
+          <div style="font-size:0.75rem;color:var(--text-muted);">Premium Member</div>
+        </div>
+      </div>
+    </div>
+    <div class="dash-sidebar-menu">
+      <a href="dashboard.html" class="dash-menu-item active"><span class="dm-icon">📊</span> Dashboard</a>
+      <a href="booking.html" class="dash-menu-item"><span class="dm-icon">📋</span> Book Service</a>
+      <a href="track.html" class="dash-menu-item"><span class="dm-icon">📍</span> Track Worker</a>
+      <a href="history.html" class="dash-menu-item"><span class="dm-icon">🕐</span> My Bookings</a>
+      <a href="profile.html" class="dash-menu-item"><span class="dm-icon">👤</span> Profile</a>
+      <a href="#" class="dash-menu-item"><span class="dm-icon">💳</span> Payments</a>
+      <a href="#" class="dash-menu-item"><span class="dm-icon">🎁</span> Refer &amp; Earn</a>
+      <a href="#" class="dash-menu-item"><span class="dm-icon">⭐</span> FixMate Plus</a>
+      <a href="#" class="dash-menu-item"><span class="dm-icon">❓</span> Help</a>
+      <a href="../index.html" class="dash-menu-item"><span class="dm-icon">🏠</span> Home</a>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <main class="dash-main">
+    <div class="dash-header">
+      <div>
+        <h1>Welcome back, Manjunath 👋</h1>
+        <p style="color:var(--text-muted);font-size:0.9375rem;">Here's your booking activity and recommendations</p>
+      </div>
+      <a href="booking.html" class="btn btn-primary">+ Book New Service</a>
+    </div>
+
+    <!-- Quick Stats -->
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:28px;">
+      <div class="stat-card">
+        <div class="stat-card-header">
+          <div class="stat-card-icon" style="background:rgba(108,60,225,0.1);color:var(--primary);">📋</div>
+        </div>
+        <div class="stat-card-value">3</div>
+        <div class="stat-card-label">Active Bookings</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-header">
+          <div class="stat-card-icon" style="background:rgba(16,185,129,0.1);color:var(--accent-green);">✓</div>
+        </div>
+        <div class="stat-card-value">24</div>
+        <div class="stat-card-label">Completed</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-header">
+          <div class="stat-card-icon" style="background:rgba(245,158,11,0.1);color:var(--secondary);">💰</div>
+        </div>
+        <div class="stat-card-value">₹12,450</div>
+        <div class="stat-card-label">Total Spent</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-header">
+          <div class="stat-card-icon" style="background:rgba(236,72,152,0.1);color:var(--accent-pink);">🎁</div>
+        </div>
+        <div class="stat-card-value">₹600</div>
+        <div class="stat-card-label">Savings (Plus)</div>
+      </div>
+    </div>
+
+    <!-- Active Bookings -->
+    <div style="margin-bottom:28px;">
+      <div class="section-header"><h2>📋 Active Bookings</h2></div>
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        <div class="job-card" style="border-left-color:var(--accent-green);">
+          <div class="job-card-header">
+            <span class="badge badge-success">In Progress</span>
+            <span class="job-card-time">Started 25 min ago</span>
+          </div>
+          <h4 class="job-card-title">Full Home Deep Cleaning — 2BHK</h4>
+          <div class="job-card-details">
+            <span class="detail">👷 Rajesh Kumar (⭐ 4.9)</span>
+            <span class="detail">⏱ 2 hrs remaining</span>
+            <span class="detail">💰 ₹1,999</span>
+          </div>
+          <div class="job-card-actions">
+            <a href="track.html" class="btn btn-primary btn-sm">📍 Track Worker</a>
+            <button class="btn btn-secondary btn-sm">📞 Call Worker</button>
+          </div>
+        </div>
+        <div class="job-card">
+          <div class="job-card-header">
+            <span class="badge badge-warning">Scheduled</span>
+            <span class="job-card-time">Tomorrow, 10:00 AM</span>
+          </div>
+          <h4 class="job-card-title">AC Gas Refill + Deep Cleaning (Split AC)</h4>
+          <div class="job-card-details">
+            <span class="detail">👷 Pending assignment</span>
+            <span class="detail">⏱ Est. 2 hrs</span>
+            <span class="detail">💰 ₹1,849</span>
+          </div>
+          <div class="job-card-actions">
+            <button class="btn btn-secondary btn-sm">✏️ Reschedule</button>
+            <button class="btn btn-danger btn-sm">Cancel</button>
+          </div>
+        </div>
+        <div class="job-card">
+          <div class="job-card-header">
+            <span class="badge badge-info">Confirmed</span>
+            <span class="job-card-time">Sat, 3:00 PM</span>
+          </div>
+          <h4 class="job-card-title">Interior Painting — Master Bedroom</h4>
+          <div class="job-card-details">
+            <span class="detail">👷 Sunil Painter (⭐ 4.7)</span>
+            <span class="detail">⏱ Est. 1 day</span>
+            <span class="detail">💰 ₹2,999</span>
+          </div>
+          <div class="job-card-actions">
+            <button class="btn btn-secondary btn-sm">View Details</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AI Recommendation -->
+    <div style="background:linear-gradient(135deg,var(--bg-dark),#1E1B4B);border-radius:var(--radius-xl);padding:32px;color:#fff;margin-bottom:28px;display:flex;align-items:center;gap:24px;">
+      <div style="font-size:3rem;">🤖</div>
+      <div style="flex:1;">
+        <h3 style="color:#fff;margin-bottom:4px;">AI Recommendation</h3>
+        <p style="color:rgba(255,255,255,0.6);font-size:0.9375rem;">Based on your usage, your AC filters may need cleaning. Book now and save 20% with FixMate Plus!</p>
+      </div>
+      <a href="booking.html" class="btn btn-white">Book AC Service</a>
+    </div>
+
+    <!-- Recent Activity -->
+    <div>
+      <div class="section-header"><h2>🕐 Recent Activity</h2><a href="history.html" class="view-all">View All →</a></div>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div style="display:flex;align-items:center;gap:16px;padding:14px 20px;background:#fff;border-radius:var(--radius-md);border:1px solid var(--border-light);">
+          <div style="width:40px;height:40px;background:rgba(16,185,129,0.1);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;">✓</div>
+          <div style="flex:1;"><div style="font-weight:600;font-size:0.875rem;">Bathroom Cleaning completed</div><div style="font-size:0.75rem;color:var(--text-muted);">2 days ago • Rated ⭐⭐⭐⭐⭐</div></div>
+          <div style="font-weight:700;color:var(--text);">₹499</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:16px;padding:14px 20px;background:#fff;border-radius:var(--radius-md);border:1px solid var(--border-light);">
+          <div style="width:40px;height:40px;background:rgba(16,185,129,0.1);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;">✓</div>
+          <div style="flex:1;"><div style="font-weight:600;font-size:0.875rem;">Electrician — Fan Installation</div><div style="font-size:0.75rem;color:var(--text-muted);">5 days ago • Rated ⭐⭐⭐⭐</div></div>
+          <div style="font-weight:700;color:var(--text);">₹199</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:16px;padding:14px 20px;background:#fff;border-radius:var(--radius-md);border:1px solid var(--border-light);">
+          <div style="width:40px;height:40px;background:rgba(16,185,129,0.1);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;">✓</div>
+          <div style="flex:1;"><div style="font-weight:600;font-size:0.875rem;">Pest Control — General (2BHK)</div><div style="font-size:0.75rem;color:var(--text-muted);">1 week ago • Rated ⭐⭐⭐⭐⭐</div></div>
+          <div style="font-weight:700;color:var(--text);">₹799</div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- Mobile Bottom Nav -->
+<div class="mobile-bottom-nav">
+  <div class="container">
+    <a href="../index.html" class="mobile-nav-item"><span class="mnav-icon">🏠</span>Home</a>
+    <a href="booking.html" class="mobile-nav-item"><span class="mnav-icon">📋</span>Book</a>
+    <a href="dashboard.html" class="mobile-nav-item active"><span class="mnav-icon">📊</span>Dashboard</a>
+    <a href="history.html" class="mobile-nav-item"><span class="mnav-icon">🕐</span>History</a>
+    <a href="profile.html" class="mobile-nav-item"><span class="mnav-icon">👤</span>Profile</a>
+  </div>
+</div>
+
+<script src="../assets/js/api.js"></script>
+<script src="../assets/js/main.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", async () => {
+  if (!requireAuth(["customer"])) return;
+  const user = Auth.getUser();
+  if (user) {
+    // Update greeting
+    document.querySelector('.dash-header h1').textContent = `Welcome back, ${user.name} 👋`;
+    // Update sidebar avatar
+    const initials = user.name.split(' ').map(n=>n[0]).join('');
+    document.querySelector('.dash-sidebar div[style*="font-weight:700"]').textContent = user.name;
+    // Update nav auth button
+    document.querySelector('.nav-auth-btn').innerHTML = `<span>👤</span> ${user.name}`;
+    document.querySelector('.nav-auth-btn').href = '#';
+    document.querySelector('.nav-auth-btn').onclick = (e) => { e.preventDefault(); Auth.logout(); };
+  }
+  // Fetch live stats from backend
+  try {
+    const stats = await UserAPI.getStats();
+    if (stats) {
+      const cards = document.querySelectorAll('.stat-card-value');
+      if (cards[0]) cards[0].textContent = stats.activeBookings;
+      if (cards[1]) cards[1].textContent = stats.completed;
+      if (cards[2]) cards[2].textContent = '₹' + stats.totalSpent.toLocaleString('en-IN');
+      if (cards[3]) cards[3].textContent = '₹' + stats.savings.toLocaleString('en-IN');
+    }
+  } catch(e) { console.warn('Stats fetch failed, using defaults'); }
+});
+</script>
+</body>
+</html>
+

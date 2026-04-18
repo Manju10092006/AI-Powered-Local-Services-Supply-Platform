@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>FIXMATE AI | Premium Home Services</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            outline: "#75777d",
+            "secondary-fixed": "#dfe2ed",
+            "tertiary-fixed": "#fadfb8",
+            "on-primary-fixed-variant": "#3c475a",
+            "on-background": "#191c1e",
+            tertiary: "#1e1200",
+            "surface-bright": "#f7f9fb",
+            "tertiary-container": "#35260c",
+            "primary-fixed": "#d8e3fb",
+            "on-surface": "#191c1e",
+            "inverse-surface": "#2d3133",
+            "on-secondary-fixed": "#181c23",
+            "surface-container": "#eceef0",
+            "secondary-container": "#dfe2ed",
+            primary: "#091426",
+            "primary-container": "#1e293b",
+            "on-tertiary-fixed": "#271902",
+            "inverse-primary": "#bcc7de",
+            "on-tertiary-container": "#a38c6a",
+            "secondary-fixed-dim": "#c3c6d1",
+            surface: "#f7f9fb",
+            "surface-dim": "#d8dadc",
+            "on-error": "#ffffff",
+            "on-error-container": "#93000a",
+            "on-surface-variant": "#45474c",
+            "inverse-on-surface": "#eff1f3",
+            background: "#f7f9fb",
+            "error-container": "#ffdad6",
+            secondary: "#5b5e67",
+            "surface-container-lowest": "#ffffff",
+            "on-tertiary-fixed-variant": "#564427",
+            "primary-fixed-dim": "#bcc7de",
+            "on-secondary-fixed-variant": "#43474f",
+            "on-secondary-container": "#61646d",
+            "on-primary-container": "#8590a6",
+            "surface-container-high": "#e6e8ea",
+            "on-primary-fixed": "#111c2d",
+            "on-primary": "#ffffff",
+            "outline-variant": "#c5c6cd",
+            "surface-tint": "#545f73",
+            "surface-container-highest": "#e0e3e5",
+            "surface-variant": "#e0e3e5",
+            "tertiary-fixed-dim": "#ddc39d",
+            "surface-container-low": "#f2f4f6",
+            "on-secondary": "#ffffff",
+            "on-tertiary": "#ffffff",
+            error: "#ba1a1a"
+          },
+          borderRadius: {
+            DEFAULT: "0.25rem",
+            lg: "0.5rem",
+            xl: "0.75rem",
+            full: "9999px"
+          },
+          fontFamily: {
+            headline: ["Inter"],
+            body: ["Inter"],
+            label: ["Inter"]
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-family: 'Inter', sans-serif; background-color: #f7f9fb; color: #191c1e; }
+    .glass-panel {
+      background: rgba(255, 255, 255, 0.72);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+    /* Light theme: readable hero, soft blend into page (no heavy white haze on video) */
+    .hero-gradient-overlay {
+      background: linear-gradient(
+        to bottom,
+        rgba(9, 20, 38, 0.38) 0%,
+        rgba(247, 249, 251, 0.55) 55%,
+        rgba(247, 249, 251, 0.92) 100%
+      );
+    }
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      will-change: transform;
+    }
+    .gsap-clip { overflow: hidden; }
+    .gsap-line-inner {
+      display: block;
+      will-change: transform, opacity;
+      line-height: 1.05;
+    }
+    /* vertical-align: top keeps transformed glyphs on one visual line */
+    .gsap-char {
+      display: inline-block;
+      vertical-align: top;
+      will-change: transform, opacity;
+    }
+    .text-reveal-line {
+      line-height: 1.12;
+    }
+    .gsap-word-mask {
+      display: inline-block;
+      overflow: hidden;
+      vertical-align: top;
+      line-height: inherit;
+    }
+    .gsap-word-inner {
+      display: inline-block;
+      will-change: transform, opacity;
+      vertical-align: top;
+    }
+    .reveal-box { will-change: transform, opacity; }
+    .cta-panel { overflow: visible; }
+    .hero-video { filter: saturate(1.02) contrast(1.02); }
+  </style>
+</head>
+<body class="bg-surface text-on-surface selection:bg-primary-container selection:text-white overflow-x-hidden">
+<!-- TopNavBar -->
+<nav id="top-nav" class="fixed top-0 w-full z-50 bg-white/75 backdrop-blur-xl border-b border-slate-200/40 shadow-[0_12px_32px_rgba(25,28,30,0.06)]">
+  <div class="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto">
+    <div class="text-xl font-black tracking-tighter text-slate-950">FIXMATE AI</div>
+    <div class="hidden md:flex items-center space-x-8 font-['Inter'] tracking-tight text-sm font-medium">
+      <a class="text-slate-900 border-b-2 border-slate-900 pb-1" href="#">Services</a>
+      <a class="text-slate-500 hover:text-slate-900 transition-colors" href="#">Workers</a>
+      <a class="text-slate-500 hover:text-slate-900 transition-colors" href="#">Emergency</a>
+      <a class="text-slate-500 hover:text-slate-900 transition-colors" href="#">Pricing</a>
+      <a class="text-slate-500 hover:text-slate-900 transition-colors" href="#">Support</a>
+    </div>
+    <button type="button" class="bg-primary text-on-primary px-6 py-2.5 rounded-lg text-sm font-semibold scale-95 active:scale-90 duration-200 transition-all hover:shadow-lg">
+      Book Now
+    </button>
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<header class="relative min-h-screen w-full overflow-hidden flex items-center justify-center pt-20">
+  <video class="hero-video absolute top-0 left-0 w-full h-full object-cover z-0" autoplay muted loop playsinline>
+    <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260403_050628_c4e32401-fab4-4a27-b7a8-6e9291cd5959.mp4" type="video/mp4"/>
+  </video>
+  <div class="absolute inset-0 hero-gradient-overlay z-10 pointer-events-none"></div>
+  <div class="relative z-20 max-w-7xl mx-auto px-8 w-full flex flex-col md:flex-row items-center justify-between gap-12">
+    <div class="max-w-2xl">
+      <h1 class="text-6xl md:text-8xl font-black tracking-tighter text-primary">
+        <div class="gsap-clip">
+          <div id="hero-line-1" class="gsap-line-inner">Trusted Experts</div>
+        </div>
+        <div class="gsap-clip">
+          <div id="hero-line-2" class="gsap-line-inner text-primary-container">At Your Doorstep.</div>
+        </div>
+      </h1>
+      <p id="hero-sub" class="mt-8 text-lg md:text-xl text-slate-700 font-medium max-w-lg">
+        The precision of AI matching meets the craft of verified experts. Premium home maintenance, redesigned for the modern professional.
+      </p>
+      <div id="hero-cta" class="mt-10 flex flex-wrap gap-4">
+        <button type="button" class="bg-primary text-white px-8 py-4 rounded-xl font-bold shadow-2xl hover:bg-primary-container transition-all">Start My Project</button>
+        <button type="button" class="bg-white/50 backdrop-blur-md border border-white/40 text-primary px-8 py-4 rounded-xl font-bold hover:bg-white/80 transition-all">View Pricing</button>
+      </div>
+    </div>
+    <!-- Liquid Glass Widget -->
+    <div id="hero-widget" class="hidden lg:block w-80 p-6 rounded-3xl glass-panel shadow-2xl border border-white/40 transform rotate-1 hover:rotate-0 transition-transform duration-700">
+      <div class="flex items-center justify-between mb-6">
+        <span class="text-xs font-bold uppercase tracking-widest text-primary/60">Live Near You</span>
+        <div class="h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></div>
+      </div>
+      <div class="space-y-4">
+        <div class="flex items-center gap-4 p-3 rounded-2xl hover:bg-white/60 transition-colors cursor-pointer border border-transparent hover:border-white/50">
+          <img class="h-12 w-12 rounded-full object-cover" alt="" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGeB25DtyWq53k3nGyuJh8iy4X94E7oTZzvmWUOG-zcaxxArLI72NeNjyud_P1-Kofiv21iuwm3zj2joD-pBrVgQSYMI-4LDcEi_yUisN5FviqhPVg7u-hPUiSQNoaUoyNbjqOpS7cMxE1q-_J3yyIvkWL38C8FlcJKAS-x2hQObghZysevB3W644XHnI5_D1QCvcKtItAOUFiM2XiyHafRUShD4WMjNMH8rh3ILWt6klyqK-KFAihYmXqbGhNZ0nccmyBtSaeHmk"/>
+          <div>
+            <p class="text-sm font-bold text-primary">Marcus R.</p>
+            <p class="text-xs text-slate-500 font-medium">Master Plumber • 0.8mi</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-4 p-3 rounded-2xl hover:bg-white/60 transition-colors cursor-pointer border border-transparent hover:border-white/50">
+          <img class="h-12 w-12 rounded-full object-cover" alt="" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbx3rjY4IvJtDdyPMVZCmhBKW3WfHN7uGCAzJQlaD8iiIReBOZl1BPuig2sIuEDIHC4d3GHDxTkGPZK-yUGJUpEV2TtaAjpfhUdyKeOBqr3MIcHoKvdY23xdpiilmr4HxAJiBsSP3NucVhfVfqffApQDJv-CnFhCOwY-XFU1tU6MP1rhBBdHld8ImjegQBydIHrgLJ-tgzKm_Q8dhRqK8F-PTXpzkHGR7NEaYyUyaIY52Oz6IFUvZ1buc4Swxj4TnORMoCfX9ACe0"/>
+          <div>
+            <p class="text-sm font-bold text-primary">Julian W.</p>
+            <p class="text-xs text-slate-500 font-medium">Electrician • 1.2mi</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-4 p-3 rounded-2xl hover:bg-white/60 transition-colors cursor-pointer border border-transparent hover:border-white/50">
+          <img class="h-12 w-12 rounded-full object-cover" alt="" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLqSV-_sBhyPS5sEvRSwCyklaDPV3vdLMbYszXUvvK45la_Rqwtmmis2KSAr1hxtw09eVg8rXrtFDsKDb1AeuT7jpTTf8HS_agE3AjbxfypDahfufMcESrMuDjYEK19Z9BhHMw09HeqydasWXkC1lWozuQWqnfdG31EM8LTZawGSx5K6U6xMa7xFl__lRjDuM2a2z7iUslNwRVTLfDeKoCpEscurlipVtrr8Ayzqz20hhYrKSW8cND0nmbQJzMH6-S6hv5FUusRlI"/>
+          <div>
+            <p class="text-sm font-bold text-primary">Sarah K.</p>
+            <p class="text-xs text-slate-500 font-medium">Eco-Cleaning • 2.5mi</p>
+          </div>
+        </div>
+      </div>
+      <button type="button" class="w-full mt-6 py-3 rounded-xl bg-primary text-white text-xs font-bold uppercase tracking-widest hover:bg-primary-container transition-all">Request Map View</button>
+    </div>
+  </div>
+</header>
+
+<!-- Marquee -->
+<div id="marquee-section" class="bg-primary py-8 overflow-hidden">
+  <div class="marquee-track" id="marquee-track">
+    <div class="flex items-center gap-16 px-8 marquee-set">
+      <span class="text-white/25 text-4xl font-black uppercase italic">Precision</span>
+      <span class="text-white/25 text-4xl font-black uppercase italic">Reliability</span>
+      <span class="text-white/25 text-4xl font-black uppercase italic">AI Intelligence</span>
+      <span class="text-white/25 text-4xl font-black uppercase italic">Expert Craft</span>
+      <span class="text-white/25 text-4xl font-black uppercase italic">Elite Standards</span>
+      <span class="text-white/25 text-4xl font-black uppercase italic">Transparency</span>
+    </div>
+    <div class="flex items-center gap-16 px-8 marquee-set" aria-hidden="true">
+      <span class="text-white/25 text-4xl font-black uppercase italic">Precision</span>
+      <span class="text-white/25 text-4xl font-black uppercase italic">Reliability</span>
+      <span class="text-white/25 text-4xl font-black uppercase italic">AI Intelligence</span>
+      <span class="text-white/25 text-4xl font-black uppercase italic">Expert Craft</span>
+      <span class="text-white/25 text-4xl font-black uppercase italic">Elite Standards</span>
+      <span class="text-white/25 text-4xl font-black uppercase italic">Transparency</span>
+    </div>
+  </div>
+</div>
+
+<!-- Popular Services -->
+<section class="py-32 px-8 max-w-7xl mx-auto bg-surface">
+  <div class="mb-20 section-intro reveal-box">
+    <span class="text-xs font-extrabold uppercase tracking-[0.2em] text-on-surface-variant/60">Our Expertise</span>
+    <h2 class="text-5xl font-black text-primary tracking-tighter mt-4 section-headline text-reveal-line">Elevated Services for Your Space.</h2>
+  </div>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div class="group relative bg-surface-container-lowest rounded-3xl p-8 shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 reveal-box service-card">
+      <div class="h-16 w-16 bg-primary/5 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-primary group-hover:text-white transition-colors duration-500">
+        <span class="material-symbols-outlined text-3xl">electrical_services</span>
+      </div>
+      <h3 class="text-xl font-bold text-primary mb-3">Electrician</h3>
+      <p class="text-on-surface-variant text-sm leading-relaxed">Full home rewiring, smart device installation, and expert fault diagnosis.</p>
+      <div class="mt-8 flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-primary opacity-0 group-hover:opacity-100 transition-opacity">
+        Book Service <span class="material-symbols-outlined text-sm">arrow_forward</span>
+      </div>
+    </div>
+    <div class="group relative bg-surface-container-lowest rounded-3xl p-8 shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 reveal-box service-card">
+      <div class="h-16 w-16 bg-primary/5 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-primary group-hover:text-white transition-colors duration-500">
+        <span class="material-symbols-outlined text-3xl">plumbing</span>
+      </div>
+      <h3 class="text-xl font-bold text-primary mb-3">Plumber</h3>
+      <p class="text-on-surface-variant text-sm leading-relaxed">Leak detection, fixture upgrades, and emergency piping repair services.</p>
+      <div class="mt-8 flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-primary opacity-0 group-hover:opacity-100 transition-opacity">
+        Book Service <span class="material-symbols-outlined text-sm">arrow_forward</span>
+      </div>
+    </div>
+    <div class="group relative bg-surface-container-lowest rounded-3xl p-8 shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 reveal-box service-card">
+      <div class="h-16 w-16 bg-primary/5 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-primary group-hover:text-white transition-colors duration-500">
+        <span class="material-symbols-outlined text-3xl">cleaning_services</span>
+      </div>
+      <h3 class="text-xl font-bold text-primary mb-3">Cleaning</h3>
+      <p class="text-on-surface-variant text-sm leading-relaxed">Deep therapeutic cleaning, architectural detailing, and move-in/out support.</p>
+      <div class="mt-8 flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-primary opacity-0 group-hover:opacity-100 transition-opacity">
+        Book Service <span class="material-symbols-outlined text-sm">arrow_forward</span>
+      </div>
+    </div>
+    <div class="group relative bg-surface-container-lowest rounded-3xl p-8 shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 reveal-box service-card">
+      <div class="h-16 w-16 bg-primary/5 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-primary group-hover:text-white transition-colors duration-500">
+        <span class="material-symbols-outlined text-3xl">format_paint</span>
+      </div>
+      <h3 class="text-xl font-bold text-primary mb-3">Painting</h3>
+      <p class="text-on-surface-variant text-sm leading-relaxed">Bespoke wall finishes, premium interior painting, and wallpapering specialists.</p>
+      <div class="mt-8 flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-primary opacity-0 group-hover:opacity-100 transition-opacity">
+        Book Service <span class="material-symbols-outlined text-sm">arrow_forward</span>
+      </div>
+    </div>
+    <!-- CENTER ACTION CARD -->
+    <div class="hidden lg:flex flex-col items-center justify-center bg-primary rounded-3xl p-8 shadow-2xl reveal-box service-card">
+      <h3 class="text-2xl font-black text-white text-center mb-6">Need Something Specific?</h3>
+      <a href="index.html" class="bg-white text-primary px-10 py-4 rounded-full font-bold uppercase tracking-widest text-xs hover:bg-slate-200 transition-colors inline-block text-center">Explore More</a>
+    </div>
+    <div class="group relative bg-surface-container-lowest rounded-3xl p-8 shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 reveal-box service-card">
+      <div class="h-16 w-16 bg-primary/5 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-primary group-hover:text-white transition-colors duration-500">
+        <span class="material-symbols-outlined text-3xl">ac_unit</span>
+      </div>
+      <h3 class="text-xl font-bold text-primary mb-3">AC Repair</h3>
+      <p class="text-on-surface-variant text-sm leading-relaxed">Precision diagnostics, regular servicing, and HVAC optimization.</p>
+      <div class="mt-8 flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-primary opacity-0 group-hover:opacity-100 transition-opacity">
+        Book Service <span class="material-symbols-outlined text-sm">arrow_forward</span>
+      </div>
+    </div>
+    <div class="group relative bg-surface-container-lowest rounded-3xl p-8 shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 reveal-box service-card">
+      <div class="h-16 w-16 bg-primary/5 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-primary group-hover:text-white transition-colors duration-500">
+        <span class="material-symbols-outlined text-3xl">carpenter</span>
+      </div>
+      <h3 class="text-xl font-bold text-primary mb-3">Carpenter</h3>
+      <p class="text-on-surface-variant text-sm leading-relaxed">Furniture repair, custom cabinetry, and artisanal woodwork.</p>
+      <div class="mt-8 flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-primary opacity-0 group-hover:opacity-100 transition-opacity">
+        Book Service <span class="material-symbols-outlined text-sm">arrow_forward</span>
+      </div>
+    </div>
+    <div class="group relative bg-surface-container-lowest rounded-3xl p-8 shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 reveal-box service-card">
+      <div class="h-16 w-16 bg-primary/5 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-primary group-hover:text-white transition-colors duration-500">
+        <span class="material-symbols-outlined text-3xl">lock</span>
+      </div>
+      <h3 class="text-xl font-bold text-primary mb-3">Lock Repair</h3>
+      <p class="text-on-surface-variant text-sm leading-relaxed">Smart lock installation, emergency lockout, and security audits.</p>
+      <div class="mt-8 flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-primary opacity-0 group-hover:opacity-100 transition-opacity">
+        Book Service <span class="material-symbols-outlined text-sm">arrow_forward</span>
+      </div>
+    </div>
+    <div class="group relative bg-surface-container-lowest rounded-3xl p-8 shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 reveal-box service-card">
+      <div class="h-16 w-16 bg-primary/5 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-primary group-hover:text-white transition-colors duration-500">
+        <span class="material-symbols-outlined text-3xl">local_shipping</span>
+      </div>
+      <h3 class="text-xl font-bold text-primary mb-3">Packers &amp; Movers</h3>
+      <p class="text-on-surface-variant text-sm leading-relaxed">Seamless white-glove relocation services and secure logistics.</p>
+      <div class="mt-8 flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-primary opacity-0 group-hover:opacity-100 transition-opacity">
+        Book Service <span class="material-symbols-outlined text-sm">arrow_forward</span>
+      </div>
+    </div>
+    <div class="group relative bg-surface-container-lowest rounded-3xl p-8 shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 reveal-box service-card lg:hidden">
+      <div class="h-16 w-16 bg-primary/5 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-primary group-hover:text-white transition-colors duration-500">
+        <span class="material-symbols-outlined text-3xl">home_repair_service</span>
+      </div>
+      <h3 class="text-xl font-bold text-primary mb-3">Appliance Repair</h3>
+      <p class="text-on-surface-variant text-sm leading-relaxed">Professional servicing for high-end kitchen and laundry tech.</p>
+      <div class="mt-8 flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-primary opacity-0 group-hover:opacity-100 transition-opacity">
+        Book Service <span class="material-symbols-outlined text-sm">arrow_forward</span>
+      </div>
+    </div>
+    <!-- Mobile Explore More -->
+    <div class="flex lg:hidden flex-col items-center justify-center bg-primary rounded-3xl p-8 shadow-2xl reveal-box">
+      <h3 class="text-2xl font-black text-white text-center mb-6">Need Something Specific?</h3>
+      <a href="index.html" class="bg-white text-primary px-10 py-4 rounded-full font-bold uppercase tracking-widest text-xs hover:bg-slate-200 transition-colors inline-block text-center w-full max-w-xs">Explore More</a>
+    </div>
+  </div>
+</section>
+
+<!-- Why FIXMATE AI -->
+<section class="bg-surface-container-low py-32 px-8 border-t border-slate-200/60">
+  <div class="max-w-7xl mx-auto">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+      <div class="reveal-box why-copy">
+        <span class="text-xs font-extrabold uppercase tracking-[0.2em] text-primary">The New Standard</span>
+        <h2 class="text-5xl font-black text-primary tracking-tighter mt-4 mb-8 why-headline text-reveal-line">Home Services, Intelligently Matched.</h2>
+        <p class="text-lg text-slate-600 mb-12 leading-relaxed">We combine rigorous background verification with AI-driven matching to ensure every service professional exceeds your expectations.</p>
+        <div class="space-y-8">
+          <div class="flex gap-6 items-start why-point">
+            <div class="bg-white p-3 rounded-xl shadow-sm text-primary shrink-0 border border-slate-200/80">
+              <span class="material-symbols-outlined">verified</span>
+            </div>
+            <div>
+              <h4 class="font-bold text-lg text-primary">Verified Workers</h4>
+              <p class="text-slate-500 text-sm">Every professional undergoes a 12-point background check.</p>
+            </div>
+          </div>
+          <div class="flex gap-6 items-start why-point">
+            <div class="bg-white p-3 rounded-xl shadow-sm text-primary shrink-0 border border-slate-200/80">
+              <span class="material-symbols-outlined">payments</span>
+            </div>
+            <div>
+              <h4 class="font-bold text-lg text-primary">Transparent Pricing</h4>
+              <p class="text-slate-500 text-sm">No hidden fees. Instant quotes generated by AI.</p>
+            </div>
+          </div>
+          <div class="flex gap-6 items-start why-point">
+            <div class="bg-white p-3 rounded-xl shadow-sm text-primary shrink-0 border border-slate-200/80">
+              <span class="material-symbols-outlined">bolt</span>
+            </div>
+            <div>
+              <h4 class="font-bold text-lg text-primary">Quick Arrival</h4>
+              <p class="text-slate-500 text-sm">Average response time of under 45 minutes.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="relative reveal-box why-visual">
+        <div class="aspect-[4/5] rounded-[2.5rem] overflow-hidden shadow-2xl border border-slate-200/80">
+          <img class="w-full h-full object-cover" alt="" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBS0zMGk0DFMVgfxJoNFTmI0MOhNIGa3EC9F0vpGjmgDXrMEzCC8s0RXJHvXjoGXlKer8TenlBb9_NHQE2aRjInQIejWdBu1Kgeab2nWXKoiKKkU5UkHoZ-5g1I9nmQE8vzxj9fOaVSVSxHuDd0kkD9EahJ_ZvLcqAtA_RZ6ceLzn0brC7BAGHM3IM81BxW2OmIsCHs_JQKPU_6D-EbAp5Os6-YzUJk_ZXH8y3oAHyfxW5_bYBRPCKu7sI5R2e8Ibsp1HCm4DrCf8E"/>
+        </div>
+        <div class="absolute -bottom-10 -left-10 bg-white/90 backdrop-blur-xl p-8 rounded-3xl shadow-2xl border border-white/40 max-w-xs">
+          <div class="flex items-center gap-4 mb-4">
+            <div class="h-10 w-10 bg-primary rounded-full flex items-center justify-center text-white">
+              <span class="material-symbols-outlined text-sm">psychology</span>
+            </div>
+            <span class="text-xs font-black uppercase tracking-widest text-primary">AI Smart Matching</span>
+          </div>
+          <p class="text-xs font-medium text-slate-600 leading-relaxed italic">"FIXMATE matched me with Julian based on his experience with smart-home systems. He fixed my HVAC in 20 minutes."</p>
+          <p class="text-[10px] font-bold mt-4 uppercase text-primary">— Sarah J., Platinum Client</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Bottom CTA -->
+<section class="py-32 px-8 bg-surface">
+  <div class="max-w-4xl mx-auto bg-primary rounded-[3rem] p-8 sm:p-12 md:p-16 text-center shadow-2xl reveal-box cta-panel">
+    <h2 class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tighter mb-6 md:mb-8 cta-title text-reveal-line leading-[1.15] max-w-3xl mx-auto">Experience architectural grade maintenance.</h2>
+    <p class="text-white/70 text-base sm:text-lg mb-10 md:mb-12 max-w-xl mx-auto leading-relaxed">Join over 10,000 premium homes managed by FIXMATE AI across the metropolitan area.</p>
+    <div class="flex flex-col sm:flex-row flex-wrap gap-4 justify-center items-stretch sm:items-center w-full max-w-2xl mx-auto">
+      <button type="button" class="w-full sm:w-auto inline-flex justify-center items-center text-center bg-white text-primary px-8 sm:px-10 py-4 sm:py-5 rounded-2xl font-black uppercase tracking-wide text-xs sm:text-sm hover:scale-[1.02] transition-transform whitespace-normal">Get Started Now</button>
+      <button type="button" class="w-full sm:w-auto inline-flex justify-center items-center text-center bg-primary-container/35 text-white border border-white/25 px-8 sm:px-10 py-4 sm:py-5 rounded-2xl font-black uppercase tracking-wide text-xs sm:text-sm hover:bg-white/10 transition-colors whitespace-normal">Speak to an Advisor</button>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-slate-50 border-t border-slate-200/80">
+  <div class="flex flex-col md:flex-row justify-between items-center px-8 py-12 w-full max-w-7xl mx-auto gap-8 reveal-box">
+    <div class="flex flex-col gap-2">
+      <div class="text-lg font-black text-slate-900">FIXMATE AI</div>
+      <p class="text-xs font-['Inter'] uppercase tracking-widest font-semibold text-slate-500 max-w-sm">© 2024 FixMate AI. The Architectural Minimalist approach to home maintenance.</p>
+    </div>
+    <div class="flex flex-wrap gap-8 justify-center">
+      <a class="text-xs font-['Inter'] uppercase tracking-widest font-semibold text-slate-500 hover:text-slate-900 transition-colors" href="#">Privacy Policy</a>
+      <a class="text-xs font-['Inter'] uppercase tracking-widest font-semibold text-slate-500 hover:text-slate-900 transition-colors" href="#">Terms of Service</a>
+      <a class="text-xs font-['Inter'] uppercase tracking-widest font-semibold text-slate-500 hover:text-slate-900 transition-colors" href="#">Cookie Policy</a>
+      <a class="text-xs font-['Inter'] uppercase tracking-widest font-semibold text-slate-500 hover:text-slate-900 transition-colors" href="#">Contact Us</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  gsap.registerPlugin(ScrollTrigger);
+
+  /* Tunable animation controls (raise stagger/duration for slower motion) */
+  var CFG = {
+    heroDuration: 0.52,
+    heroStagger: 0.045,
+    heroEase: 'power3.out',
+    scrollEase: 'power2.out',
+    scrollDuration: 0.72,
+    wordRevealDuration: 0.36,
+    wordStagger: 0.028,
+    marqueeDuration: 28
+  };
+
+  function splitChars(el) {
+    var text = el.textContent;
+    el.textContent = '';
+    for (var i = 0; i < text.length; i++) {
+      var ch = text[i];
+      var span = document.createElement('span');
+      span.className = 'gsap-char';
+      span.textContent = ch === ' ' ? '\u00A0' : ch;
+      el.appendChild(span);
+    }
+  }
+
+  /** Word masks keep kerning & baseline stable (avoids stray letters sitting low) */
+  function splitWords(el) {
+    var text = el.textContent.trim();
+    var words = text.split(/\s+/);
+    el.textContent = '';
+    words.forEach(function (w, i) {
+      var mask = document.createElement('span');
+      mask.className = 'gsap-word-mask';
+      var inner = document.createElement('span');
+      inner.className = 'gsap-word-inner';
+      inner.textContent = w + (i < words.length - 1 ? '\u00A0' : '');
+      mask.appendChild(inner);
+      el.appendChild(mask);
+    });
+  }
+
+  function revealWords(el, scrollTriggerOpts) {
+    splitWords(el);
+    var inners = el.querySelectorAll('.gsap-word-inner');
+    gsap.set(inners, { yPercent: 108, opacity: 0.25 });
+    gsap.to(inners, {
+      yPercent: 0,
+      opacity: 1,
+      duration: CFG.wordRevealDuration,
+      stagger: CFG.wordStagger,
+      ease: 'power2.out',
+      scrollTrigger: scrollTriggerOpts
+    });
+  }
+
+  var heroL1 = document.getElementById('hero-line-1');
+  var heroL2 = document.getElementById('hero-line-2');
+  if (heroL1) splitChars(heroL1);
+  if (heroL2) splitChars(heroL2);
+
+  gsap.set('#top-nav', { y: -24, opacity: 0 });
+  gsap.set('#hero-line-1 .gsap-char, #hero-line-2 .gsap-char', { yPercent: 118, opacity: 0 });
+  gsap.set('#hero-sub', { y: 36, opacity: 0 });
+  gsap.set('#hero-cta button', { y: 28, opacity: 0 });
+  gsap.set('#hero-widget', { y: 48, opacity: 0, scale: 0.94 });
+
+  var heroTl = gsap.timeline({ defaults: { ease: CFG.heroEase } });
+  heroTl.to('#top-nav', { y: 0, opacity: 1, duration: 0.5 }, 0);
+  heroTl.to('#hero-line-1 .gsap-char, #hero-line-2 .gsap-char', {
+    yPercent: 0,
+    opacity: 1,
+    duration: CFG.heroDuration,
+    stagger: CFG.heroStagger
+  }, 0.15);
+  heroTl.to('#hero-sub', { y: 0, opacity: 1, duration: 0.55 }, '-=0.35');
+  heroTl.to('#hero-cta button', { y: 0, opacity: 1, duration: 0.45, stagger: 0.08 }, '-=0.35');
+  heroTl.to('#hero-widget', { y: 0, opacity: 1, scale: 1, duration: 0.65, ease: 'power2.out' }, '-=0.45');
+
+  gsap.utils.toArray('.section-headline, .why-headline').forEach(function (head) {
+    revealWords(head, {
+      trigger: head,
+      start: 'top 88%',
+      toggleActions: 'play none none reverse'
+    });
+  });
+
+  var ctaPanelEarly = document.querySelector('.cta-panel');
+  var ctaTitleEl = ctaPanelEarly ? ctaPanelEarly.querySelector('.cta-title') : null;
+  if (ctaTitleEl && ctaPanelEarly) {
+    revealWords(ctaTitleEl, {
+      trigger: ctaPanelEarly,
+      start: 'top 85%',
+      toggleActions: 'play none none reverse'
+    });
+  }
+
+  gsap.utils.toArray('.reveal-box').forEach(function (box, i) {
+    gsap.fromTo(box,
+      { y: 40, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: CFG.scrollDuration,
+        ease: CFG.scrollEase,
+        delay: (i % 3) * 0.015,
+        scrollTrigger: {
+          trigger: box,
+          start: 'top 90%',
+          toggleActions: 'play none none reverse'
+        }
+      }
+    );
+  });
+
+  var track = document.getElementById('marquee-track');
+  if (track) {
+    function startMarquee() {
+      var sets = track.querySelectorAll('.marquee-set');
+      if (!sets.length) return;
+      var half = sets[0].offsetWidth;
+      if (!half) return;
+      gsap.fromTo(track, { x: 0 }, {
+        x: -half,
+        duration: CFG.marqueeDuration,
+        ease: 'none',
+        repeat: -1
+      });
+    }
+    requestAnimationFrame(startMarquee);
+    window.addEventListener('resize', function () {
+      ScrollTrigger.refresh();
+    });
+
+    gsap.to('#marquee-section', {
+      scrollTrigger: {
+        trigger: '#marquee-section',
+        start: 'top bottom',
+        end: 'bottom top',
+        scrub: true
+      },
+      opacity: 0.92,
+      scale: 0.995,
+      ease: 'none'
+    });
+  }
+
+  window.addEventListener('load', function () {
+    ScrollTrigger.refresh();
+  });
+  ScrollTrigger.refresh();
+})();
+</script>
+</body>
+</html>

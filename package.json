@@ -1,0 +1,17 @@
+{
+  "name": "fixmate-frontend",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static frontend and developer scripts for the FixMate home services project.",
+  "scripts": {
+    "start": "npm run dev",
+    "frontend": "npx serve . -l 3000",
+    "backend": "node backend-repo/server/server.js",
+    "dev": "npx concurrently -n web,api -c blue,magenta \"npx serve . -l 3000\" \"node backend-repo/server/server.js\"",
+    "install-backend": "npm install --prefix backend-repo/server"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "serve": "^14.2.0"
+  }
+}

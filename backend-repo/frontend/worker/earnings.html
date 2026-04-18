@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FixMate AI — Worker Earnings</title>
+  <link rel="stylesheet" href="../assets/css/global.css">
+  <link rel="stylesheet" href="../assets/css/cards.css">
+  <link rel="stylesheet" href="../assets/css/worker.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>🔧</text></svg>">
+</head>
+<body>
+<nav class="worker-navbar"><div class="container">
+  <a href="../index.html" class="worker-nav-logo"><div class="logo-icon">F</div><div><div class="logo-text">FixMate</div><div class="logo-sub">Worker Portal</div></div></a>
+  <div class="worker-nav-right">
+    <a href="dashboard.html" class="worker-nav-item"><span class="wnav-icon">📊</span><span>Dashboard</span></a>
+    <a href="jobs.html" class="worker-nav-item"><span class="wnav-icon">📋</span><span>Jobs</span></a>
+    <a href="profile.html" class="worker-nav-item"><span class="wnav-icon">👤</span><span>Profile</span></a>
+  </div>
+</div></nav>
+
+<div class="worker-layout">
+  <aside class="worker-sidebar">
+    <div class="worker-sidebar-menu">
+      <div class="worker-menu-label">Main Menu</div>
+      <a href="dashboard.html" class="worker-menu-item"><span class="wm-icon">📊</span> Dashboard</a>
+      <a href="jobs.html" class="worker-menu-item"><span class="wm-icon">📋</span> Job Requests</a>
+      <a href="earnings.html" class="worker-menu-item active"><span class="wm-icon">💰</span> Earnings</a>
+      <a href="availability.html" class="worker-menu-item"><span class="wm-icon">🕐</span> Availability</a>
+      <div class="worker-menu-label">Marketplace</div>
+      <a href="tools-store.html" class="worker-menu-item"><span class="wm-icon">🛒</span> Tools Store</a>
+      <div class="worker-menu-label">Support</div>
+      <a href="../index.html" class="worker-menu-item"><span class="wm-icon">🏠</span> Customer Site</a>
+    </div>
+  </aside>
+
+  <main class="worker-main">
+    <div class="dash-header">
+      <h1>💰 Earnings</h1>
+      <div style="display:flex;gap:8px;">
+        <select class="input" style="width:auto;padding:8px 14px;font-size:0.8125rem;border:2px solid var(--border);border-radius:var(--radius-sm);">
+          <option>This Week</option><option>This Month</option><option>Last Month</option><option>This Year</option>
+        </select>
+        <button class="btn btn-secondary btn-sm">📥 Download Report</button>
+      </div>
+    </div>
+
+    <!-- Wallet Card -->
+    <div class="wallet-card">
+      <div class="wallet-balance-label">Total Balance</div>
+      <div class="wallet-balance">₹24,560</div>
+      <div style="display:flex;gap:24px;margin-bottom:20px;">
+        <div><div style="opacity:0.7;font-size:0.75rem;">This Week</div><div style="font-size:1.125rem;font-weight:700;">₹4,850</div></div>
+        <div><div style="opacity:0.7;font-size:0.75rem;">This Month</div><div style="font-size:1.125rem;font-weight:700;">₹18,340</div></div>
+        <div><div style="opacity:0.7;font-size:0.75rem;">Pending</div><div style="font-size:1.125rem;font-weight:700;">₹2,450</div></div>
+      </div>
+      <div class="wallet-actions">
+        <button class="btn">💳 Withdraw to Bank</button>
+        <button class="btn">📊 Full Statement</button>
+      </div>
+    </div>
+
+    <!-- Stats Row -->
+    <div class="worker-stats-grid">
+      <div class="stat-card">
+        <div class="stat-card-header"><div class="stat-card-icon" style="background:rgba(16,185,129,0.1);color:var(--accent-green);">📋</div><span class="stat-card-trend up">↑ 15%</span></div>
+        <div class="stat-card-value">156</div>
+        <div class="stat-card-label">Jobs This Month</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-header"><div class="stat-card-icon" style="background:rgba(245,158,11,0.1);color:var(--secondary);">💰</div></div>
+        <div class="stat-card-value">₹118</div>
+        <div class="stat-card-label">Avg. Per Job</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-header"><div class="stat-card-icon" style="background:rgba(59,130,246,0.1);color:var(--accent-blue);">⏱</div></div>
+        <div class="stat-card-value">6.2 hrs</div>
+        <div class="stat-card-label">Avg. Active Hours/Day</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-header"><div class="stat-card-icon" style="background:rgba(236,72,152,0.1);color:var(--accent-pink);">🎯</div></div>
+        <div class="stat-card-value">94%</div>
+        <div class="stat-card-label">Acceptance Rate</div>
+      </div>
+    </div>
+
+    <!-- Earnings Chart -->
+    <div class="earnings-chart">
+      <div class="chart-header"><h3>📈 Earnings Trend</h3>
+        <div class="chart-tabs"><span class="chart-tab active">Week</span><span class="chart-tab">Month</span><span class="chart-tab">Year</span></div>
+      </div>
+      <div class="chart-bars">
+        <div class="chart-bar" style="height:45%;background:var(--primary-glow);"><span class="bar-label">Mon</span><span class="bar-value">₹2,100</span></div>
+        <div class="chart-bar" style="height:72%;background:var(--primary-glow);"><span class="bar-label">Tue</span><span class="bar-value">₹3,400</span></div>
+        <div class="chart-bar" style="height:58%;background:var(--primary-glow);"><span class="bar-label">Wed</span><span class="bar-value">₹2,750</span></div>
+        <div class="chart-bar" style="height:85%;background:var(--primary-gradient);"><span class="bar-label">Thu</span><span class="bar-value">₹4,050</span></div>
+        <div class="chart-bar" style="height:65%;background:var(--primary-glow);"><span class="bar-label">Fri</span><span class="bar-value">₹3,100</span></div>
+        <div class="chart-bar" style="height:92%;background:var(--primary-gradient);"><span class="bar-label">Sat</span><span class="bar-value">₹4,400</span></div>
+        <div class="chart-bar" style="height:100%;background:var(--primary-gradient);"><span class="bar-label">Sun</span><span class="bar-value">₹4,850</span></div>
+      </div>
+      <div style="text-align:center;margin-top:36px;padding-top:16px;border-top:1px solid var(--border-light);">
+        <span style="font-size:0.875rem;color:var(--text-muted);">This Week Total:</span>
+        <strong style="font-size:1.25rem;color:var(--accent-green);margin-left:8px;">₹24,650</strong>
+      </div>
+    </div>
+
+    <!-- Transaction History -->
+    <div style="background:#fff;border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--border-light);">
+      <div style="padding:20px 24px;border-bottom:1px solid var(--border-light);display:flex;align-items:center;justify-content:space-between;">
+        <h3>📜 Transaction History</h3>
+        <button class="btn btn-secondary btn-sm">View All</button>
+      </div>
+      <div style="display:flex;flex-direction:column;">
+        <div style="display:flex;align-items:center;gap:16px;padding:16px 24px;border-bottom:1px solid var(--border-light);">
+          <div style="width:40px;height:40px;background:rgba(16,185,129,0.1);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;color:var(--accent-green);">↓</div>
+          <div style="flex:1;"><div style="font-weight:600;font-size:0.875rem;">Deep Cleaning — Rahul K.</div><div style="font-size:0.75rem;color:var(--text-muted);">Today, 11:30 AM • #FX-28475</div></div>
+          <div style="font-weight:700;color:var(--accent-green);">+₹1,599</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:16px;padding:16px 24px;border-bottom:1px solid var(--border-light);">
+          <div style="width:40px;height:40px;background:rgba(16,185,129,0.1);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;color:var(--accent-green);">↓</div>
+          <div style="flex:1;"><div style="font-weight:600;font-size:0.875rem;">Emergency Electrician — Priya A.</div><div style="font-size:0.75rem;color:var(--text-muted);">Today, 9:15 AM • #FX-28474</div></div>
+          <div style="font-weight:700;color:var(--accent-green);">+₹479</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:16px;padding:16px 24px;border-bottom:1px solid var(--border-light);">
+          <div style="width:40px;height:40px;background:rgba(59,130,246,0.1);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;color:var(--accent-blue);">↑</div>
+          <div style="flex:1;"><div style="font-weight:600;font-size:0.875rem;">Withdrawal to Bank</div><div style="font-size:0.75rem;color:var(--text-muted);">Yesterday, 6:00 PM • UPI</div></div>
+          <div style="font-weight:700;color:var(--accent-blue);">-₹5,000</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:16px;padding:16px 24px;border-bottom:1px solid var(--border-light);">
+          <div style="width:40px;height:40px;background:rgba(16,185,129,0.1);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;color:var(--accent-green);">↓</div>
+          <div style="flex:1;"><div style="font-weight:600;font-size:0.875rem;">AC Gas Refill — Suresh R.</div><div style="font-size:0.75rem;color:var(--text-muted);">Yesterday, 2:30 PM • #FX-28470</div></div>
+          <div style="font-weight:700;color:var(--accent-green);">+₹1,039</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:16px;padding:16px 24px;">
+          <div style="width:40px;height:40px;background:rgba(245,158,11,0.1);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;color:var(--secondary);">🎁</div>
+          <div style="flex:1;"><div style="font-weight:600;font-size:0.875rem;">Weekend Bonus</div><div style="font-size:0.75rem;color:var(--text-muted);">Sunday Bonus • 10+ jobs completed</div></div>
+          <div style="font-weight:700;color:var(--secondary);">+₹500</div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+<script src="../assets/js/api.js"></script>
+<script>document.addEventListener('DOMContentLoaded',()=>{if(!requireAuth(['worker']))return;updateNavbarUser();});</script>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

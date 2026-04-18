@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FixMate AI — Worker Profile</title>
+  <link rel="stylesheet" href="../assets/css/global.css">
+  <link rel="stylesheet" href="../assets/css/cards.css">
+  <link rel="stylesheet" href="../assets/css/worker.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>🔧</text></svg>">
+</head>
+<body>
+<nav class="worker-navbar"><div class="container">
+  <a href="../index.html" class="worker-nav-logo"><div class="logo-icon">F</div><div><div class="logo-text">FixMate</div><div class="logo-sub">Worker Portal</div></div></a>
+  <div class="worker-nav-right">
+    <a href="dashboard.html" class="worker-nav-item"><span class="wnav-icon">📊</span><span>Dashboard</span></a>
+    <a href="jobs.html" class="worker-nav-item"><span class="wnav-icon">📋</span><span>Jobs</span></a>
+    <a href="earnings.html" class="worker-nav-item"><span class="wnav-icon">💰</span><span>Earnings</span></a>
+  </div>
+</div></nav>
+<div class="worker-layout">
+  <aside class="worker-sidebar">
+    <div class="worker-sidebar-menu">
+      <div class="worker-menu-label">Main Menu</div>
+      <a href="dashboard.html" class="worker-menu-item"><span class="wm-icon">📊</span> Dashboard</a>
+      <a href="jobs.html" class="worker-menu-item"><span class="wm-icon">📋</span> Job Requests</a>
+      <a href="earnings.html" class="worker-menu-item"><span class="wm-icon">💰</span> Earnings</a>
+      <a href="availability.html" class="worker-menu-item"><span class="wm-icon">🕐</span> Availability</a>
+      <div class="worker-menu-label">Account</div>
+      <a href="profile.html" class="worker-menu-item active"><span class="wm-icon">👤</span> My Profile</a>
+      <div class="worker-menu-label">Marketplace</div>
+      <a href="tools-store.html" class="worker-menu-item"><span class="wm-icon">🛒</span> Tools Store</a>
+      <div class="worker-menu-label">Support</div>
+      <a href="../index.html" class="worker-menu-item"><span class="wm-icon">🏠</span> Customer Site</a>
+    </div>
+  </aside>
+  <main class="worker-main">
+    <div class="dash-header"><h1>👤 My Profile</h1><button class="btn btn-primary">Save Changes</button></div>
+
+    <!-- Profile Header -->
+    <div style="background:#fff;border-radius:var(--radius-xl);padding:36px;box-shadow:var(--shadow-sm);margin-bottom:24px;">
+      <div style="display:flex;align-items:center;gap:24px;margin-bottom:28px;">
+        <div style="width:90px;height:90px;border-radius:50%;overflow:hidden;border:4px solid var(--accent-green);flex-shrink:0;">
+          <img src="../Images/img_4.jpeg" alt="Worker" style="width:100%;height:100%;object-fit:cover;">
+        </div>
+        <div style="flex:1;">
+          <h2 style="margin-bottom:4px;">Rajesh Kumar</h2>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+            <span class="badge badge-success">✓ Verified</span>
+            <span class="badge badge-warning">⭐ Top Rated</span>
+            <span style="font-size:0.8125rem;color:var(--text-muted);">Member since Apr 2024</span>
+          </div>
+          <div style="display:flex;gap:20px;font-size:0.875rem;color:var(--text-secondary);">
+            <span>⭐ 4.8 Rating</span><span>📋 1,247 Jobs</span><span>🏆 5 yrs experience</span>
+          </div>
+        </div>
+        <button class="btn btn-secondary">📷 Change Photo</button>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+        <div class="form-group">
+          <label style="display:block;font-size:0.8125rem;font-weight:600;margin-bottom:6px;">Full Name</label>
+          <input type="text" class="input" value="Rajesh Kumar">
+        </div>
+        <div class="form-group">
+          <label style="display:block;font-size:0.8125rem;font-weight:600;margin-bottom:6px;">Phone</label>
+          <input type="tel" class="input" value="+91 87654 32109">
+        </div>
+        <div class="form-group">
+          <label style="display:block;font-size:0.8125rem;font-weight:600;margin-bottom:6px;">Email</label>
+          <input type="email" class="input" value="rajesh.worker@email.com">
+        </div>
+        <div class="form-group">
+          <label style="display:block;font-size:0.8125rem;font-weight:600;margin-bottom:6px;">City</label>
+          <select class="input"><option selected>Hyderabad</option><option>Bangalore</option><option>Mumbai</option></select>
+        </div>
+        <div class="form-group">
+          <label style="display:block;font-size:0.8125rem;font-weight:600;margin-bottom:6px;">Primary Skill</label>
+          <select class="input"><option>Electrician</option><option>Plumber</option><option selected>Cleaning Specialist</option><option>AC Technician</option><option>Carpenter</option><option>Painter</option></select>
+        </div>
+        <div class="form-group">
+          <label style="display:block;font-size:0.8125rem;font-weight:600;margin-bottom:6px;">Experience</label>
+          <select class="input"><option>1-2 years</option><option>3-4 years</option><option selected>5+ years</option><option>10+ years</option></select>
+        </div>
+        <div class="form-group" style="grid-column:span 2;">
+          <label style="display:block;font-size:0.8125rem;font-weight:600;margin-bottom:6px;">Address</label>
+          <textarea class="input" rows="2">H.No 12-45, Gandhi Nagar, Kukatpally, Hyderabad 500072</textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- Skills & Certifications -->
+    <div style="background:#fff;border-radius:var(--radius-xl);padding:28px;box-shadow:var(--shadow-sm);margin-bottom:24px;">
+      <h3 style="margin-bottom:16px;">🛠️ Skills & Certifications</h3>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px;">
+        <span class="badge badge-primary" style="font-size:0.8125rem;padding:6px 14px;">Deep Cleaning</span>
+        <span class="badge badge-primary" style="font-size:0.8125rem;padding:6px 14px;">Bathroom Cleaning</span>
+        <span class="badge badge-primary" style="font-size:0.8125rem;padding:6px 14px;">Kitchen Cleaning</span>
+        <span class="badge badge-primary" style="font-size:0.8125rem;padding:6px 14px;">Sofa Cleaning</span>
+        <span class="badge badge-primary" style="font-size:0.8125rem;padding:6px 14px;">Car Interior</span>
+        <span class="badge badge-success" style="font-size:0.8125rem;padding:6px 14px;">✓ Certified</span>
+      </div>
+      <button class="btn btn-outline btn-sm">+ Add Skill</button>
+    </div>
+
+    <!-- ID Verification -->
+    <div style="background:#fff;border-radius:var(--radius-xl);padding:28px;box-shadow:var(--shadow-sm);margin-bottom:24px;">
+      <h3 style="margin-bottom:16px;">🛡️ Verification Documents</h3>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+        <div style="padding:16px;border:2px solid var(--accent-green);border-radius:var(--radius-md);background:rgba(16,185,129,0.04);display:flex;align-items:center;gap:12px;">
+          <span style="font-size:1.5rem;">🪪</span><div><div style="font-weight:600;">Aadhar Card</div><div style="font-size:0.75rem;color:var(--accent-green);">✓ Verified</div></div>
+        </div>
+        <div style="padding:16px;border:2px solid var(--accent-green);border-radius:var(--radius-md);background:rgba(16,185,129,0.04);display:flex;align-items:center;gap:12px;">
+          <span style="font-size:1.5rem;">🏦</span><div><div style="font-weight:600;">PAN Card</div><div style="font-size:0.75rem;color:var(--accent-green);">✓ Verified</div></div>
+        </div>
+        <div style="padding:16px;border:2px solid var(--accent-green);border-radius:var(--radius-md);background:rgba(16,185,129,0.04);display:flex;align-items:center;gap:12px;">
+          <span style="font-size:1.5rem;">👮</span><div><div style="font-weight:600;">Police Verification</div><div style="font-size:0.75rem;color:var(--accent-green);">✓ Clear</div></div>
+        </div>
+        <div style="padding:16px;border:2px dashed var(--border);border-radius:var(--radius-md);display:flex;align-items:center;gap:12px;cursor:pointer;">
+          <span style="font-size:1.5rem;">📄</span><div><div style="font-weight:600;">Skill Certificate</div><div style="font-size:0.75rem;color:var(--primary);">Upload document</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bank Details -->
+    <div style="background:#fff;border-radius:var(--radius-xl);padding:28px;box-shadow:var(--shadow-sm);">
+      <h3 style="margin-bottom:16px;">🏦 Bank & Payment Details</h3>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+        <div class="form-group"><label style="display:block;font-size:0.8125rem;font-weight:600;margin-bottom:6px;">Account Holder</label><input type="text" class="input" value="Rajesh Kumar"></div>
+        <div class="form-group"><label style="display:block;font-size:0.8125rem;font-weight:600;margin-bottom:6px;">Bank Name</label><input type="text" class="input" value="State Bank of India"></div>
+        <div class="form-group"><label style="display:block;font-size:0.8125rem;font-weight:600;margin-bottom:6px;">Account Number</label><input type="text" class="input" value="XXXX XXXX 4521"></div>
+        <div class="form-group"><label style="display:block;font-size:0.8125rem;font-weight:600;margin-bottom:6px;">IFSC Code</label><input type="text" class="input" value="SBIN0012345"></div>
+        <div class="form-group"><label style="display:block;font-size:0.8125rem;font-weight:600;margin-bottom:6px;">UPI ID</label><input type="text" class="input" value="rajesh@upi"></div>
+      </div>
+    </div>
+  </main>
+</div>
+<script src="../assets/js/api.js"></script>
+<script>document.addEventListener('DOMContentLoaded',()=>{if(!requireAuth(['worker']))return;updateNavbarUser();});</script>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

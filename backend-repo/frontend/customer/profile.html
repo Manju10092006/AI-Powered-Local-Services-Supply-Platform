@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FixMate AI — My Profile</title>
+  <link rel="stylesheet" href="../assets/css/global.css">
+  <link rel="stylesheet" href="../assets/css/navbar.css">
+  <link rel="stylesheet" href="../assets/css/customer.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>🔧</text></svg>">
+</head>
+<body>
+<nav class="navbar"><div class="container">
+  <a href="../index.html" class="nav-logo"><div class="nav-logo-icon">F</div><div><div class="nav-logo-text">Fix<span>Mate</span></div></div><span class="nav-logo-badge">AI</span></a>
+  <div class="nav-links">
+    <a href="dashboard.html" class="nav-link"><span class="nav-icon">📊</span><span>Dashboard</span></a>
+    <a href="profile.html" class="nav-link" style="color:var(--primary);"><span class="nav-icon">👤</span><span>Profile</span></a>
+  </div>
+  <a href="../login.html" class="nav-auth-btn"><span>👤</span> Manjunath</a>
+  <button class="nav-mobile-toggle">☰</button>
+</div></nav>
+
+<div class="dashboard-layout">
+  <aside class="dash-sidebar">
+    <div class="dash-sidebar-menu">
+      <a href="dashboard.html" class="dash-menu-item"><span class="dm-icon">📊</span> Dashboard</a>
+      <a href="booking.html" class="dash-menu-item"><span class="dm-icon">📋</span> Book Service</a>
+      <a href="track.html" class="dash-menu-item"><span class="dm-icon">📍</span> Track Worker</a>
+      <a href="history.html" class="dash-menu-item"><span class="dm-icon">🕐</span> My Bookings</a>
+      <a href="profile.html" class="dash-menu-item active"><span class="dm-icon">👤</span> Profile</a>
+      <a href="../index.html" class="dash-menu-item"><span class="dm-icon">🏠</span> Home</a>
+    </div>
+  </aside>
+
+  <main class="dash-main">
+    <div class="dash-header"><h1>👤 My Profile</h1></div>
+
+    <!-- Profile Card -->
+    <div style="background:#fff;border-radius:var(--radius-xl);padding:36px;box-shadow:var(--shadow-sm);margin-bottom:24px;">
+      <div style="display:flex;align-items:center;gap:24px;margin-bottom:28px;">
+        <div style="width:80px;height:80px;background:var(--primary-gradient);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900;font-size:2rem;box-shadow:var(--shadow-purple);">M</div>
+        <div>
+          <h2 style="margin-bottom:4px;">Manjunath</h2>
+          <div style="display:flex;align-items:center;gap:8px;">
+            <span class="badge badge-warning">⭐ Plus Member</span>
+            <span style="font-size:0.8125rem;color:var(--text-muted);">Member since Jan 2025</span>
+          </div>
+        </div>
+        <button class="btn btn-primary" style="margin-left:auto;">Edit Profile</button>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+        <div class="form-group">
+          <label style="display:block;font-size:0.8125rem;font-weight:600;margin-bottom:6px;">Full Name</label>
+          <input type="text" class="input" value="Manjunath Pendyal">
+        </div>
+        <div class="form-group">
+          <label style="display:block;font-size:0.8125rem;font-weight:600;margin-bottom:6px;">Email</label>
+          <input type="email" class="input" value="manjunath@email.com">
+        </div>
+        <div class="form-group">
+          <label style="display:block;font-size:0.8125rem;font-weight:600;margin-bottom:6px;">Phone</label>
+          <input type="tel" class="input" value="+91 98765 43210">
+        </div>
+        <div class="form-group">
+          <label style="display:block;font-size:0.8125rem;font-weight:600;margin-bottom:6px;">City</label>
+          <select class="input"><option>Hyderabad</option><option>Bangalore</option><option>Mumbai</option></select>
+        </div>
+        <div class="form-group" style="grid-column:span 2;">
+          <label style="display:block;font-size:0.8125rem;font-weight:600;margin-bottom:6px;">Address</label>
+          <textarea class="input" rows="2">Flat 302, Sunshine Apartments, Madhapur, Hyderabad 500081</textarea>
+        </div>
+      </div>
+      <div style="margin-top:20px;display:flex;gap:10px;">
+        <button class="btn btn-primary">Save Changes</button>
+        <button class="btn btn-secondary">Cancel</button>
+      </div>
+    </div>
+
+    <!-- Subscription -->
+    <div style="background:linear-gradient(135deg,#F5F3FF,#FEF3C7);border-radius:var(--radius-xl);padding:28px;display:flex;align-items:center;gap:24px;margin-bottom:24px;border:2px solid var(--secondary-light);">
+      <div style="font-size:2.5rem;">⭐</div>
+      <div style="flex:1;">
+        <h3>FixMate Plus — Active</h3>
+        <p style="font-size:0.875rem;color:var(--text-muted);">Valid until Dec 2026 • 15% off all services • Priority support</p>
+      </div>
+      <button class="btn btn-warning">Manage Plan</button>
+    </div>
+
+    <!-- Saved Addresses -->
+    <div style="background:#fff;border-radius:var(--radius-xl);padding:28px;box-shadow:var(--shadow-sm);margin-bottom:24px;">
+      <div class="section-header"><h3>📍 Saved Addresses</h3><button class="btn btn-primary btn-sm">+ Add Address</button></div>
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        <div style="padding:16px;border:2px solid var(--primary);border-radius:var(--radius-md);background:var(--primary-glow);display:flex;align-items:center;gap:12px;">
+          <span style="font-size:1.5rem;">🏠</span>
+          <div style="flex:1;"><div style="font-weight:600;">Home</div><div style="font-size:0.8125rem;color:var(--text-muted);">Flat 302, Sunshine Apartments, Madhapur, Hyderabad 500081</div></div>
+          <span class="badge badge-primary">Default</span>
+        </div>
+        <div style="padding:16px;border:1px solid var(--border);border-radius:var(--radius-md);display:flex;align-items:center;gap:12px;">
+          <span style="font-size:1.5rem;">🏢</span>
+          <div style="flex:1;"><div style="font-weight:600;">Office</div><div style="font-size:0.8125rem;color:var(--text-muted);">WeWork Galaxy, Residency Rd, Ashok Nagar, Bangalore 560025</div></div>
+          <button class="btn btn-secondary btn-sm">Edit</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Settings -->
+    <div style="background:#fff;border-radius:var(--radius-xl);padding:28px;box-shadow:var(--shadow-sm);">
+      <h3 style="margin-bottom:20px;">⚙️ Settings</h3>
+      <div style="display:flex;flex-direction:column;gap:16px;">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--border-light);">
+          <div><div style="font-weight:600;font-size:0.9375rem;">Push Notifications</div><div style="font-size:0.75rem;color:var(--text-muted);">Get alerts for bookings and offers</div></div>
+          <div class="toggle-switch active" style="width:48px;height:26px;cursor:pointer;" onclick="this.classList.toggle('active')"><div class="toggle-knob" style="width:20px;height:20px;top:3px;left:25px;"></div></div>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--border-light);">
+          <div><div style="font-weight:600;font-size:0.9375rem;">SMS Alerts</div><div style="font-size:0.75rem;color:var(--text-muted);">Receive booking confirmations via SMS</div></div>
+          <div class="toggle-switch active" style="width:48px;height:26px;cursor:pointer;" onclick="this.classList.toggle('active')"><div class="toggle-knob" style="width:20px;height:20px;top:3px;left:25px;"></div></div>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 0;">
+          <div><div style="font-weight:600;font-size:0.9375rem;">Language</div><div style="font-size:0.75rem;color:var(--text-muted);">Choose your preferred language</div></div>
+          <select class="input" style="width:auto;padding:6px 12px;font-size:0.8125rem;"><option>English</option><option>हिंदी</option><option>తెలుగు</option><option>ಕನ್ನಡ</option></select>
+        </div>
+      </div>
+      <div style="margin-top:24px;padding-top:20px;border-top:1px solid var(--border-light);display:flex;gap:10px;">
+        <button class="btn btn-danger btn-sm">Delete Account</button>
+        <button class="btn btn-secondary btn-sm">Logout</button>
+      </div>
+    </div>
+  </main>
+</div>
+
+<div class="mobile-bottom-nav"><div class="container">
+  <a href="../index.html" class="mobile-nav-item"><span class="mnav-icon">🏠</span>Home</a>
+  <a href="booking.html" class="mobile-nav-item"><span class="mnav-icon">📋</span>Book</a>
+  <a href="dashboard.html" class="mobile-nav-item"><span class="mnav-icon">📊</span>Dashboard</a>
+  <a href="history.html" class="mobile-nav-item"><span class="mnav-icon">🕐</span>History</a>
+  <a href="profile.html" class="mobile-nav-item active"><span class="mnav-icon">👤</span>Profile</a>
+</div></div>
+<script src="../assets/js/api.js"></script>
+<script>document.addEventListener('DOMContentLoaded',()=>{if(!requireAuth(['customer']))return;updateNavbarUser();});</script>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

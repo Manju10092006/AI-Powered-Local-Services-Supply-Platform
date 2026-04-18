@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FixMate AI — Login & Register</title>
+  <meta name="description" content="Login to FixMate AI. Access your bookings, worker dashboard, or admin panel.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>🔧</text></svg>">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      min-height: 100vh;
+      background: #e8edf4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: "Noto Sans SC", sans-serif;
+      overflow: auto;
+      padding: 20px 0;
+    }
+
+    /* Outer Container */
+    .auth-box {
+      width: min(880px, 96vw);
+      height: clamp(400px, 80vh, 560px);
+      border-radius: clamp(16px, 2.5vw, 28px);
+      background: #e8edf4;
+      border: none;
+      box-shadow: 18px 18px 40px rgba(155, 172, 205, 0.78),
+                  -12px -12px 30px rgba(255, 255, 255, 0.98),
+                  0 4px 16px rgba(140, 158, 198, 0.3);
+      overflow: hidden;
+      position: relative;
+      z-index: 1;
+    }
+
+    .liquid-bg { display: none; }
+
+    /* Panels */
+    .panel {
+      position: absolute;
+      top: 0;
+      height: 100%;
+      transition: left 0.72s cubic-bezier(0.65, 0, 0.35, 1);
+    }
+    
+    .auth-box::after {
+      content: "";
+      position: absolute;
+      top: 0; bottom: 0; left: 60%;
+      width: 1px;
+      background: transparent;
+      box-shadow: -1px 0 0 rgba(148, 165, 198, 0.28),
+                   1px 0 0 rgba(255, 255, 255, 0.88);
+      z-index: 10; pointer-events: none;
+      transition: left 0.72s cubic-bezier(0.65, 0, 0.35, 1);
+    }
+    .auth-box.signup-mode::after { left: 40%; }
+
+    /* Panel A: Form Panel 60% */
+    .pA {
+      left: 0; width: 60%;
+      background: rgba(255, 255, 255, 0.07);
+      box-shadow: inset -8px 0 24px rgba(140, 158, 198, 0.08);
+      z-index: 1;
+    }
+    .auth-box.signup-mode .pA { left: 40%; }
+
+    /* Panel B: Overlay 40% */
+    .pB {
+      left: 60%; width: 40%;
+      background: #e8edf4; z-index: 3; overflow: hidden;
+    }
+    .auth-box.signup-mode .pB { left: 0; }
+
+    /* Decorations */
+    .d1 {
+      position: absolute; width: 230px; height: 230px; border-radius: 50%;
+      background: #e8edf4;
+      box-shadow: 9px 9px 20px rgba(168, 182, 208, 0.65),
+                  -7px -7px 16px rgba(255, 255, 255, 0.92);
+      top: -95px; right: -85px; pointer-events: none;
+    }
+    .d2 {
+      position: absolute; width: 210px; height: 210px; border-radius: 50%;
+      background: #e8edf4;
+      box-shadow: 8px 8px 18px rgba(168, 182, 208, 0.6),
+                  -6px -6px 14px rgba(255, 255, 255, 0.9);
+      bottom: -85px; left: -75px; pointer-events: none;
+    }
+
+    /* Content Area */
+    .p-inner {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: clamp(20px, 4.5vh, 48px) clamp(18px, 4.5vw, 52px);
+    }
+
+    .pA-reg { display: none; }
+    .pA-otp { display: none; }
+    .auth-box.signup-mode .pA-login { display: none; }
+    .auth-box.signup-mode .pA-otp { display: none; }
+    .auth-box.signup-mode .pA-reg { display: flex; }
+    
+    .auth-box.otp-mode .pA-login { display: none; }
+    .auth-box.otp-mode .pA-reg { display: none; }
+    .auth-box.otp-mode .pA-otp { display: flex; }
+
+    .pB-hello, .pB-welcome { text-align: center; padding: clamp(20px, 4.5vh, 52px) clamp(14px, 3.5vw, 40px); transition: opacity 0.18s ease; }
+    .pB-welcome { opacity: 0; pointer-events: none; }
+    .pB.show-welcome .pB-hello { opacity: 0; pointer-events: none; }
+    .pB.show-welcome .pB-welcome { opacity: 1; pointer-events: auto; }
+
+    /* Forms Elements */
+    .fp-title {
+      font-size: clamp(17px, 2.6vw, 26px); font-weight: 700; color: #1e2545;
+      letter-spacing: 0.18em; margin-bottom: clamp(12px, 2.5vh, 22px); white-space: nowrap;
+    }
+
+    .social-row { display: flex; gap: clamp(8px, 1.2vw, 14px); margin-bottom: clamp(6px, 1vh, 10px); }
+    .s-icon {
+      width: clamp(34px, 4.2vw, 44px); height: clamp(34px, 4.2vw, 44px);
+      border-radius: 50%; background: #e8edf4; border: none; display: flex; align-items: center; justify-content: center; cursor: pointer;
+      box-shadow: 7px 7px 14px rgba(155, 172, 205, 0.72), -6px -6px 12px rgba(255, 255, 255, 0.96);
+      transition: box-shadow 0.22s, transform 0.22s;
+    }
+    .s-icon svg { width: 20px; height: 20px; opacity: 0.4; transition: opacity 0.22s; }
+    .s-icon:hover { box-shadow: 9px 9px 18px rgba(155, 172, 205, 0.76), -7px -7px 15px rgba(255, 255, 255, 0.98); transform: translateY(-2px); }
+    .s-icon:hover svg { opacity: 0.7; }
+    .s-icon.active { box-shadow: inset 5px 5px 10px rgba(155, 172, 205, 0.68), inset -4px -4px 8px rgba(255, 255, 255, 0.9); }
+    .s-icon.active svg { opacity: 1; }
+
+    .social-hint { font-size: 11px; color: #9ba4bb; letter-spacing: 0.05em; margin-bottom: clamp(10px, 2vh, 20px); }
+
+    .field { width: 100%; margin-bottom: clamp(6px, 1.3vh, 12px); }
+    .field input {
+      width: 100%; background: rgba(255, 255, 255, 0.88); border: 1.5px solid #dde3ed; border-radius: 10px;
+      padding: clamp(9px, 1.8vh, 13px) 16px; font-family: "Noto Sans SC", sans-serif; font-size: clamp(13px, 1.5vw, 14px);
+      color: #2a3054; outline: none;
+      box-shadow: inset 2px 2px 5px rgba(155, 172, 205, 0.22), inset -1px -1px 4px rgba(255, 255, 255, 0.7);
+      transition: border-color 0.25s, background 0.25s, box-shadow 0.25s;
+    }
+    .field input::placeholder { color: #b8c2d8; }
+    .field input:focus {
+      border-color: rgba(91, 122, 247, 0.6); background: #fff;
+      box-shadow: 0 0 0 3px rgba(91, 122, 247, 0.1), inset 2px 2px 5px rgba(91, 122, 247, 0.08);
+    }
+    .field select {
+      width: 100%; background: rgba(255, 255, 255, 0.88); border: 1.5px solid #dde3ed; border-radius: 10px;
+      padding: clamp(9px, 1.8vh, 13px) 16px; font-family: "Noto Sans SC", sans-serif; font-size: clamp(13px, 1.5vw, 14px);
+      color: #2a3054; outline: none; margin-bottom: clamp(6px, 1.3vh, 12px);
+    }
+
+    .forgot { font-size: 12px; color: #9ba4bb; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; margin: 2px 0 clamp(12px, 2vh, 20px); align-self: center; transition: color 0.2s; }
+    .forgot:hover { color: #5b7af7; }
+
+    /* Neomorphic Blue Button */
+    .btn-blue {
+      padding: clamp(10px, 1.8vh, 13px) clamp(22px, 3.5vw, 48px); border-radius: 100px; border: none; cursor: pointer;
+      font-family: inherit; font-size: 12px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
+      background: #5b7af7; color: #fff; box-shadow: 0 6px 22px rgba(91, 122, 247, 0.45);
+      transition: box-shadow 0.25s, transform 0.2s, background 0.2s; position: relative; z-index: 1; width: 100%;
+    }
+    .btn-blue:hover { background: #4a6ae6; box-shadow: 0 10px 30px rgba(91, 122, 247, 0.55); transform: translateY(-1px); }
+    .btn-blue:active { transform: translateY(0); }
+    .btn-blue:disabled { background: #9ba4bb; pointer-events: none; }
+
+    .o-title { font-size: clamp(17px, 2.6vw, 26px); font-weight: 700; color: #1e2545; letter-spacing: 0.02em; margin-bottom: clamp(10px, 1.5vh, 14px); position: relative; z-index: 1; }
+    .o-sub { font-size: clamp(11px, 1.3vw, 13px); color: #9ba4bb; line-height: 1.85; margin-bottom: clamp(18px, 3.5vh, 36px); max-width: 210px; position: relative; z-index: 1; margin-left:auto; margin-right:auto; }
+
+    /* Mobile */
+    .mobile-nav { display: none; }
+    @media (max-width: 640px) {
+      body { padding: 12px 0; }
+      .auth-box { height: auto; border-radius: 20px; overflow: visible; width: 92vw; }
+      .panel { position: relative; left: 0 !important; width: 100% !important; height: auto; transition: none !important; background: transparent !important; box-shadow: none !important; }
+      .p-inner { position: relative; inset: auto; padding: 32px 24px; }
+      .pB { display: none !important; }
+      
+      .auth-box:not(.signup-mode) .pA-reg { display: none !important; }
+      .auth-box.signup-mode .pA-login { display: none !important; }
+      .auth-box.signup-mode .pA-otp { display: none !important; }
+      .auth-box.signup-mode .pA-reg { display: flex !important; }
+      .auth-box.otp-mode .pA-login { display: none !important; }
+      .auth-box.otp-mode .pA-reg { display: none !important; }
+      .auth-box.otp-mode .pA-otp { display: flex !important; }
+
+      .mobile-nav { display: flex; background: #e8edf4; border-radius: 20px 20px 0 0; overflow: hidden; border-bottom: 1px solid rgba(200, 212, 232, 0.6); }
+      .m-tab { flex: 1; padding: 14px; text-align: center; font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #9ba4bb; cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; transition: color 0.2s, border-color 0.2s; }
+      
+      .auth-box:not(.signup-mode):not(.otp-mode) .m-tab-si,
+      .auth-box.signup-mode .m-tab-su,
+      .auth-box.otp-mode .m-tab-otp { color: #5b7af7; border-bottom-color: #5b7af7; }
+      .fp-title { white-space: normal; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="auth-box" id="authBox">
+  <div class="liquid-bg"></div>
+
+  <!-- Mobile Tabs -->
+  <div class="mobile-nav">
+    <div class="m-tab m-tab-si" id="mSi">Sign In</div>
+    <div class="m-tab m-tab-otp" id="mOtp">OTP</div>
+    <div class="m-tab m-tab-su" id="mSu">Sign Up</div>
+  </div>
+
+  <!-- Panel A: Forms -->
+  <div class="panel pA" id="pA">
+    
+    <!-- Email Login Form -->
+    <div class="p-inner pA-login">
+      <div class="fp-title">S I G N &nbsp; I N</div>
+      <div class="social-row">
+        <div class="s-icon" onclick="switchToMode('otp')" title="Login via Phone OTP">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#6878c0" stroke-width="1.8" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+        </div>
+        <div class="s-icon active" onclick="switchToMode('login')" title="Email Login">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#6878c0" stroke-width="1.8" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+        </div>
+      </div>
+      <div class="social-hint">Choose Email Login or switch to Phone OTP</div>
+      <form id="form-login" style="width:100%;" onsubmit="handleLogin(event)">
+        <div class="field"><input type="text" id="login-email" placeholder="Email Address" required /></div>
+        <div class="field"><input type="password" id="login-password" placeholder="Password" required /></div>
+        <div style="display:flex; justify-content: space-between; width:100%; align-items:center;">
+            <label style="font-size:12px; color:#9ba4bb; cursor:pointer;"><input type="checkbox" id="remember-me" checked> Remember me</label>
+            <span class="forgot">Forgot password?</span>
+        </div>
+        <button type="submit" class="btn-blue" id="btn-login" style="margin-top:10px;">SIGN IN</button>
+      </form>
+    </div>
+
+    <!-- Phone OTP Form -->
+    <div class="p-inner pA-otp">
+      <div class="fp-title">P H O N E &nbsp; O T P</div>
+      <div class="social-row">
+        <div class="s-icon active" onclick="switchToMode('otp')" title="Login via Phone OTP">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#6878c0" stroke-width="1.8" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+        </div>
+        <div class="s-icon" onclick="switchToMode('login')" title="Email Login">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#6878c0" stroke-width="1.8" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+        </div>
+      </div>
+      <div class="social-hint">Enter your phone number to receive a 6-digit OTP</div>
+      <form id="form-otp-send" style="width:100%;" onsubmit="handleOtpRequest(event)">
+        <div class="field"><input type="tel" id="otp-phone" placeholder="Mobile Number (+91...)" required /></div>
+        <button type="submit" class="btn-blue" id="otp-send-btn" style="margin-top:20px;">SEND OTP</button>
+      </form>
+      <form id="form-otp-verify" style="width:100%; display:none;" onsubmit="handleOtpVerify(event)">
+        <div class="field"><input type="text" id="otp-code" placeholder="123456" maxlength="6" style="text-align:center; letter-spacing:8px; font-size:18px;" required /></div>
+        <button type="submit" class="btn-blue" id="otp-verify-btn" style="margin-top:20px;">VERIFY & LOGIN</button>
+        <span class="forgot" onclick="toggleOtpForm(false)">Change Number</span>
+      </form>
+    </div>
+
+    <!-- Register Form -->
+    <div class="p-inner pA-reg">
+      <div class="fp-title">S I G N &nbsp; U P</div>
+      <div class="social-hint">Create your account to become a member</div>
+      <form id="form-register" style="width:100%;" onsubmit="handleRegister(event)">
+        <div class="field"><input type="text" id="reg-name" placeholder="Full Name" required autocomplete="off" /></div>
+        <div class="field"><input type="email" id="reg-email" placeholder="Email Address" required /></div>
+        <div class="field"><input type="tel" id="reg-phone" placeholder="Phone Number" required /></div>
+        <div class="field"><input type="password" id="reg-password" placeholder="Create Password" required /></div>
+        <select id="reg-role" class="field" style="margin-bottom:12px;" disabled>
+            <option value="customer">Customer account</option>
+        </select>
+        <button type="submit" class="btn-blue" id="btn-register" style="margin-top: 6px">SIGN UP</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Panel B: Overlay Decoration -->
+  <div class="panel pB" id="pB">
+    <div class="d1"></div>
+    <div class="d2"></div>
+    <div class="p-inner pB-hello">
+      <div class="o-title">Hello, Friend!</div>
+      <div class="o-sub">Enter your details and start your journey with FixMate AI. Join premium home services today!</div>
+      <button class="btn-blue" id="toSignup" style="width:auto; padding: 12px 40px; box-shadow:none;">SIGN UP</button>
+    </div>
+    <div class="p-inner pB-welcome">
+      <div class="o-title">Welcome Back!</div>
+      <div class="o-sub">Already have an account? Sign in and continue exploring exceptional services!</div>
+      <button class="btn-blue" id="toSignin" style="width:auto; padding: 12px 40px; box-shadow:none;">SIGN IN</button>
+    </div>
+  </div>
+</div>
+
+<script src="assets/js/api.js"></script>
+<script src="assets/js/main.js"></script>
+<script>
+  // Auth logic integration
+  document.addEventListener("DOMContentLoaded", () => {
+    if(typeof redirectIfLoggedIn === 'function') redirectIfLoggedIn();
+    if (location.hash === "#signup-worker") {
+      const sel = document.getElementById("reg-role");
+      if (sel) sel.value = "worker";
+      go(true);
+    }
+  });
+
+  function workerPostAuthUrl(data) {
+    let u = data.redirect.startsWith("/") ? data.redirect.substring(1) : data.redirect;
+    if (data.role === "worker" && data.user && data.user.onboardingApproved === false) {
+      u = "worker/onboarding.html";
+    }
+    return u;
+  }
+
+  const box = document.getElementById("authBox");
+  const pA = document.getElementById("pA");
+  const pB = document.getElementById("pB");
+  let busy = false;
+  let timer;
+  const DURATION = 720;
+
+  function switchToMode(mode) {
+    if (busy) return;
+    box.classList.remove('signup-mode', 'otp-mode');
+    pA.classList.remove('show-reg');
+    pB.classList.remove('show-welcome');
+
+    if (mode === 'signup') {
+      go(true);
+    } else if (mode === 'otp') {
+      box.classList.add('otp-mode');
+    } else {
+      go(false); // standard login
+    }
+  }
+
+  function go(toSignup) {
+    if (busy) return;
+    busy = true; clearTimeout(timer);
+    
+    // reset otp mode if switching to regular modes
+    box.classList.remove('otp-mode');
+    box.classList.toggle("signup-mode", toSignup);
+    
+    timer = setTimeout(() => {
+      pA.classList.toggle("show-reg", toSignup);
+      pB.classList.toggle("show-welcome", toSignup);
+    }, DURATION / 2);
+    setTimeout(() => { busy = false; }, DURATION);
+  }
+
+  document.getElementById("toSignup").addEventListener("click", () => go(true));
+  document.getElementById("toSignin").addEventListener("click", () => go(false));
+  document.getElementById("mSi").addEventListener("click", () => switchToMode('login'));
+  document.getElementById("mOtp").addEventListener("click", () => switchToMode('otp'));
+  document.getElementById("mSu").addEventListener("click", () => switchToMode('signup'));
+
+  function toggleOtpForm(showVerify) {
+    document.getElementById('form-otp-send').style.display = showVerify ? 'none' : 'block';
+    document.getElementById('form-otp-verify').style.display = showVerify ? 'block' : 'none';
+  }
+
+  // Submit Handlers
+  async function handleLogin(e) {
+    e.preventDefault();
+    const btn = document.getElementById('btn-login');
+    const origText = btn.textContent;
+    btn.textContent = 'LOGGING IN...';
+    btn.disabled = true;
+
+    try {
+      const email = document.getElementById('login-email').value.trim();
+      const password = document.getElementById('login-password').value;
+      const rememberCheckbox = document.getElementById('remember-me');
+      const rememberMe = rememberCheckbox ? rememberCheckbox.checked : true;
+
+      const data = await AuthAPI.login(email, password);
+      if (!data) { alert("Server unreachable."); return; }
+
+      Auth.save(data.token, data.user, data.role, rememberMe);
+      window.location.href = workerPostAuthUrl(data);
+    } catch (err) {
+      alert(err.message || "Login failed");
+    } finally {
+      btn.textContent = origText;
+      btn.disabled = false;
+    }
+  }
+
+  let otpRequestData = null;
+  async function handleOtpRequest(e) {
+    e.preventDefault();
+    const btn = document.getElementById('otp-send-btn');
+    const phone = document.getElementById('otp-phone').value.trim();
+    if(!phone) return;
+    
+    btn.textContent = 'SENDING OTP...';
+    btn.disabled = true;
+
+    try {
+      const res = await fetch('https://api.otp.dev/v1/verifications', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Basic ' + btoa('test_dev_dev:test_dev_dev_key')
+        },
+        body: JSON.stringify({ channel: 'sms', delivery_address: phone })
+      });
+      const data = await res.json();
+      otpRequestData = data.id || null;
+      if (!otpRequestData) throw new Error("OTP provider unavailable");
+      alert("OTP sent to your phone.");
+      toggleOtpForm(true);
+    } catch(err) {
+      otpRequestData = null;
+      alert("OTP login is temporarily unavailable. Please use email login.");
+      toggleOtpForm(false);
+    } finally {
+      btn.textContent = 'SEND OTP';
+      btn.disabled = false;
+    }
+  }
+
+  async function handleOtpVerify(e) {
+    e.preventDefault();
+    const btn = document.getElementById('otp-verify-btn');
+    const otpCode = document.getElementById('otp-code').value.trim();
+    const phone = document.getElementById('otp-phone').value.trim();
+    
+    btn.textContent = 'VERIFYING...';
+    btn.disabled = true;
+
+    try {
+      if (!otpRequestData) throw new Error("OTP session expired. Request OTP again.");
+
+      const data = await AuthAPI.login(phone + '@phone.fixmate', 'otp_auth');
+      if (!data) { throw new Error("Server unreachable."); }
+
+      Auth.save(data.token, data.user, data.role, true);
+      window.location.href = workerPostAuthUrl(data);
+    } catch(err) {
+      alert(err.message);
+    } finally {
+      btn.textContent = 'VERIFY & LOGIN';
+      btn.disabled = false;
+    }
+  }
+
+  async function handleRegister(e) {
+    e.preventDefault();
+    const btn = document.getElementById('btn-register');
+    const origText = btn.textContent;
+    btn.textContent = 'CREATING...';
+    btn.disabled = true;
+
+    try {
+      const name = document.getElementById('reg-name').value.trim();
+      const email = document.getElementById('reg-email').value.trim();
+      const phone = document.getElementById('reg-phone').value.trim();
+      const password = document.getElementById('reg-password').value;
+
+      if (password.length < 6) { throw new Error("Password min 6 chars"); }
+
+      const data = await AuthAPI.register({ name, email, phone, password, role: "customer" });
+      if (!data) { throw new Error("Server unreachable."); }
+
+      Auth.save(data.token, data.user, data.role);
+      window.location.href = workerPostAuthUrl(data);
+    } catch (err) {
+      alert(err.message || "Registration failed");
+    } finally {
+      btn.textContent = origText;
+      btn.disabled = false;
+    }
+  }
+</script>
+</body>
+</html>

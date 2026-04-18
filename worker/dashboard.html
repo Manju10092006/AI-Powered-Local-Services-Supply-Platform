@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FixMate Pro — dashboard</title>
+  <link rel="stylesheet" href="../assets/css/worker-shipnow.css">
+  <style>
+    .dash-chart-wrap { position: relative; height: 220px; width: 100%; margin-bottom: 8px; }
+    .dash-chart-wrap.tall { height: 200px; }
+    .dash-spark { position: relative; height: 44px; width: 100%; margin-top: 8px; opacity: 0.95; }
+    .zone-chip.sn-btn.active { background: #111827 !important; color: #fff !important; border-color: #111827 !important; }
+  </style>
+</head>
+<body>
+
+<aside class="sn-sidebar">
+  <div class="sn-logo-area">
+    <div class="sn-logo-icon"></div>
+    <div class="sn-logo-text">FIXMATE PRO</div>
+  </div>
+
+  <div class="sn-user-profile" onclick="window.location.href='profile.html'" title="Profile">
+    <img src="../Images/img_4.jpeg" alt="" class="sn-avatar" id="sidebar-avatar" onerror="this.onerror=null; this.src='https://placehold.co/100/e5e7eb/111827?text=FM'">
+    <div class="sn-user-info">
+      <div class="sn-user-name" id="sidebar-user-name">Pro partner</div>
+      <div class="sn-user-role" id="sidebar-user-role">Field technician</div>
+    </div>
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+  </div>
+
+  <nav class="sn-nav">
+    <a href="dashboard.html" class="sn-nav-item dash-menu-item" data-id="dashboard">
+      <svg class="sn-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="3" width="7" height="9" rx="1"></rect><rect x="14" y="3" width="7" height="5" rx="1"></rect><rect x="14" y="12" width="7" height="9" rx="1"></rect><rect x="3" y="16" width="7" height="5" rx="1"></rect></svg>
+      Dashboard
+    </a>
+    <a href="jobs.html" class="sn-nav-item dash-menu-item" data-id="jobs">
+      <svg class="sn-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+      Jobs
+    </a>
+    <a href="earnings.html" class="sn-nav-item dash-menu-item" data-id="earnings">
+      <svg class="sn-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+      Earnings
+    </a>
+    <a href="schedule.html" class="sn-nav-item dash-menu-item" data-id="schedule">
+      <svg class="sn-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+      Schedule
+    </a>
+    <a href="tracking.html" class="sn-nav-item dash-menu-item" data-id="tracking">
+      <svg class="sn-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+      Live map
+    </a>
+    <a href="tools-store.html" class="sn-nav-item dash-menu-item" data-id="tools-store">
+      <svg class="sn-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
+      Tools
+    </a>
+    <a href="profile.html" class="sn-nav-item dash-menu-item" data-id="profile">
+      <svg class="sn-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+      Profile
+    </a>
+
+    <div class="sn-nav-divider"></div>
+
+    <a href="messages.html" class="sn-nav-item dash-menu-item" data-id="messages">
+      <svg class="sn-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+      Inbox
+      <span class="sn-nav-badge" id="nav-msg-badge" style="display:none;">0</span>
+    </a>
+    <a href="documents.html" class="sn-nav-item dash-menu-item" data-id="documents">
+      <svg class="sn-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+      Compliance
+    </a>
+    <a href="profile.html" class="sn-nav-item dash-menu-item" data-id="settings">
+      <svg class="sn-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+      Settings
+    </a>
+  </nav>
+
+  <div class="sn-promo">
+    <h3>Stack<br>your<br>payouts</h3>
+    <p>Instant summaries, GST-ready earnings, and priority dispatches for verified pros.</p>
+    <button type="button" class="sn-promo-btn" onclick="location.href='earnings.html'">View earnings</button>
+  </div>
+</aside>
+
+  <main class="main-content">
+    <div id="page-content-mount">
+
+    <div class="sn-header">
+      <div>
+        <h1 class="sn-page-title">Command center</h1>
+        <div class="sn-breadcrumb">Dashboard / <span>Field operations</span></div>
+      </div>
+      <div style="display:flex; gap:12px; flex-wrap:wrap;">
+        <button type="button" class="sn-btn zone-chip active" data-zone="all"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line></svg> All zones</button>
+        <button type="button" class="sn-btn zone-chip" data-zone="north"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"></path></svg> North</button>
+        <button type="button" class="sn-btn zone-chip" data-zone="south"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22l10-5-10-5-10 5 10 5z"></path></svg> South</button>
+        <button type="button" class="sn-btn zone-chip" data-zone="east"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12L17 2 7 2 2 12l5 10 10 0 5-10z"></path></svg> East</button>
+      </div>
+    </div>
+
+    <div class="sn-grid-4">
+      <div class="sn-card">
+        <div class="sn-metric-label">Today's earnings <svg width="16" height="16" stroke-width="2" viewBox="0 0 24 24" fill="none" stroke="#9ca3af"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg></div>
+        <div class="sn-metric-val" id="kpi-today-earn">₹0</div>
+        <div class="sn-metric-sub">vs 30-day trend <span class="up" id="kpi-earn-trend">+0%</span></div>
+        <div class="dash-spark"><canvas id="spark-earnings" aria-hidden="true"></canvas></div>
+      </div>
+      <div class="sn-card">
+        <div class="sn-metric-label">Pipeline load <svg width="16" height="16" stroke-width="2" viewBox="0 0 24 24" fill="none" stroke="#9ca3af"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg></div>
+        <div class="sn-metric-val" id="kpi-pipeline">0 <span style="font-size:14px;font-weight:600;color:var(--text-gray);">active</span></div>
+        <div class="sn-metric-sub"><span id="kpi-incoming">0</span> open nearby · <a href="jobs.html" style="color:var(--primary-red);font-weight:600;">Open jobs</a></div>
+      </div>
+      <div class="sn-card">
+        <div class="sn-metric-label">Trust &amp; acceptance <svg width="16" height="16" stroke-width="2" viewBox="0 0 24 24" fill="none" stroke="#9ca3af"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg></div>
+        <div class="sn-metric-val" id="kpi-rating">—</div>
+        <div class="sn-metric-sub">Acceptance <span id="kpi-accept">—</span></div>
+      </div>
+      <div class="sn-card">
+        <div class="sn-metric-label">Wallet &amp; lifetime <svg width="16" height="16" stroke-width="2" viewBox="0 0 24 24" fill="none" stroke="#9ca3af"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg></div>
+        <div class="sn-metric-val" id="kpi-wallet">₹0</div>
+        <div class="sn-metric-sub"><span id="kpi-completed">0</span> jobs completed · Payout queue <span id="kpi-payout">₹0</span></div>
+      </div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 300px 300px; gap: 20px; margin-bottom: 24px;">
+
+      <div class="sn-card" style="padding:16px;">
+        <div class="sn-search-bar" style="width:100%; margin-bottom:16px; background:#f9fafb;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <span style="font-size:14px;color:var(--text-gray);">Live coverage · Hyderabad metro &amp; surrounds</span>
+        </div>
+        <div class="sn-map-wrap" style="height: 380px; position:relative; overflow:hidden;">
+          <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="" style="width:100%; height:100%; object-fit:cover; opacity:0.85;">
+          <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);">
+            <svg viewBox="0 0 24 24" width="40" height="40" fill="var(--primary-red)"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          </div>
+          <div style="position:absolute; bottom:20px; left:20px; background:#fff; padding:16px; border-radius:12px; box-shadow:0 10px 25px rgba(0,0,0,0.1); width:260px;">
+            <img src="https://images.unsplash.com/photo-1581578731548-c6466e17b661?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="" style="width:100%; height:80px; object-fit:cover; border-radius:8px; margin-bottom:12px;">
+            <div style="font-weight:700; font-size:14px; margin-bottom:4px;" id="map-card-title">Next visit</div>
+            <div style="font-size:12px; color:var(--text-gray); margin-bottom:12px;" id="map-card-sub">No active dispatch — stay online for instant offers.</div>
+            <div style="display:flex; align-items:center; gap:8px;">
+              <div style="width:24px; height:24px; border-radius:50%; background:#e2e8f0; display:flex; align-items:center; justify-content:center; font-size:10px; font-weight:700;" id="map-card-initials">FM</div>
+              <span style="font-size:12px; font-weight:500;" id="map-card-name">—</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sn-card">
+        <div class="sn-section-header" style="margin-bottom:12px;">
+          <h3 class="sn-section-title">Service mix</h3>
+          <svg width="20" height="20" stroke="#9ca3af" stroke-width="2" fill="none"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
+        </div>
+        <p style="font-size:12px; color:var(--text-gray); margin-bottom:8px;">Completed jobs by category — tune skills to match demand.</p>
+        <div class="dash-chart-wrap"><canvas id="chart-mix"></canvas></div>
+        <div id="mix-legend" style="font-size:12px; color:var(--text-gray);"></div>
+      </div>
+
+      <div class="sn-card">
+        <div class="sn-section-header" style="margin-bottom:12px;">
+          <h3 class="sn-section-title">Earnings pulse</h3>
+          <svg width="20" height="20" stroke="#9ca3af" stroke-width="2" fill="none"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
+        </div>
+        <div style="background:#f9fafb; padding:20px; border-radius:12px; text-align:center; margin-bottom:16px;">
+          <p style="font-size:12px; color:var(--text-gray); font-weight:600; margin-bottom:8px;">Last 7 days (completed)</p>
+          <h2 style="font-size:26px; font-weight:800; color:var(--text-dark); margin-bottom:8px;" id="pulse-week-total">₹0</h2>
+          <span class="sn-metric-sub">Momentum across your route</span>
+        </div>
+        <div class="dash-chart-wrap tall"><canvas id="chart-week"></canvas></div>
+      </div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 300px; gap: 20px;">
+
+      <div class="sn-card" style="padding:0;">
+        <div class="sn-section-header" style="padding:24px 24px 0;">
+          <h3 class="sn-section-title">Upcoming visits</h3>
+          <div style="display:flex; gap:12px; flex-wrap:wrap;">
+            <div class="sn-search-bar" style="width:240px; padding:6px 12px;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              <input type="text" id="jobs-table-filter" placeholder="Filter service, customer…">
+            </div>
+            <a class="sn-btn" href="jobs.html"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon></svg> Job board</a>
+          </div>
+        </div>
+        <div style="padding:0 24px 24px; overflow-x:auto;">
+          <table class="sn-table">
+            <thead>
+              <tr>
+                <th style="width:40px;"><input type="checkbox" disabled title="Bulk actions coming soon"></th>
+                <th>Service</th>
+                <th>Customer</th>
+                <th>Slot</th>
+                <th>Status</th>
+                <th>Payout</th>
+              </tr>
+            </thead>
+            <tbody id="jobs-table-body">
+              <tr><td colspan="6" style="color:var(--text-gray);">Loading schedule…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="sn-card">
+        <div class="sn-section-header" style="margin-bottom:24px;">
+          <h3 class="sn-section-title">Smart signals</h3>
+          <svg width="20" height="20" stroke="#9ca3af" stroke-width="2" fill="none"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:20px;" id="feed-alerts">
+          <div style="display:flex; gap:16px;">
+            <div style="width:32px; height:32px; border-radius:8px; background:var(--text-dark); color:white; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path></svg>
+            </div>
+            <div>
+              <div style="font-size:13px; font-weight:700; color:var(--text-dark); margin-bottom:2px;">Stay visible</div>
+              <div style="font-size:11px; color:var(--text-gray);">Toggle online on the jobs board to receive instant dispatches.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    </div>
+  </main>
+
+  <script src="../assets/js/api.js"></script>
+  <script src="../assets/js/main.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script>
+    (function () {
+      if (!requireAuth(["worker"])) return;
+
+      document.querySelectorAll(".dash-menu-item").forEach(function (el) { el.classList.remove("active"); });
+      var act = document.querySelector('.dash-menu-item[data-id="dashboard"]');
+      if (act) act.classList.add("active");
+
+      function fmtInr(n) {
+        return new Intl.NumberFormat("en-IN", { style: "currency", currency: "INR", maximumFractionDigits: 0 }).format(Number(n) || 0);
+      }
+      function fmtTime(d) {
+        if (!d) return "—";
+        try {
+          var x = new Date(d);
+          return x.toLocaleString("en-IN", { month: "short", day: "numeric", hour: "2-digit", minute: "2-digit" });
+        } catch (e) { return "—"; }
+      }
+      function initials(name) {
+        if (!name || typeof name !== "string") return "FM";
+        var p = name.trim().split(/\s+/).slice(0, 2);
+        return p.map(function (s) { return s[0]; }).join("").toUpperCase() || "FM";
+      }
+      function statusTag(status) {
+        var s = (status || "").toLowerCase();
+        if (s === "completed") return '<span class="sn-tag paid">Done</span>';
+        if (s === "in-progress") return '<span class="sn-tag pending">In progress</span>';
+        if (s === "confirmed" || s === "assigned") return '<span class="sn-tag pending">Confirmed</span>';
+        if (s === "scheduled" || s === "pending") return '<span class="sn-tag unpaid">Open</span>';
+        return '<span class="sn-tag pending">' + (status || "—") + "</span>";
+      }
+
+      var u = Auth.getUser();
+      if (u) {
+        var nm = document.getElementById("sidebar-user-name");
+        var rl = document.getElementById("sidebar-user-role");
+        var av = document.getElementById("sidebar-avatar");
+        if (nm) nm.textContent = u.name || "Pro partner";
+        if (rl) rl.textContent = u.onboardingApproved ? "Verified pro" : "Partner onboarding";
+        if (av && u.avatar) {
+          var a = u.avatar;
+          av.src = (a.indexOf("/") !== -1 || /^https?:/i.test(a)) ? a : ("../Images/" + a.replace(/^.*\//, ""));
+        }
+      }
+
+      var chartMix = null;
+      var chartWeek = null;
+      var chartSpark = null;
+      var allRows = [];
+
+      function destroyChart(ch) {
+        if (ch) try { ch.destroy(); } catch (e) {}
+      }
+
+      function renderCharts(summary) {
+        var palette = ["#ef4444", "#111827", "#10b981", "#f59e0b", "#6366f1", "#94a3b8"];
+        var jt = (summary && summary.charts && summary.charts.jobTypes) ? summary.charts.jobTypes : [{ label: "Service", value: 1 }];
+        var labels = jt.map(function (x) { return (x.label || "Job").replace(/\b\w/g, function (c) { return c.toUpperCase(); }); });
+        var values = jt.map(function (x) { return Number(x.value) || 0; });
+        var week = (summary && summary.charts && summary.charts.earningsWeek) ? summary.charts.earningsWeek.map(Number) : [0, 0, 0, 0, 0, 0, 0];
+        var days = ["-6d", "-5d", "-4d", "-3d", "-2d", "-1d", "Today"];
+
+        var elMix = document.getElementById("chart-mix");
+        var elWeek = document.getElementById("chart-week");
+        var elSpark = document.getElementById("spark-earnings");
+        if (elMix && typeof Chart !== "undefined") {
+          destroyChart(chartMix);
+          chartMix = new Chart(elMix.getContext("2d"), {
+            type: "doughnut",
+            data: {
+              labels: labels,
+              datasets: [{ data: values, backgroundColor: labels.map(function (_, i) { return palette[i % palette.length]; }), borderWidth: 0 }]
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              cutout: "68%",
+              plugins: { legend: { display: false } }
+            }
+          });
+        }
+        var leg = document.getElementById("mix-legend");
+        if (leg) {
+          leg.innerHTML = jt.slice(0, 4).map(function (x, i) {
+            var c = palette[i % palette.length];
+            return '<div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:' + c + ';margin-right:8px;"></span>' + (x.label || "") + '</span><strong>' + x.value + "</strong></div>";
+          }).join("");
+        }
+        if (elWeek && typeof Chart !== "undefined") {
+          destroyChart(chartWeek);
+          chartWeek = new Chart(elWeek.getContext("2d"), {
+            type: "line",
+            data: {
+              labels: days,
+              datasets: [{
+                label: "₹",
+                data: week,
+                borderColor: "#ef4444",
+                backgroundColor: "rgba(239,68,68,0.12)",
+                fill: true,
+                tension: 0.35,
+                pointRadius: 3,
+                pointBackgroundColor: "#111827"
+              }]
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              scales: {
+                x: { grid: { display: false }, ticks: { font: { size: 10 } } },
+                y: { grid: { color: "#f1f5f9" }, ticks: { callback: function (v) { return "₹" + v; }, font: { size: 10 } } }
+              },
+              plugins: { legend: { display: false } }
+            }
+          });
+        }
+        var weekSum = week.reduce(function (a, b) { return a + b; }, 0);
+        var pulse = document.getElementById("pulse-week-total");
+        if (pulse) pulse.textContent = fmtInr(weekSum);
+
+        if (elSpark && typeof Chart !== "undefined") {
+          destroyChart(chartSpark);
+          chartSpark = new Chart(elSpark.getContext("2d"), {
+            type: "line",
+            data: {
+              labels: week.map(function (_, i) { return String(i); }),
+              datasets: [{
+                data: week,
+                borderColor: "#ef4444",
+                borderWidth: 2,
+                pointRadius: 0,
+                tension: 0.35,
+                fill: true,
+                backgroundColor: "rgba(239,68,68,0.08)"
+              }]
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              scales: { x: { display: false }, y: { display: false } },
+              plugins: { legend: { display: false }, tooltip: { enabled: false } }
+            }
+          });
+        }
+      }
+
+      function renderTable(rows) {
+        var tb = document.getElementById("jobs-table-body");
+        if (!tb) return;
+        if (!rows.length) {
+          tb.innerHTML = '<tr><td colspan="6" style="color:var(--text-gray);">No visits yet — pick up jobs from the <a href="jobs.html" style="color:var(--primary-red);font-weight:600;">board</a>.</td></tr>';
+          return;
+        }
+        tb.innerHTML = rows.slice(0, 12).map(function (b) {
+          var cust = b.customerName || b._customerName || "Customer";
+          var svc = (b.service || b.category || "Service").slice(0, 48);
+          var price = b.price != null ? fmtInr(b.price) : "—";
+          function actionCell() {
+            var s = (b.status || "").toLowerCase();
+            if (!b.workerId) return '<button class="sn-btn primary js-job-act" data-act="accept" data-id="' + b.id + '">Accept</button>';
+            if (s === "assigned" || s === "confirmed") return '<button class="sn-btn primary js-job-act" data-act="start" data-id="' + b.id + '">Start</button>';
+            if (s === "in-progress") return '<button class="sn-btn primary js-job-act" data-act="complete" data-id="' + b.id + '">Complete</button>';
+            return '<button class="sn-btn" disabled>Done</button>';
+          }
+          return (
+            "<tr>" +
+            '<td><input type="checkbox" disabled></td>' +
+            "<td><div style=\"font-weight:600;\">" + svc + "</div><div style=\"font-size:11px;color:var(--text-gray);\">" + (b.id || "").slice(0, 12) + "</div></td>" +
+            '<td style="color:var(--text-gray);">' + cust + "</td>" +
+            "<td><div>" + fmtTime(b.scheduledAt || b.createdAt) + "</div></td>" +
+            "<td>" + statusTag(b.status) + "</td>" +
+            "<td style=\"font-weight:600;\">" + price + '<div style="margin-top:6px;">' + actionCell() + "</div></td>" +
+            "</tr>"
+          );
+        }).join("");
+        bindJobActions();
+      }
+
+      async function doJobAction(act, id, btn) {
+        var prev = btn.textContent;
+        btn.disabled = true;
+        btn.textContent = "Working...";
+        try {
+          if (act === "accept") await WorkerAPI.acceptJob(id);
+          else if (act === "start") await WorkerAPI.startJob(id);
+          else if (act === "complete") await WorkerAPI.completeJob(id);
+          showToast("Job updated", "success");
+          location.reload();
+        } catch (e) {
+          showToast(e.message || "Could not update job", "error");
+          btn.disabled = false;
+          btn.textContent = prev;
+        }
+      }
+
+      function bindJobActions() {
+        document.querySelectorAll(".js-job-act").forEach(function (btn) {
+          btn.onclick = function () { doJobAction(btn.dataset.act, btn.dataset.id, btn); };
+        });
+      }
+
+      function applyFilter() {
+        var q = (document.getElementById("jobs-table-filter") && document.getElementById("jobs-table-filter").value || "").toLowerCase();
+        if (!q) return renderTable(allRows);
+        var f = allRows.filter(function (b) {
+          var s = (b.service || "") + " " + (b.customerName || "") + " " + (b.status || "");
+          return s.toLowerCase().indexOf(q) !== -1;
+        });
+        renderTable(f);
+      }
+
+      function renderFeed(feed) {
+        var el = document.getElementById("feed-alerts");
+        if (!el) return;
+        var items = (feed && feed.length) ? feed.slice(0, 4) : [];
+        if (!items.length) {
+          el.innerHTML = '<div style="display:flex; gap:16px;"><div style="width:32px; height:32px; border-radius:8px; background:var(--text-dark); color:white; display:flex; align-items:center; justify-content:center; flex-shrink:0;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg></div><div><div style="font-size:13px; font-weight:700;">All clear</div><div style="font-size:11px; color:var(--text-gray);">New payouts and dispatches will surface here.</div></div></div>';
+          return;
+        }
+        el.innerHTML = items.map(function (it) {
+          var t = (it.text || "").slice(0, 120);
+          var when = fmtTime(it.at);
+          return (
+            '<div style="display:flex; gap:16px;">' +
+            '<div style="width:32px; height:32px; border-radius:8px; background:var(--text-dark); color:white; display:flex; align-items:center; justify-content:center; flex-shrink:0;">' +
+            '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg></div>' +
+            "<div><div style=\"font-size:13px; font-weight:700; margin-bottom:2px;\">" + (it.type === "payment" ? "Payout" : "Dispatch") + "</div>" +
+            '<div style="font-size:11px; color:var(--text-gray); margin-bottom:4px;">' + t + "</div>" +
+            '<div style="font-size:10px; color:var(--text-light);">' + when + "</div></div></div>"
+          );
+        }).join("");
+      }
+
+      function setMapCard(booking, customer) {
+        var title = document.getElementById("map-card-title");
+        var sub = document.getElementById("map-card-sub");
+        var nm = document.getElementById("map-card-name");
+        var ini = document.getElementById("map-card-initials");
+        if (!booking) {
+          if (title) title.textContent = "No active route";
+          if (sub) sub.textContent = "Go online to receive the next FixMate dispatch.";
+          if (nm) nm.textContent = "—";
+          if (ini) ini.textContent = "FM";
+          return;
+        }
+        if (title) title.textContent = (booking.service || "Scheduled visit").slice(0, 42);
+        if (sub) sub.textContent = (booking.address || booking.description || "Customer is expecting you on time.").slice(0, 80);
+        var cname = customer && customer.name ? customer.name : "Customer";
+        if (nm) nm.textContent = cname;
+        if (ini) ini.textContent = initials(cname);
+      }
+
+      document.querySelectorAll(".zone-chip").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          document.querySelectorAll(".zone-chip").forEach(function (b) { b.classList.remove("active"); });
+          btn.classList.add("active");
+        });
+      });
+
+      var filterEl = document.getElementById("jobs-table-filter");
+      if (filterEl) filterEl.addEventListener("input", applyFilter);
+
+      Promise.all([
+        WorkerAPI.getProSummary().catch(function () { return null; }),
+        WorkerAPI.getJobs().catch(function () { return { assigned: [], incoming: [] }; }),
+        WorkerAPI.getActiveBooking().catch(function () { return { booking: null }; }),
+        WorkerAPI.getMessages().catch(function () { return { threads: [] }; })
+      ]).then(function (results) {
+        var summary = results[0];
+        var jobsRes = results[1] || {};
+        var activeRes = results[2] || {};
+        var msgRes = results[3] || {};
+
+        var assigned = jobsRes.assigned || [];
+        var incoming = jobsRes.incoming || [];
+
+        if (summary) {
+          var k = summary.kpis || {};
+          var te = document.getElementById("kpi-today-earn");
+          if (te) te.textContent = fmtInr(k.todayEarnings);
+          var tr = document.getElementById("kpi-earn-trend");
+          if (tr) {
+            var g = Number(k.monthlyGrowth) || 0;
+            tr.textContent = (g >= 0 ? "+" : "") + g.toFixed(1) + "%";
+            tr.className = g >= 0 ? "up" : "down";
+          }
+          var activeN = assigned.filter(function (b) {
+            return ["confirmed", "in-progress", "assigned"].indexOf((b.status || "").toLowerCase()) !== -1;
+          }).length;
+          var pl = document.getElementById("kpi-pipeline");
+          if (pl) pl.innerHTML = activeN + ' <span style="font-size:14px;font-weight:600;color:var(--text-gray);">live</span>';
+          var inc = document.getElementById("kpi-incoming");
+          if (inc) inc.textContent = String(incoming.length || k.incomingNearby || 0);
+          var rt = document.getElementById("kpi-rating");
+          if (rt) rt.textContent = (Number(k.rating) || 0).toFixed(1) + " ★";
+          var ac = document.getElementById("kpi-accept");
+          if (ac) ac.textContent = (k.acceptanceRate != null ? k.acceptanceRate : "—") + "%";
+          var w = document.getElementById("kpi-wallet");
+          if (w) w.textContent = fmtInr(summary.wallet);
+          var jc = document.getElementById("kpi-completed");
+          if (jc) jc.textContent = String(k.jobsCompleted != null ? k.jobsCompleted : 0);
+          var po = document.getElementById("kpi-payout");
+          if (po) po.textContent = fmtInr(k.pendingPayout);
+
+          renderCharts(summary);
+          renderFeed(summary.feed);
+        } else {
+          renderCharts({ charts: { jobTypes: [{ label: "Plumbing", value: 1 }], earningsWeek: [0, 0, 0, 0, 0, 0, 0] } });
+        }
+
+        var booking = activeRes.booking || assigned.find(function (b) {
+          return ["confirmed", "in-progress", "assigned"].indexOf((b.status || "").toLowerCase()) !== -1;
+        });
+        var cust = activeRes.customer || null;
+        if (booking && !cust) cust = { name: booking.customerName || "Customer" };
+        setMapCard(booking || null, cust);
+
+        allRows = assigned.slice().sort(function (a, b) {
+          return new Date(b.scheduledAt || b.createdAt) - new Date(a.scheduledAt || a.createdAt);
+        });
+        renderTable(allRows);
+
+        var threads = msgRes.threads || [];
+        var unread = threads.reduce(function (s, t) { return s + (Number(t.unread) || 0); }, 0);
+        var badge = document.getElementById("nav-msg-badge");
+        if (badge) {
+          if (unread > 0) {
+            badge.style.display = "";
+            badge.textContent = String(unread > 99 ? "99+" : unread);
+          } else badge.style.display = "none";
+        }
+      });
+
+      setInterval(function () {
+        if (document.visibilityState === "visible") location.reload();
+      }, 45000);
+    })();
+  </script>
+</body>
+</html>

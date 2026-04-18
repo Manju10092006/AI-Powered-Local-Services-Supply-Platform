@@ -1,0 +1,235 @@
+/* Smart Booking — slot picker + AI express (FixMate purple system) */
+.sb-panel {
+  background: linear-gradient(180deg, #faf8ff 0%, #ffffff 100%);
+  border: 1px solid #e8e0f5;
+  border-radius: 16px;
+  padding: 16px;
+  margin-bottom: 20px;
+  box-shadow: 0 8px 28px rgba(106, 27, 154, 0.06);
+}
+
+.sb-stepper {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+.sb-step {
+  flex: 1;
+  text-align: center;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #888;
+  padding: 8px 4px;
+  border-radius: 10px;
+  background: #f3f0fa;
+  border: 1px solid transparent;
+  transition: 0.2s;
+}
+.sb-step.active {
+  color: #6a1b9a;
+  background: #fff;
+  border-color: #d1c4e9;
+  box-shadow: 0 2px 8px rgba(106, 27, 154, 0.12);
+}
+.sb-step.done {
+  color: #108a00;
+  background: #eef7eb;
+}
+
+.sb-mode-row {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.sb-mode-btn {
+  width: 100%;
+  border: 2px solid #eaeaea;
+  border-radius: 12px;
+  padding: 12px 14px;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  background: #fff;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: 0.2s;
+}
+.sb-mode-btn:hover {
+  border-color: #d1c4e9;
+  background: #fdfbff;
+}
+.sb-mode-btn.on {
+  border-color: #6a1b9a;
+  background: linear-gradient(135deg, #fbf5ff, #fff);
+  color: #111;
+}
+.sb-mode-btn small {
+  display: block;
+  font-weight: 500;
+  font-size: 11px;
+  color: #666;
+  margin-top: 4px;
+}
+
+.sb-date {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid #eaeaea;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.sb-slots-wrap {
+  max-height: 280px;
+  overflow-y: auto;
+  margin: 0 -4px;
+  padding: 4px;
+}
+.sb-slot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 12px 12px;
+  border-radius: 12px;
+  border: 1px solid #eaeaea;
+  margin-bottom: 8px;
+  cursor: pointer;
+  background: #fff;
+  transition: 0.18s;
+}
+.sb-slot:hover:not(.disabled) {
+  border-color: #6a1b9a;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+}
+.sb-slot.selected {
+  border-color: #6a1b9a;
+  background: #fbf5ff;
+}
+.sb-slot.disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  background: #f5f5f5;
+}
+.sb-slot-main {
+  font-weight: 800;
+  font-size: 14px;
+  color: #111;
+}
+.sb-slot-meta {
+  font-size: 12px;
+  color: #555;
+  font-weight: 600;
+}
+.sb-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  justify-content: flex-end;
+}
+.sb-chip {
+  font-size: 10px;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+.sb-chip.peak {
+  background: #fff3e0;
+  color: #e65100;
+}
+.sb-chip.popular {
+  background: #e3f2fd;
+  color: #1565c0;
+}
+.sb-chip.cheap {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+.sb-chip.fast {
+  background: #fce4ec;
+  color: #c2185b;
+}
+
+.sb-fast-textarea {
+  width: 100%;
+  min-height: 88px;
+  border-radius: 12px;
+  border: 1px solid #eaeaea;
+  padding: 12px;
+  font-family: inherit;
+  font-size: 14px;
+  resize: vertical;
+  margin-bottom: 8px;
+}
+.sb-fast-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.sb-btn {
+  flex: 1;
+  min-width: 120px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: none;
+  font-weight: 800;
+  cursor: pointer;
+  font-size: 13px;
+  transition: 0.2s;
+}
+.sb-btn-primary {
+  background: #6a1b9a;
+  color: #fff;
+}
+.sb-btn-primary:hover {
+  background: #5a1485;
+}
+.sb-btn-secondary {
+  background: #f5f5f5;
+  color: #333;
+}
+.sb-analysis-card {
+  margin-top: 12px;
+  padding: 14px;
+  border-radius: 14px;
+  background: #0f172a;
+  color: #fff;
+  font-size: 13px;
+  line-height: 1.55;
+}
+.sb-analysis-card strong {
+  color: #c4b5fd;
+}
+.sb-loader {
+  text-align: center;
+  padding: 16px;
+  color: #888;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.sb-surge-line {
+  margin-top: 10px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: #fff8e1;
+  border: 1px solid #ffe082;
+  font-size: 12px;
+  font-weight: 600;
+  color: #5d4037;
+}
+
+@media (max-width: 900px) {
+  .sb-slots-wrap {
+    max-height: 220px;
+  }
+}

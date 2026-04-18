@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FixMate AI — Admin Users</title>
+  <link rel="stylesheet" href="../assets/css/global.css">
+  <link rel="stylesheet" href="../assets/css/cards.css">
+  <link rel="stylesheet" href="../assets/css/admin.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>🔧</text></svg>">
+</head>
+<body>
+<nav class="admin-navbar"><div class="container">
+  <a href="../index.html" class="admin-nav-logo"><span class="logo-text">🔧 FixMate AI</span><span class="logo-badge">ADMIN</span></a>
+  <div class="admin-nav-right">
+    <a href="analytics.html" class="worker-nav-item"><span class="wnav-icon">📊</span><span>Analytics</span></a>
+    <a href="#" class="worker-nav-item"><span class="wnav-icon">👤</span><span>Admin</span></a>
+  </div>
+</div></nav>
+<div class="admin-layout">
+  <aside class="admin-sidebar">
+    <div style="padding:20px 24px;border-bottom:1px solid rgba(255,255,255,0.06);"><div style="color:#fff;font-weight:700;font-size:0.875rem;">Admin Panel</div></div>
+    <a href="dashboard.html" class="admin-menu-item"><span class="am-icon">📊</span> Dashboard</a>
+    <a href="users.html" class="admin-menu-item active"><span class="am-icon">👥</span> Users</a>
+    <a href="workers.html" class="admin-menu-item"><span class="am-icon">🔧</span> Workers</a>
+    <a href="bookings.html" class="admin-menu-item"><span class="am-icon">📋</span> Bookings</a>
+    <a href="analytics.html" class="admin-menu-item"><span class="am-icon">📈</span> Analytics</a>
+    <a href="#" class="admin-menu-item"><span class="am-icon">💰</span> Revenue</a>
+    <a href="#" class="admin-menu-item"><span class="am-icon">⚙️</span> Settings</a>
+    <a href="../index.html" class="admin-menu-item"><span class="am-icon">🏠</span> Customer Site</a>
+  </aside>
+  <main class="admin-main">
+    <div class="dash-header">
+      <div><h1>👥 User Management</h1><p style="color:var(--text-muted);font-size:0.875rem;">52,430 total users</p></div>
+      <div style="display:flex;gap:8px;">
+        <input type="text" class="input" placeholder="🔍 Search users..." style="width:240px;padding:8px 16px;font-size:0.8125rem;">
+        <select class="input" style="width:auto;padding:8px 14px;font-size:0.8125rem;"><option>All Status</option><option>Active</option><option>Suspended</option><option>Plus Members</option></select>
+        <button class="btn btn-primary btn-sm">📥 Export</button>
+      </div>
+    </div>
+
+    <div class="admin-stats-stripe" style="margin-bottom:24px;">
+      <div class="admin-stat purple"><div class="as-value">52,430</div><div class="as-label">Total Users</div></div>
+      <div class="admin-stat green"><div class="as-value">48,210</div><div class="as-label">Active</div></div>
+      <div class="admin-stat orange"><div class="as-value">3,450</div><div class="as-label">Plus Members</div></div>
+      <div class="admin-stat red"><div class="as-value">127</div><div class="as-label">Suspended</div></div>
+    </div>
+
+    <div class="admin-table-card">
+      <table class="admin-table">
+        <thead><tr><th>User</th><th>Email</th><th>Phone</th><th>City</th><th>Bookings</th><th>Membership</th><th>Status</th><th>Actions</th></tr></thead>
+        <tbody>
+          <tr><td><div class="user-cell"><div class="user-avatar">RK</div><div><div class="user-name">Rahul Kumar</div><div style="font-size:0.7rem;color:var(--text-muted);">Joined Mar 2025</div></div></div></td><td>rahul@email.com</td><td>+91 98765</td><td>Hyderabad</td><td style="font-weight:700;">24</td><td><span class="badge badge-warning">Plus</span></td><td><span class="status-badge active">Active</span></td><td><div class="action-btns"><button class="action-btn">👁</button><button class="action-btn">✏</button><button class="action-btn" style="color:var(--accent-red);">🚫</button></div></td></tr>
+          <tr><td><div class="user-cell"><div class="user-avatar">PA</div><div><div class="user-name">Priya Agarwal</div><div style="font-size:0.7rem;color:var(--text-muted);">Joined Jan 2025</div></div></div></td><td>priya@email.com</td><td>+91 87654</td><td>Bangalore</td><td style="font-weight:700;">18</td><td><span class="badge badge-warning">Plus</span></td><td><span class="status-badge active">Active</span></td><td><div class="action-btns"><button class="action-btn">👁</button><button class="action-btn">✏</button></div></td></tr>
+          <tr><td><div class="user-cell"><div class="user-avatar">SK</div><div><div class="user-name">Suresh Kapoor</div><div style="font-size:0.7rem;color:var(--text-muted);">Joined Feb 2025</div></div></div></td><td>suresh@email.com</td><td>+91 76543</td><td>Mumbai</td><td style="font-weight:700;">31</td><td><span style="font-size:0.75rem;color:var(--text-muted);">Free</span></td><td><span class="status-badge active">Active</span></td><td><div class="action-btns"><button class="action-btn">👁</button><button class="action-btn">✏</button></div></td></tr>
+          <tr><td><div class="user-cell"><div class="user-avatar">AD</div><div><div class="user-name">Anjali Desai</div><div style="font-size:0.7rem;color:var(--text-muted);">Joined Dec 2024</div></div></div></td><td>anjali@email.com</td><td>+91 65432</td><td>Pune</td><td style="font-weight:700;">42</td><td><span class="badge badge-warning">Plus</span></td><td><span class="status-badge active">Active</span></td><td><div class="action-btns"><button class="action-btn">👁</button><button class="action-btn">✏</button></div></td></tr>
+          <tr><td><div class="user-cell"><div class="user-avatar">VM</div><div><div class="user-name">Vikram Mehta</div><div style="font-size:0.7rem;color:var(--text-muted);">Joined Apr 2025</div></div></div></td><td>vikram@email.com</td><td>+91 54321</td><td>Delhi</td><td style="font-weight:700;">3</td><td><span style="font-size:0.75rem;color:var(--text-muted);">Free</span></td><td><span class="status-badge blocked">Suspended</span></td><td><div class="action-btns"><button class="action-btn">👁</button><button class="action-btn" style="color:var(--accent-green);">✓</button></div></td></tr>
+          <tr><td><div class="user-cell"><div class="user-avatar">NS</div><div><div class="user-name">Neha Sharma</div><div style="font-size:0.7rem;color:var(--text-muted);">Joined Mar 2025</div></div></div></td><td>neha@email.com</td><td>+91 43210</td><td>Chennai</td><td style="font-weight:700;">15</td><td><span style="font-size:0.75rem;color:var(--text-muted);">Free</span></td><td><span class="status-badge active">Active</span></td><td><div class="action-btns"><button class="action-btn">👁</button><button class="action-btn">✏</button></div></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-top:20px;">
+      <span style="font-size:0.8125rem;color:var(--text-muted);">Showing 1-6 of 52,430</span>
+      <div style="display:flex;gap:6px;"><button class="btn btn-secondary btn-sm">← Prev</button><button class="btn btn-primary btn-sm">1</button><button class="btn btn-secondary btn-sm">2</button><button class="btn btn-secondary btn-sm">3</button><button class="btn btn-secondary btn-sm">Next →</button></div>
+    </div>
+  </main>
+</div>
+<script src="../assets/js/api.js"></script>
+<script>document.addEventListener('DOMContentLoaded',()=>{if(!requireAuth(['admin']))return;updateNavbarUser();});</script>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

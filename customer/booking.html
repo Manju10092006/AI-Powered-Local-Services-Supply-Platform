@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FixMate — Service Details</title>
+  <!-- Add Instrument Serif and Inter fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* Premium SaaS Reset & Tokens */
+    :root {
+      --bg: #FAFAFA; --surface: #FFFFFF; --surface-frosted: rgba(255, 255, 255, 0.75);
+      --fg: #111827; --fg-muted: #6B7280; --border: #F3F4F6; --border-strong: #E5E7EB;
+      --accent: #5B7AF7; --accent-light: #EFF2FE; --success: #10B981; --warning: #F59E0B;
+      --font-display: 'Instrument Serif', serif; --font-body: 'Inter', sans-serif;
+      --radius-sm: 8px; --radius-md: 12px; --radius-lg: 20px; --radius-xl: 32px;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.05); --shadow-md: 0 10px 25px -5px rgba(0,0,0,0.02), 0 4px 10px -5px rgba(0,0,0,0.01);
+      --shadow-lg: 0 20px 40px -10px rgba(0,0,0,0.05); --shadow-glow: 0 10px 30px -10px rgba(91,122,247,0.3);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-body); background-color: var(--bg); color: var(--fg); line-height: 1.5; -webkit-font-smoothing: antialiased; background-image: radial-gradient(circle at 100% 0%, rgba(91,122,247,0.04) 0%, transparent 25%), radial-gradient(circle at 0% 100%, rgba(91,122,247,0.03) 0%, transparent 20%); background-attachment: fixed; }
+    .app-container { display: flex; min-height: 100vh; max-width: 1600px; margin: 0 auto; }
+    .sidebar { width: 260px; background: var(--surface); border-right: 1px solid var(--border); display: flex; flex-direction: column; position: sticky; top: 0; height: 100vh; z-index: 50; }
+    .brand { height: 80px; display: flex; align-items: center; padding: 0 24px; font-family: var(--font-display); font-size: 28px; font-style: italic; color: var(--fg); letter-spacing: -0.5px; border-bottom: 1px solid var(--border); text-decoration: none; }
+    .nav-menu { padding: 24px 12px; flex: 1; display: flex; flex-direction: column; gap: 4px; }
+    .nav-item { display: flex; align-items: center; gap: 12px; padding: 10px 16px; border-radius: var(--radius-sm); color: var(--fg-muted); text-decoration: none; font-weight: 500; font-size: 14px; transition: all 0.2s ease; }
+    .nav-item svg { width: 18px; height: 18px; opacity: 0.7; }
+    .nav-item:hover { background: var(--bg); color: var(--fg); }
+    .nav-item.active { background: var(--accent-light); color: var(--accent); }
+    .nav-item.active svg { opacity: 1; stroke: var(--accent); }
+    .sidebar-footer { padding: 24px; border-top: 1px solid var(--border); }
+    .user-profile { display: flex; align-items: center; gap: 12px; cursor: pointer; }
+    .avatar { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), #9b87f5); color: white; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 14px; box-shadow: 0 4px 12px rgba(91,122,247,0.2); }
+    .user-info .name { font-weight: 600; font-size: 14px; color: var(--fg); }
+    .user-info .plan { font-size: 12px; color: var(--accent); font-weight: 500; display:flex; align-items:center; gap:4px; }
+    .main-content { flex: 1; padding: 40px 48px; overflow-y: auto; }
+    /* Legacy dash-header mapping for imported pages */
+    .dash-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 40px; }
+    .dash-header h1 { font-family: var(--font-display); font-size: 48px; font-weight: 400; letter-spacing: -1px; line-height: 1.1; margin-bottom: 8px; }
+    .dash-header p, .dash-header .subtitle { color: var(--fg-muted); font-size: 15px; }
+    .bg-shape { position: fixed; top: -20vh; right: -10vw; width: 60vw; height: 60vw; border-radius: 50%; background: radial-gradient(circle, rgba(91,122,247,0.08) 0%, transparent 60%); pointer-events: none; z-index: -1; filter: blur(40px); }
+    
+    /* Legacy Buttons mapped to modern style */
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 10px 20px; border-radius: 100px; font-weight: 500; font-size: 14px; cursor: pointer; transition: all 0.2s ease; text-decoration: none; border: 1px solid transparent; }
+    .btn-primary { background: var(--fg); color: white; box-shadow: 0 4px 14px rgba(0,0,0,0.1); }
+    .btn-primary:hover { background: #000; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
+    .btn-secondary, .btn-outline { background: white; border-color: var(--border-strong); color: var(--fg); }
+    .btn-secondary:hover, .btn-outline:hover { background: var(--bg); border-color: #d1d5db; }
+    
+    .list-item, .glass-card { background: var(--surface-frosted); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.4); border-radius: var(--radius-lg); padding: 24px; box-shadow: var(--shadow-md); margin-bottom: 16px; }
+    .badge { display: inline-flex; align-items: center; padding: 4px 10px; border-radius: 100px; font-size: 12px; font-weight: 500; }
+    .badge-success { background: rgba(16,185,129,0.1); color: var(--success); }
+    .badge-warning { background: rgba(245,158,11,0.1); color: var(--warning); }
+    .badge-danger { background: rgba(239,68,68,0.1); color: #EF4444; }
+    .input { border: 1px solid var(--border-strong); border-radius: var(--radius-sm); padding: 8px 12px; font-family: var(--font-body); }
+    
+    @media (max-width: 768px) { .sidebar { display: none; } .main-content { padding: 24px 20px; } }
+  </style>
+
+  <link rel="stylesheet" href="../assets/css/global.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    /* Urban Company Exact Service Detail Layout */
+    body { background: #FFFFFF; color: #111; font-family: 'Inter', sans-serif; }
+    
+    .fm-header { 
+      position: sticky; top: 0; z-index: 100; 
+      border-bottom: 1px solid #EAEAEA; background: #fff;
+    }
+    
+    /* Layout */
+    .uc-layout {
+      max-width: 1200px; margin: 0 auto; padding: 24px;
+      display: grid; grid-template-columns: 2fr 1.1fr; gap: 48px;
+    }
+    @media (max-width: 900px) {
+      .uc-layout { grid-template-columns: 1fr; padding: 16px; gap: 24px; }
+      .uc-sidebar { position: static !important; }
+    }
+    
+    /* Hero Banner */
+    .uc-banner {
+      display: flex; justify-content: space-between; align-items: center;
+      background: #FFFBF0; border-radius: 16px; overflow: hidden;
+      margin-bottom: 32px;
+    }
+    .uc-banner-content { padding: 40px; flex: 1; }
+    .uc-banner-title { font-size: 32px; font-weight: 800; margin-bottom: 12px; color: #111; line-height: 1.2; }
+    .uc-banner-meta { display: flex; align-items: center; gap: 8px; font-size: 15px; color: #444; font-weight: 600; }
+    .uc-banner-star { color: #108a00; font-size: 18px; margin-right: 4px; }
+    .uc-banner-img { width: 360px; height: 220px; object-fit: cover; }
+    @media (max-width: 600px) {
+      .uc-banner { flex-direction: column; }
+      .uc-banner-img { width: 100%; height: 160px; }
+      .uc-banner-content { padding: 24px; }
+    }
+
+    /* Group Heading */
+    .uc-group-title {
+      font-size: 28px; font-weight: 800; margin-top: 40px; margin-bottom: 24px;
+      color: #111; border-bottom: 3px solid #EAEAEA; padding-bottom: 12px;
+    }
+    
+    /* Listing Item */
+    .uc-item {
+      display: flex; gap: 24px; padding: 32px 0; border-bottom: 1px solid #EAEAEA;
+    }
+    .uc-item:last-child { border-bottom: none; }
+    .uc-item-details { flex: 1; }
+    .uc-item-title { font-size: 18px; font-weight: 700; color: #111; margin-bottom: 8px; }
+    .uc-item-rating { 
+      display: inline-flex; align-items: center; gap: 4px; font-size: 13px; color: #108a00; 
+      font-weight: 700; background: #eef7eb; padding: 4px 8px; border-radius: 6px; margin-bottom: 12px; 
+    }
+    .uc-item-price-row { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+    .uc-item-price { font-size: 18px; font-weight: 800; color: #111; }
+    .uc-item-mrp { font-size: 14px; text-decoration: line-through; color: #777; }
+    .uc-item-duration { font-size: 14px; color: #555; font-weight: 600; background: #f5f5f5; padding: 4px 10px; border-radius: 12px; }
+    
+    .uc-item-bullets { margin-left: 20px; color: #555; font-size: 14px; line-height: 1.7; list-style-type: disc; }
+    
+    .uc-item-visual { width: 140px; display: flex; flex-direction: column; align-items: center; gap: -16px; }
+    .uc-item-img { width: 130px; height: 130px; border-radius: 12px; object-fit: cover; margin-bottom: -18px; z-index: 1; position: relative; }
+    .uc-item-add { 
+      background: white; border: 1px solid #EAEAEA; border-radius: 8px; padding: 8px 0; 
+      font-weight: 800; color: #6A1B9A; font-size: 15px; cursor: pointer; transition: 0.2s;
+      z-index: 2; position: relative; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.06); width: 90px;
+    }
+    .uc-item-add:hover { background: #fbf5ff; border-color: #6A1B9A; }
+
+    /* Sticky Sidebar & Cart */
+    .uc-sidebar { position: sticky; top: 100px; height: max-content; }
+    
+    .uc-cart {
+      background: white; border: 1px solid #EAEAEA; border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.06); overflow: hidden;
+      margin-bottom: 24px;
+    }
+    .uc-cart-header { padding: 20px 24px; border-bottom: 1px solid #EAEAEA; font-size: 20px; font-weight: 800; }
+    .uc-cart-body { padding: 24px; min-height: 120px; background: #fff; }
+    .uc-cart-empty { text-align: center; color: #888; font-size: 15px; margin-top: 10px; }
+    
+    .uc-cart-item { display: flex; justify-content: space-between; align-items: center; font-size: 14px; margin-bottom: 20px; font-weight: 600; color: #111; }
+    .uc-cart-item-controls { display: flex; align-items: center; gap: 14px; border: 1px solid #EAEAEA; padding: 4px 10px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
+    .uc-cart-item-controls button { background: none; border: none; font-size: 18px; font-weight: 800; color: #6A1B9A; padding: 0 4px; cursor: pointer; }
+    
+    .uc-cart-footer { padding: 20px 24px; background: #fff; border-top: 1px solid #EAEAEA; }
+    .uc-cart-total { display: flex; justify-content: space-between; font-size: 18px; font-weight: 800; margin-bottom: 16px; }
+    .uc-cart-checkout { background: #6A1B9A; color: white; width: 100%; border: none; padding: 16px; border-radius: 10px; font-weight: 800; font-size: 16px; cursor: pointer; transition: 0.2s; }
+    .uc-cart-checkout:hover { background: #5a1485; }
+
+    /* Trust & Promises */
+    .uc-promise { border: 1px solid #EAEAEA; border-radius: 16px; padding: 24px; background: #FAFAFA; }
+    .uc-promise-title { font-weight: 800; font-size: 18px; margin-bottom: 16px; color: #111; }
+    .uc-promise-item { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 16px; }
+    .uc-promise-icon { font-size: 24px; background: white; padding: 8px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+    .uc-promise-text { font-size: 14px; color: #555; line-height: 1.5; }
+    .uc-promise-text strong { display: block; color: #111; margin-bottom: 4px; font-size: 15px; }
+
+    /* Reviews Section */
+    .uc-reviews-section { margin-top: 60px; padding-top: 40px; border-top: 3px solid #EAEAEA; }
+    .uc-reviews-header { display: flex; align-items: center; gap: 16px; margin-bottom: 32px; }
+    .uc-reviews-score { font-size: 48px; font-weight: 900; color: #111; }
+    .uc-reviews-meta { display: flex; flex-direction: column; }
+    .uc-reviews-stars { color: #108a00; font-size: 20px; letter-spacing: 2px; }
+    .uc-reviews-count { font-size: 15px; color: #777; font-weight: 500; margin-top: 4px; }
+    
+    .uc-review-card { padding: 24px; border: 1px solid #EAEAEA; border-radius: 16px; margin-bottom: 20px; }
+    .uc-review-user { display: flex; justify-content: space-between; margin-bottom: 12px; }
+    .uc-review-name { font-weight: 800; color: #111; font-size: 16px; }
+    .uc-review-date { color: #888; font-size: 14px; }
+    .uc-review-rating { color: #108a00; font-size: 14px; margin-bottom: 12px; }
+    .uc-review-service { font-size: 13px; color: #666; background: #f5f5f5; display: inline-block; padding: 4px 10px; border-radius: 12px; margin-bottom: 12px; font-weight: 600; }
+    .uc-review-text { font-size: 15px; color: #444; line-height: 1.6; }
+  </style>
+</head>
+<body>
+
+<header class="fm-header">
+  <nav class="fm-nav">
+    <div class="fm-nav-left">
+      <a href="../index.html" class="fm-logo" style="text-decoration:none; font-weight:900; font-size:24px; color:#111;">FixMate<span style="color:#6A1B9A;">.</span></a>
+    </div>
+    <div class="fm-search" style="flex:1; max-width:400px; margin:0 32px; display:flex; background:#f5f5f5; border-radius:12px; padding:4px;">
+      <input type="text" placeholder="Search for a service..." style="border:none; background:transparent; padding:12px 16px; outline:none; width:100%;">
+    </div>
+    <div class="fm-nav-right" style="display:flex; align-items:center; gap:20px;">
+      <a href="cart.html" style="text-decoration:none; color:#111; font-weight:600; display:inline-flex; align-items:center; gap:6px;">
+        Cart
+        <span id="nav-cart-count" style="display:none; min-width:20px; height:20px; padding:0 6px; border-radius:999px; background:#6A1B9A; color:#fff; font-size:12px; font-weight:800; align-items:center; justify-content:center;">0</span>
+      </a>
+      <a href="../login.html" id="booking-nav-auth" style="text-decoration:none; color:#111; font-weight:600;">Login</a>
+    </div>
+  </nav>
+</header>
+
+<div class="uc-layout">
+  <!-- Left Main Content -->
+  <div class="uc-content" id="service-list">
+    <div style="text-align:center; padding: 100px;"><h2 style="color:#aaa;">Loading...</h2></div>
+  </div>
+
+  <!-- Right Sticky Sidebar -->
+  <div class="uc-sidebar">
+    <div class="uc-cart">
+      <div class="uc-cart-header">Your cart</div>
+      <div class="uc-cart-body" id="cart-items">
+        <div class="uc-cart-empty">
+          <div style="font-size: 48px; margin-bottom: 16px; opacity: 0.3;">🛒</div>
+          Your cart is empty
+        </div>
+      </div>
+      <div class="uc-cart-footer" id="cart-footer" style="display: none;">
+        <div class="uc-cart-total">
+          <span>Subtotal</span>
+          <span id="cart-total-price">₹0</span>
+        </div>
+        <button type="button" class="uc-cart-checkout" id="go-cart-btn">Go to cart</button>
+      </div>
+    </div>
+
+    
+    <div class="uc-promise">
+      <div class="uc-promise-title">FixMate Promise</div>
+      <div class="uc-promise-item">
+        <div class="uc-promise-icon">🛡️</div>
+        <div class="uc-promise-text"><strong>Verified Professionals</strong>Thoroughly background-checked, expert technicians.</div>
+      </div>
+      <div class="uc-promise-item">
+        <div class="uc-promise-icon">🔧</div>
+        <div class="uc-promise-text"><strong>30-Day Warranty</strong>Free rework if the problem persists within 30 days.</div>
+      </div>
+      <div class="uc-promise-item">
+        <div class="uc-promise-icon">⏱️</div>
+        <div class="uc-promise-text"><strong>On Time Guarantee</strong>Professionals reach precisely on your scheduled time.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="../assets/js/api.js"></script>
+<script src="../assets/js/fixmate-cart.js"></script>
+<script>
+  let services = [];
+  let categoryData = {};
+  let cart = {};
+
+  document.addEventListener("DOMContentLoaded", () => {
+    Object.assign(cart, FixmateCart.load());
+    FixmateCart.updateNavBadge();
+    const authEl = document.getElementById("booking-nav-auth");
+    const u = typeof Auth !== "undefined" && Auth.getUser && Auth.getUser();
+    if (u && authEl) {
+      authEl.textContent = u.name || "Account";
+      authEl.href = "#";
+      authEl.onclick = e => {
+        e.preventDefault();
+        Auth.logout();
+        window.location.reload();
+      };
+    }
+    const goBtn = document.getElementById("go-cart-btn");
+    if (goBtn) {
+      goBtn.addEventListener("click", () => {
+        window.location.href = "cart.html";
+      });
+    }
+  });
+
+  // Fetch JSON and build the page
+  fetch('../assets/data/services.json')
+    .then(r => r.json())
+    .then(data => {
+      services = data.services;
+      Object.assign(cart, FixmateCart.load());
+      const urlParams = new URLSearchParams(window.location.search);
+      const serviceId = urlParams.get('service');
+      
+      let activeService = services.find(s => s.id == serviceId) || services[0];
+      const targetCategory = activeService.category;
+      
+      categoryData = data.categories.find(c => c.id === targetCategory) || {name: 'Premium', count: 0};
+      const relatedServices = services.filter(s => s.category === targetCategory);
+      
+      renderPage(categoryData, relatedServices, activeService);
+      renderCart();
+      FixmateCart.updateNavBadge();
+    });
+
+  // Group services based on keywords or just cluster them into logical parts
+  function groupServices(list) {
+    const groups = {};
+    list.forEach(s => {
+      // Very simple grouping heuristic based on title words
+      let groupName = "Other Services";
+      const title = s.title.toLowerCase();
+      
+      if(title.includes("fan")) groupName = "Fan";
+      else if(title.includes("switch") || title.includes("socket")) groupName = "Switch & Socket";
+      else if(title.includes("wiring") || title.includes("mcb")) groupName = "Wiring & MCB";
+      else if(title.includes("light") || title.includes("bulb")) groupName = "Lighting";
+      else if(title.includes("deep") || title.includes("full")) groupName = "Deep Cleaning";
+      else if(title.includes("sofa") || title.includes("carpet") || title.includes("mattress")) groupName = "Furniture Cleaning";
+      else if(title.includes("ac ") || title.includes("air")) groupName = "AC Services";
+      else if(title.includes("hair") || title.includes("cut")) groupName = "Hair Care";
+      else if(title.includes("massage") || title.includes("spa")) groupName = "Massage & Spa";
+      else if(title.includes("tap") || title.includes("leak") || title.includes("pipe")) groupName = "Fittings & Repairs";
+      else groupName = "General Services";
+
+      if(!groups[groupName]) groups[groupName] = [];
+      groups[groupName].push(s);
+    });
+    return groups;
+  }
+
+  function renderPage(cat, list, activeService) {
+    // 1. Render Header Banner
+    const totalReviews = list.reduce((sum, item) => sum + (item.reviews||0), 0);
+    const avgRating = (list.reduce((sum, item) => sum + (item.rating||4.5), 0) / list.length).toFixed(1);
+    const bannerImg = activeService.image.startsWith('http') ? activeService.image : '../' + activeService.image;
+
+    let html = `
+      <div class="uc-banner">
+        <div class="uc-banner-content">
+          <h1 class="uc-banner-title">${cat.name} Services</h1>
+          <div class="uc-banner-meta">
+            <span class="uc-banner-star">★</span> ${avgRating} (${Math.floor(totalReviews/1000)}k+ bookings)
+          </div>
+        </div>
+        <img src="${bannerImg}" class="uc-banner-img">
+      </div>
+    `;
+
+    // 2. Render Groups & Services
+    const grouped = groupServices(list);
+    for(const [groupName, items] of Object.entries(grouped)) {
+      html += `<div class="uc-group-title">${groupName}</div>`;
+      
+      items.forEach(s => {
+        const itemImg = s.image.startsWith('http') ? s.image : '../' + s.image;
+        const sDesc = s.description || 'Premium standard service including parts and labor check.';
+        
+        html += `
+          <div class="uc-item">
+            <div class="uc-item-details">
+              <div class="uc-item-title">${s.title}</div>
+              <div class="uc-item-rating">★ ${s.rating || 4.7} (${s.reviews ? Math.floor(s.reviews/1000)+'K' : '1.2K'} reviews)</div>
+              
+              <div class="uc-item-price-row">
+                <span class="uc-item-price">₹${s.price}</span>
+                ${s.originalPrice ? `<span class="uc-item-mrp">₹${s.originalPrice}</span>` : ''}
+                <span class="uc-item-duration">⏱️ ${s.duration || '45 mins'}</span>
+              </div>
+              
+              <ul class="uc-item-bullets">
+                <li>${sDesc}</li>
+                <li>Includes pre-service inspection and post-service cleanup</li>
+                <li>Covered under 30-day FixMate Warranty</li>
+              </ul>
+            </div>
+            <div class="uc-item-visual">
+              <img src="${itemImg}" class="uc-item-img" alt="${s.title}">
+              <button class="uc-item-add" onclick="updateCart(${s.id}, 1)">ADD</button>
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    // 3. Render Reviews Section
+    html += `
+      <div class="uc-reviews-section">
+        <h2 style="font-size:24px; font-weight:800; margin-bottom:24px;">Customer Reviews</h2>
+        <div class="uc-reviews-header">
+          <div class="uc-reviews-score">${avgRating}</div>
+          <div class="uc-reviews-meta">
+            <div class="uc-reviews-stars">★★★★★</div>
+            <div class="uc-reviews-count">Based on ${Math.floor(totalReviews).toLocaleString()} reviews</div>
+          </div>
+        </div>
+        
+        <!-- Dummy Realistic Reviews -->
+        <div class="uc-review-card">
+          <div class="uc-review-user">
+            <span class="uc-review-name">Rahul Sharma</span>
+            <span class="uc-review-date">Oct 2025</span>
+          </div>
+          <div class="uc-review-service">Booked: ${activeService.title}</div>
+          <div class="uc-review-rating">★★★★★</div>
+          <div class="uc-review-text">Very professional and on time. The technician knew exactly what he was doing and finished the job cleanly. Highly recommended!</div>
+        </div>
+        
+        <div class="uc-review-card">
+          <div class="uc-review-user">
+            <span class="uc-review-name">Priya Desai</span>
+            <span class="uc-review-date">Sep 2025</span>
+          </div>
+          <div class="uc-review-service">Booked: ${list.length > 1 ? list[1].title : activeService.title}</div>
+          <div class="uc-review-rating">★★★★☆</div>
+          <div class="uc-review-text">Good service overall. Reached 15 minutes late due to traffic but the quality of work was excellent and they cleaned up perfectly afterward.</div>
+        </div>
+        
+        <div class="uc-review-card">
+          <div class="uc-review-user">
+            <span class="uc-review-name">Ankit Verma</span>
+            <span class="uc-review-date">Sep 2025</span>
+          </div>
+          <div class="uc-review-service">Booked: ${activeService.title}</div>
+          <div class="uc-review-rating">★★★★★</div>
+          <div class="uc-review-text">Seamless booking process and transparent pricing. No hidden charges and genuine parts used. Will book again.</div>
+        </div>
+      </div>
+    `;
+
+    document.getElementById('service-list').innerHTML = html;
+  }
+
+  // Cart — listing page only; checkout & AI plans live on cart.html
+  function updateCart(id, change) {
+    id = String(id);
+    if (!cart[id]) cart[id] = 0;
+    cart[id] += change;
+    if (cart[id] <= 0) delete cart[id];
+    FixmateCart.save(cart);
+    FixmateCart.updateNavBadge();
+    renderCart();
+    if (change > 0 && typeof showToast === "function") {
+      showToast("Added to cart", "success");
+    }
+  }
+
+  function renderCart() {
+    const keys = Object.keys(cart);
+    const cartBody = document.getElementById('cart-items');
+    const cartFooter = document.getElementById('cart-footer');
+    
+    if(keys.length === 0) {
+      cartBody.innerHTML = `<div class="uc-cart-empty"><div style="font-size: 48px; margin-bottom: 16px; opacity: 0.3;">🛒</div>Your cart is empty</div>`;
+      cartFooter.style.display = 'none';
+      return;
+    }
+
+    let total = 0;
+    let html = '';
+
+    keys.forEach(id => {
+      const s = services.find(x => String(x.id) === String(id));
+      if (!s) return;
+      const qty = cart[id];
+      total += s.price * qty;
+      html += `
+        <div class="uc-cart-item">
+          <div style="flex:1;">${qty} × ${s.title}</div>
+          <div class="uc-cart-item-controls">
+            <button type="button" onclick="updateCart('${id}', -1)">−</button>
+            <span>${qty}</span>
+            <button type="button" onclick="updateCart('${id}', 1)">+</button>
+          </div>
+          <div style="margin-left: 16px; width: 60px; text-align: right;">₹${s.price * qty}</div>
+        </div>
+      `;
+    });
+
+    cartBody.innerHTML = html;
+    document.getElementById("cart-total-price").innerText =
+      "₹" + Math.round(total).toLocaleString("en-IN");
+    cartFooter.style.display = "block";
+  }
+</script>
+<script>
+    document.querySelectorAll('.nav-item').forEach(el=>el.classList.remove('active'));
+    let act = document.querySelector('.dm-booking');
+    if(act) act.classList.add('active');
+  </script>
+</body>
+</html>

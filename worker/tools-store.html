@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FixMate Pro — tools-store</title>
+  <link rel="stylesheet" href="../assets/css/worker-shipnow.css">
+</head>
+<body>
+  
+<aside class="sn-sidebar">
+  <div class="sn-logo-area">
+    <div class="sn-logo-icon"></div>
+    <div class="sn-logo-text">FIXMATE PRO</div>
+  </div>
+  
+  <div class="sn-user-profile">
+    <img src="../Images/img_4.jpeg" alt="Avatar" class="sn-avatar" onerror="this.src='https://placehold.co/100?text=JD'">
+    <div class="sn-user-info">
+      <div class="sn-user-name">John Doe</div>
+      <div class="sn-user-role">Worker Level</div>
+    </div>
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+  </div>
+
+  <nav class="sn-nav">
+    <a href="dashboard.html" class="sn-nav-item dash-menu-item" data-id="dashboard">
+      <svg class="sn-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="3" width="7" height="9" rx="1"></rect><rect x="14" y="3" width="7" height="5" rx="1"></rect><rect x="14" y="12" width="7" height="9" rx="1"></rect><rect x="3" y="16" width="7" height="5" rx="1"></rect></svg>
+      Dashboard
+    </a>
+    <a href="jobs.html" class="sn-nav-item dash-menu-item" data-id="jobs">
+      <svg class="sn-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+      Jobs & Shipments
+    </a>
+    <a href="earnings.html" class="sn-nav-item dash-menu-item" data-id="earnings">
+      <svg class="sn-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+      Invoices & Billing
+    </a>
+    <a href="availability.html" class="sn-nav-item dash-menu-item" data-id="availability">
+      <svg class="sn-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+      Calendar
+    </a>
+    <a href="tracking.html" class="sn-nav-item dash-menu-item" data-id="tracking">
+      <svg class="sn-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+      Tracking
+    </a>
+    <a href="tools-store.html" class="sn-nav-item dash-menu-item" data-id="tools-store">
+      <svg class="sn-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+      Drivers / Workers
+    </a>
+    <a href="profile.html" class="sn-nav-item dash-menu-item" data-id="profile">
+      <svg class="sn-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+      Warehouse
+    </a>
+
+    <div class="sn-nav-divider"></div>
+
+    <a href="messages.html" class="sn-nav-item dash-menu-item" data-id="messages">
+      <svg class="sn-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+      Message
+      <span class="sn-nav-badge">19</span>
+    </a>
+    <a href="notifications.html" class="sn-nav-item dash-menu-item" data-id="notifications">
+      <svg class="sn-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+      Notification
+      <span class="sn-nav-badge" style="background-color: var(--warning-orange);">5</span>
+    </a>
+    <a href="settings.html" class="sn-nav-item dash-menu-item" data-id="settings">
+      <svg class="sn-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+      Settings
+    </a>
+  </nav>
+
+  <div class="sn-promo">
+    <h3>Loving<br>FixMate<br>Free?</h3>
+    <p>Go Pro to access priority support, real-time tracking, and full analytics.</p>
+    <button class="sn-promo-btn">Go Pro Today</button>
+  </div>
+</aside>
+
+  <main class="main-content">
+    <div id="page-content-mount">
+      <div class="sn-header">
+        <div>
+          <h1 class="sn-page-title">Team & Tools Hub</h1>
+          <div class="sn-breadcrumb">Dashboard / <span>Nearby pros & inventory</span></div>
+        </div>
+      </div>
+
+      <div style="display:grid; grid-template-columns: 1.4fr 1fr; gap:20px;">
+        <div class="sn-card">
+          <div class="sn-section-header">
+            <h3 class="sn-section-title">Nearby pros</h3>
+            <span id="team-count" class="sn-tag pending">0 online</span>
+          </div>
+          <div id="team-map" class="sn-map-wrap" style="height:380px; margin-bottom:14px;"></div>
+          <div id="team-list" style="display:flex; flex-direction:column; gap:10px;"></div>
+        </div>
+
+        <div class="sn-card">
+          <div class="sn-section-header">
+            <h3 class="sn-section-title">Tools inventory</h3>
+            <span class="sn-tag paid">Live</span>
+          </div>
+          <div id="tool-list" style="display:flex; flex-direction:column; gap:10px;"></div>
+          <a class="sn-btn primary" href="messages.html" style="margin-top:14px; text-decoration:none;">Request delivery ETA</a>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <script src="../assets/js/api.js"></script>
+  <script src="../assets/js/main.js"></script>
+  <script>
+    if (!requireAuth(["worker"])) {
+      throw new Error("Unauthorized");
+    }
+    // Update active nav based on page name
+    document.querySelectorAll('.dash-menu-item').forEach(el => el.classList.remove('active'));
+    const act = document.querySelector('.dash-menu-item[data-id="tools-store"]');
+    if (act) act.classList.add('active');
+
+    const team = [
+      { name: "Ravi Plumber", skill: "Plumbing", rating: 4.8, online: true, distanceKm: 1.2, lat: 17.4462, lng: 78.381 },
+      { name: "Sunil Electrician", skill: "Electrical", rating: 4.7, online: true, distanceKm: 2.1, lat: 17.451, lng: 78.3728 },
+      { name: "Nisha AC Tech", skill: "AC Repair", rating: 4.9, online: true, distanceKm: 1.8, lat: 17.4419, lng: 78.3694 },
+      { name: "Kiran Painter", skill: "Painting", rating: 4.6, online: false, distanceKm: 3.4, lat: 17.453, lng: 78.385 }
+    ];
+    const tools = [
+      { name: "Drill Machine", stock: 5, eta: "20 min", status: "Ready" },
+      { name: "Ladder (12 ft)", stock: 2, eta: "35 min", status: "Limited" },
+      { name: "Vacuum Unit", stock: 6, eta: "15 min", status: "Ready" },
+      { name: "Pipe Cutter Kit", stock: 1, eta: "40 min", status: "Low" },
+      { name: "AC Gauge Set", stock: 3, eta: "25 min", status: "Ready" },
+      { name: "Safety Kit", stock: 12, eta: "10 min", status: "Ready" }
+    ];
+
+    function renderLists() {
+      const online = team.filter(t => t.online);
+      document.getElementById("team-count").textContent = `${online.length} online`;
+      document.getElementById("team-list").innerHTML = team.map(t => (
+        `<div style="border:1px solid var(--border-color); border-radius:10px; padding:10px; display:flex; justify-content:space-between; align-items:center;">
+          <div><div style="font-weight:600; font-size:13px;">${t.name}</div><div style="font-size:11px;color:var(--text-gray);">${t.skill} • ⭐ ${t.rating} • ${t.distanceKm} km</div></div>
+          <button class="sn-btn" style="padding:6px 10px;" ${t.online ? "" : "disabled"}>${t.online ? "Assign" : "Offline"}</button>
+        </div>`
+      )).join("");
+
+      document.getElementById("tool-list").innerHTML = tools.map(t => {
+        const cls = t.status === "Ready" ? "paid" : (t.status === "Limited" ? "pending" : "unpaid");
+        return `<div style="border:1px solid var(--border-color); border-radius:10px; padding:10px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;"><strong style="font-size:13px;">${t.name}</strong><span class="sn-tag ${cls}">${t.status}</span></div>
+          <div style="font-size:11px;color:var(--text-gray);margin:4px 0;">Stock: ${t.stock} • ETA: ${t.eta}</div>
+          <button class="sn-btn" style="padding:6px 10px;">Reserve</button>
+        </div>`;
+      }).join("");
+    }
+
+    async function initMap() {
+      await MapsAPI.loadScript();
+      const center = { lat: 17.4474, lng: 78.3762 };
+      const map = new google.maps.Map(document.getElementById("team-map"), {
+        center, zoom: 13, mapTypeControl: false, streetViewControl: false, fullscreenControl: false
+      });
+      new google.maps.Marker({
+        map, position: center, title: "You",
+        icon: { path: google.maps.SymbolPath.CIRCLE, scale: 8, fillColor: "#111827", fillOpacity: 1, strokeColor: "#fff", strokeWeight: 2 }
+      });
+      team.forEach(t => {
+        new google.maps.Marker({
+          map, position: { lat: t.lat, lng: t.lng }, title: t.name,
+          icon: { path: google.maps.SymbolPath.CIRCLE, scale: 7, fillColor: t.online ? "#10b981" : "#94a3b8", fillOpacity: 1, strokeColor: "#fff", strokeWeight: 2 }
+        });
+      });
+    }
+
+    renderLists();
+    initMap().catch(() => {
+      document.getElementById("team-map").innerHTML = '<div style="height:100%;display:flex;align-items:center;justify-content:center;color:#64748b;">Map unavailable. Configure Google Maps key.</div>';
+    });
+  </script>
+</body>
+</html>

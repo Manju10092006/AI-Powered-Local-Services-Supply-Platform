@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FixMate AI — Admin Bookings</title>
+  <link rel="stylesheet" href="../assets/css/global.css">
+  <link rel="stylesheet" href="../assets/css/cards.css">
+  <link rel="stylesheet" href="../assets/css/admin.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>🔧</text></svg>">
+</head>
+<body>
+<nav class="admin-navbar"><div class="container">
+  <a href="../index.html" class="admin-nav-logo"><span class="logo-text">🔧 FixMate AI</span><span class="logo-badge">ADMIN</span></a>
+  <div class="admin-nav-right"><a href="dashboard.html" class="worker-nav-item"><span class="wnav-icon">📊</span><span>Dashboard</span></a></div>
+</div></nav>
+<div class="admin-layout">
+  <aside class="admin-sidebar">
+    <div style="padding:20px 24px;border-bottom:1px solid rgba(255,255,255,0.06);"><div style="color:#fff;font-weight:700;">Admin Panel</div></div>
+    <a href="dashboard.html" class="admin-menu-item"><span class="am-icon">📊</span> Dashboard</a>
+    <a href="users.html" class="admin-menu-item"><span class="am-icon">👥</span> Users</a>
+    <a href="workers.html" class="admin-menu-item"><span class="am-icon">🔧</span> Workers</a>
+    <a href="bookings.html" class="admin-menu-item active"><span class="am-icon">📋</span> Bookings</a>
+    <a href="analytics.html" class="admin-menu-item"><span class="am-icon">📈</span> Analytics</a>
+    <a href="../index.html" class="admin-menu-item"><span class="am-icon">🏠</span> Customer Site</a>
+  </aside>
+  <main class="admin-main">
+    <div class="dash-header">
+      <h1>📋 Bookings Management</h1>
+      <div style="display:flex;gap:8px;">
+        <input type="text" class="input" placeholder="🔍 Search booking ID..." style="width:200px;padding:8px 16px;font-size:0.8125rem;">
+        <select class="input" style="width:auto;padding:8px 14px;font-size:0.8125rem;"><option>All Status</option><option>Active</option><option>Completed</option><option>Cancelled</option><option>Emergency</option></select>
+        <select class="input" style="width:auto;padding:8px 14px;font-size:0.8125rem;"><option>Today</option><option>This Week</option><option>This Month</option></select>
+        <button class="btn btn-primary btn-sm">📥 Export</button>
+      </div>
+    </div>
+
+    <div class="admin-stats-stripe" style="margin-bottom:24px;">
+      <div class="admin-stat green"><div class="as-value">847</div><div class="as-label">Active</div></div>
+      <div class="admin-stat blue"><div class="as-value">2,340</div><div class="as-label">Completed Today</div></div>
+      <div class="admin-stat red"><div class="as-value">45</div><div class="as-label">Cancelled</div></div>
+      <div class="admin-stat orange"><div class="as-value">23</div><div class="as-label">Emergency</div></div>
+      <div class="admin-stat purple"><div class="as-value">₹2.84L</div><div class="as-label">Revenue Today</div></div>
+    </div>
+
+    <div class="admin-table-card">
+      <table class="admin-table">
+        <thead><tr><th>Booking ID</th><th>Customer</th><th>Service</th><th>Worker</th><th>City</th><th>Amount</th><th>Type</th><th>Status</th><th>Actions</th></tr></thead>
+        <tbody>
+          <tr><td style="font-family:monospace;font-weight:700;">#FX-28475</td><td>Rahul K.</td><td>Deep Cleaning</td><td>Rajesh K.</td><td>Hyderabad</td><td style="font-weight:700;">₹1,999</td><td>Scheduled</td><td><span class="status-badge active">In Progress</span></td><td><div class="action-btns"><button class="action-btn">👁</button><button class="action-btn">✏</button></div></td></tr>
+          <tr><td style="font-family:monospace;font-weight:700;">#FX-28474</td><td>Priya A.</td><td>AC Gas Refill</td><td>CoolFix</td><td>Bangalore</td><td style="font-weight:700;">₹1,299</td><td>Scheduled</td><td><span class="status-badge pending">Assigned</span></td><td><div class="action-btns"><button class="action-btn">👁</button><button class="action-btn">✏</button></div></td></tr>
+          <tr style="background:rgba(239,68,68,0.04);"><td style="font-family:monospace;font-weight:700;color:var(--accent-red);">#FX-28473</td><td>Amit S.</td><td>Emergency Electrician</td><td>Sunil E.</td><td>Hyderabad</td><td style="font-weight:700;">₹349</td><td><span class="badge badge-danger" style="font-size:0.65rem;">⚡ Emergency</span></td><td><span class="status-badge active">In Progress</span></td><td><div class="action-btns"><button class="action-btn">👁</button></div></td></tr>
+          <tr><td style="font-family:monospace;font-weight:700;">#FX-28472</td><td>Anjali D.</td><td>Bridal Makeup</td><td>Meera B.</td><td>Pune</td><td style="font-weight:700;">₹7,999</td><td>Scheduled</td><td><span class="status-badge pending">Tomorrow</span></td><td><div class="action-btns"><button class="action-btn">👁</button><button class="action-btn">✏</button></div></td></tr>
+          <tr><td style="font-family:monospace;font-weight:700;">#FX-28471</td><td>Vikram M.</td><td>Painting (2BHK)</td><td>—</td><td>Delhi</td><td style="font-weight:700;text-decoration:line-through;color:var(--text-muted);">₹8,999</td><td>Scheduled</td><td><span class="status-badge blocked">Cancelled</span></td><td><div class="action-btns"><button class="action-btn">👁</button></div></td></tr>
+          <tr><td style="font-family:monospace;font-weight:700;">#FX-28470</td><td>Suresh R.</td><td>AC Gas + Service</td><td>CoolFix</td><td>Hyderabad</td><td style="font-weight:700;">₹1,849</td><td>Scheduled</td><td><span class="status-badge active">Completed</span></td><td><div class="action-btns"><button class="action-btn">👁</button></div></td></tr>
+          <tr><td style="font-family:monospace;font-weight:700;">#FX-28469</td><td>Neha S.</td><td>Pest Control</td><td>PestShield</td><td>Chennai</td><td style="font-weight:700;">₹799</td><td>Scheduled</td><td><span class="status-badge active">Completed</span></td><td><div class="action-btns"><button class="action-btn">👁</button></div></td></tr>
+          <tr style="background:rgba(239,68,68,0.04);"><td style="font-family:monospace;font-weight:700;color:var(--accent-red);">#FX-28468</td><td>Sunita R.</td><td>Emergency Plumber</td><td>Ravi P.</td><td>Hyderabad</td><td style="font-weight:700;">₹499</td><td><span class="badge badge-danger" style="font-size:0.65rem;">⚡ Emergency</span></td><td><span class="status-badge active">Completed</span></td><td><div class="action-btns"><button class="action-btn">👁</button></div></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-top:20px;">
+      <span style="font-size:0.8125rem;color:var(--text-muted);">Showing 1-8 of 3,232</span>
+      <div style="display:flex;gap:6px;"><button class="btn btn-secondary btn-sm">← Prev</button><button class="btn btn-primary btn-sm">1</button><button class="btn btn-secondary btn-sm">2</button><button class="btn btn-secondary btn-sm">3</button><button class="btn btn-secondary btn-sm">Next →</button></div>
+    </div>
+  </main>
+</div>
+<script src="../assets/js/api.js"></script>
+<script>document.addEventListener('DOMContentLoaded',()=>{if(!requireAuth(['admin']))return;updateNavbarUser();});</script>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

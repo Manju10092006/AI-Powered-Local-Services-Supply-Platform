@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FixMate AI — Home Services at Your Doorstep | Book Trusted Professionals</title>
+  <meta name="description" content="FixMate AI is India's #1 AI-powered home services platform. Book trusted plumbers, electricians, cleaners, AC repair, salon at home. 10-minute emergency dispatch available.">
+  <link rel="stylesheet" href="assets/css/global.css">
+  <link rel="stylesheet" href="assets/css/navbar.css">
+  <link rel="stylesheet" href="assets/css/cards.css">
+  <link rel="stylesheet" href="assets/css/customer.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>🔧</text></svg>">
+</head>
+<body>
+
+<!-- ============ TOP UTILITY BAR ============ -->
+<div class="top-bar">
+  <div class="container">
+    <div class="top-bar-left">
+      <span>📍 Serving in <strong>Hyderabad</strong> &amp; 10+ cities</span>
+      <span class="highlight">⚡ 10-Minute Emergency Dispatch</span>
+    </div>
+    <div class="top-bar-right">
+      <a href="customer/history.html">📋 My Bookings</a>
+      <a href="#">🎁 Refer &amp; Earn ₹200</a>
+      <a href="#">📞 1800-FIXMATE</a>
+    </div>
+  </div>
+</div>
+
+<!-- ============ MAIN NAVBAR ============ -->
+<nav class="navbar" id="main-navbar">
+  <div class="container">
+    <!-- Logo -->
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-icon">F</div>
+      <div>
+        <div class="nav-logo-text">Fix<span>Mate</span></div>
+      </div>
+      <span class="nav-logo-badge">AI</span>
+    </a>
+
+    <!-- City Selector -->
+    <div class="city-selector" style="position:relative;">
+      <span class="city-icon">📍</span>
+      <span class="city-name">Hyderabad</span>
+      <span class="city-arrow">▼</span>
+      <div class="city-dropdown">
+        <h4>Select Your City</h4>
+        <div class="city-list">
+          <div class="city-item active">Hyderabad</div>
+          <div class="city-item">Bangalore</div>
+          <div class="city-item">Mumbai</div>
+          <div class="city-item">Delhi NCR</div>
+          <div class="city-item">Chennai</div>
+          <div class="city-item">Pune</div>
+          <div class="city-item">Kolkata</div>
+          <div class="city-item">Ahmedabad</div>
+          <div class="city-item">Jaipur</div>
+          <div class="city-item">Lucknow</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Search -->
+    <div class="nav-search">
+      <span class="nav-search-icon">🔍</span>
+      <input type="text" class="nav-search-input" placeholder="Search plumber, cleaning, salon, AC repair..." id="nav-search">
+      <button class="nav-search-btn">→</button>
+      <div class="search-suggestions" id="search-suggestions"></div>
+    </div>
+
+    <!-- Nav Links -->
+    <div class="nav-links">
+      <a href="customer/dashboard.html" class="nav-link">
+        <span class="nav-icon">📋</span>
+        <span>Bookings</span>
+        <span class="nav-count">2</span>
+      </a>
+      <a href="customer/history.html" class="nav-link">
+        <span class="nav-icon">🕐</span>
+        <span>History</span>
+      </a>
+      <a href="login.html" class="nav-link">
+        <span class="nav-icon">👤</span>
+        <span>Account</span>
+      </a>
+    </div>
+
+    <!-- CTA Buttons -->
+    <a href="worker/dashboard.html" class="nav-worker-btn">Become a Worker</a>
+    <a href="login.html" class="nav-auth-btn">
+      <span>👤</span> Login
+    </a>
+
+    <!-- Mobile Toggle -->
+    <button class="nav-mobile-toggle" aria-label="Menu">☰</button>
+  </div>
+</nav>
+
+<!-- ============ CATEGORY BAR ============ -->
+<div class="category-bar">
+  <div class="container">
+    <a href="#" class="cat-link"><span class="cat-emoji">🧹</span> Cleaning</a>
+    <a href="#" class="cat-link"><span class="cat-emoji">🔧</span> Plumbing</a>
+    <a href="#" class="cat-link"><span class="cat-emoji">⚡</span> Electrical</a>
+    <a href="#" class="cat-link"><span class="cat-emoji">❄️</span> AC Repair</a>
+    <a href="#" class="cat-link"><span class="cat-emoji">💇</span> Salon</a>
+    <a href="#" class="cat-link"><span class="cat-emoji">🎨</span> Painting</a>
+    <a href="#" class="cat-link"><span class="cat-emoji">🪚</span> Carpentry</a>
+    <a href="#" class="cat-link"><span class="cat-emoji">🐛</span> Pest Control</a>
+    <a href="#" class="cat-link"><span class="cat-emoji">🔌</span> Appliances</a>
+    <a href="#" class="cat-link"><span class="cat-emoji">📦</span> Shifting</a>
+    <a href="#" class="cat-link"><span class="cat-emoji">🏠</span> Interiors</a>
+    <a href="#" class="cat-link" style="color:var(--accent-red);font-weight:700;"><span class="cat-emoji">🚨</span> Emergency</a>
+  </div>
+</div>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="hero">
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="pulse-dot"></span>
+        12,000+ Workers Online Now
+      </div>
+      <h1>Home Services at <span class="highlight">Your Doorstep</span></h1>
+      <p class="hero-subtitle">Trusted professionals for repair, cleaning, beauty, appliances and urgent help. AI-powered matching with 10-minute emergency dispatch.</p>
+      
+      <div class="hero-search">
+        <input type="text" placeholder="What service do you need? Try 'AC repair' or 'plumber'..." id="hero-search-input">
+        <button onclick="searchService(document.getElementById('hero-search-input').value)">🔍 Search</button>
+      </div>
+
+      <div class="hero-tags">
+        <span class="hero-tag">AC Repair</span>
+        <span class="hero-tag">Plumber</span>
+        <span class="hero-tag">Cleaning</span>
+        <span class="hero-tag">Electrician</span>
+        <span class="hero-tag">Salon at Home</span>
+        <span class="hero-tag">Painter</span>
+      </div>
+
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="hero-stat-value" data-count="50000" data-suffix="+">0</div>
+          <div class="hero-stat-label">Happy Customers</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-value" data-count="12000" data-suffix="+">0</div>
+          <div class="hero-stat-label">Verified Workers</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-value" data-count="200" data-suffix="+">0</div>
+          <div class="hero-stat-label">Services</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-value" data-count="10" data-suffix=" min">0</div>
+          <div class="hero-stat-label">Emergency ETA</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="hero-image-grid">
+        <div class="grid-img">
+          <img src="Images/img.jpeg" alt="Home service professional">
+        </div>
+        <div class="grid-img">
+          <img src="Images/img_2.jpeg" alt="AC repair service">
+        </div>
+        <div class="grid-img">
+          <img src="Images/img_3.jpeg" alt="Cleaning service">
+        </div>
+      </div>
+      <div class="hero-float-card top-left">
+        <div class="hf-icon" style="background:rgba(16,185,129,0.1);color:var(--accent-green);">✓</div>
+        <div>
+          <div class="hf-text">KYC Verified</div>
+          <div class="hf-sub">Background checked</div>
+        </div>
+      </div>
+      <div class="hero-float-card bottom-right">
+        <div class="hf-icon" style="background:rgba(245,158,11,0.1);color:var(--secondary);">★</div>
+        <div>
+          <div class="hf-text">4.8 Average Rating</div>
+          <div class="hf-sub">50K+ reviews</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ QUICK CATEGORIES ============ -->
+<section class="quick-categories reveal" id="categories">
+  <div class="container">
+    <div class="section-header">
+      <h2>Browse Categories</h2>
+      <a href="#" class="view-all">View All →</a>
+    </div>
+    <div class="scroll-row" id="category-cards"></div>
+  </div>
+</section>
+
+<!-- ============ MOST BOOKED SERVICES ============ -->
+<section class="service-section reveal">
+  <div class="container">
+    <div class="section-header">
+      <h2>🔥 Most Booked Services</h2>
+      <a href="#" class="view-all">View All →</a>
+    </div>
+    <div class="scroll-row" id="most-booked"></div>
+  </div>
+</section>
+
+<!-- ============ OFFERS SECTION ============ -->
+<section class="offers-section reveal">
+  <div class="container">
+    <div class="section-header">
+      <h2>🎉 Exclusive Offers</h2>
+      <a href="#" class="view-all">All Offers →</a>
+    </div>
+    <div class="scroll-row">
+      <div class="offer-card">
+        <div class="offer-card-bg"><img src="Images/img_19.jpeg" alt="First booking offer"></div>
+        <div class="offer-card-overlay"></div>
+        <div class="offer-card-content">
+          <span class="offer-card-tag">New User</span>
+          <h3 class="offer-card-title">₹200 Off on First Booking</h3>
+          <p class="offer-card-desc">Use code FIXFIRST. Valid on all services above ₹499.</p>
+          <a href="#" class="offer-card-btn">Claim Now</a>
+        </div>
+      </div>
+      <div class="offer-card">
+        <div class="offer-card-bg"><img src="Images/img_28.jpeg" alt="Plus membership"></div>
+        <div class="offer-card-overlay"></div>
+        <div class="offer-card-content">
+          <span class="offer-card-tag">Membership</span>
+          <h3 class="offer-card-title">FixMate Plus — ₹299/month</h3>
+          <p class="offer-card-desc">Priority booking, 15% off all services, free materials.</p>
+          <a href="#" class="offer-card-btn">Subscribe</a>
+        </div>
+      </div>
+      <div class="offer-card">
+        <div class="offer-card-bg"><img src="Images/img_29.jpeg" alt="Free material"></div>
+        <div class="offer-card-overlay"></div>
+        <div class="offer-card-content">
+          <span class="offer-card-tag">Limited</span>
+          <h3 class="offer-card-title">Free Material Delivery</h3>
+          <p class="offer-card-desc">Get free delivery on spare parts and materials with any repair booking.</p>
+          <a href="#" class="offer-card-btn">Book Repair</a>
+        </div>
+      </div>
+      <div class="offer-card">
+        <div class="offer-card-bg"><img src="Images/img_40.jpeg" alt="Emergency booking"></div>
+        <div class="offer-card-overlay"></div>
+        <div class="offer-card-content">
+          <span class="offer-card-tag">🚨 Emergency</span>
+          <h3 class="offer-card-title">Priority Emergency Booking</h3>
+          <p class="offer-card-desc">Get a worker in 10 minutes. Available 24/7 for urgent home issues.</p>
+          <a href="#" class="offer-card-btn">Book Emergency</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RECOMMENDED ============ -->
+<section class="service-section reveal">
+  <div class="container">
+    <div class="section-header">
+      <h2>✨ Recommended For You</h2>
+      <a href="#" class="view-all">View All →</a>
+    </div>
+    <div class="scroll-row" id="recommended"></div>
+  </div>
+</section>
+
+<!-- ============ EMERGENCY SECTION ============ -->
+<section class="emergency-section reveal" id="emergency">
+  <div class="container">
+    <div class="emergency-header">
+      <span class="blink-dot"></span>
+      <div>
+        <h2>🚨 Need Urgent Help?</h2>
+        <p>Get a verified worker at your doorstep in 10 minutes. Available 24/7.</p>
+      </div>
+    </div>
+    <div class="scroll-row" id="emergency-cards"></div>
+  </div>
+</section>
+
+<!-- ============ CLEANING SERVICES ============ -->
+<section class="service-section reveal" data-category="cleaning">
+  <div class="container">
+    <div class="section-header">
+      <h2>🧹 Cleaning Services</h2>
+      <a href="#" class="view-all">View All →</a>
+    </div>
+    <div class="scroll-row" id="cleaning-row"></div>
+  </div>
+</section>
+
+<!-- ============ REPAIR SERVICES ============ -->
+<section class="service-section reveal" data-category="plumbing">
+  <div class="container">
+    <div class="section-header">
+      <h2>🔧 Repair &amp; Maintenance</h2>
+      <a href="#" class="view-all">View All →</a>
+    </div>
+    <div class="scroll-row" id="repair-row"></div>
+  </div>
+</section>
+
+<!-- ============ HOW IT WORKS ============ -->
+<section class="how-it-works reveal">
+  <div class="container">
+    <div class="section-header">
+      <h2>How FixMate AI Works</h2>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-number">1</div>
+        <h4>Choose Service</h4>
+        <p>Browse 200+ services or upload a photo for AI diagnosis</p>
+        <span class="step-connector"></span>
+      </div>
+      <div class="step-card">
+        <div class="step-number">2</div>
+        <h4>Select Timing</h4>
+        <p>Choose 10-min emergency dispatch or schedule a convenient slot</p>
+        <span class="step-connector"></span>
+      </div>
+      <div class="step-card">
+        <div class="step-number">3</div>
+        <h4>Worker Arrives</h4>
+        <p>KYC-verified professional arrives with tools and materials</p>
+        <span class="step-connector"></span>
+      </div>
+      <div class="step-card">
+        <div class="step-number">4</div>
+        <h4>Pay &amp; Rate</h4>
+        <p>Transparent pricing. Pay after service. Rate your experience</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SALON SERVICES ============ -->
+<section class="service-section reveal" data-category="salon" style="background:var(--bg-secondary);">
+  <div class="container">
+    <div class="section-header">
+      <h2>💇 Salon at Home</h2>
+      <a href="#" class="view-all">View All →</a>
+    </div>
+    <div class="scroll-row" id="salon-row"></div>
+  </div>
+</section>
+
+<!-- ============ AC & APPLIANCE ============ -->
+<section class="service-section reveal" data-category="ac-repair">
+  <div class="container">
+    <div class="section-header">
+      <h2>❄️ AC &amp; Appliance Repair</h2>
+      <a href="#" class="view-all">View All →</a>
+    </div>
+    <div class="scroll-row" id="ac-row"></div>
+  </div>
+</section>
+
+<!-- ============ AI DIAGNOSIS ============ -->
+<section class="ai-section reveal">
+  <div class="container">
+    <div class="ai-content">
+      <h2>🤖 AI-Powered Issue Detection</h2>
+      <p>Don't know what's wrong? Just upload a photo of the issue and our AI will automatically diagnose the problem, suggest the right service category, and connect you with the best-matched professional.</p>
+      <div class="ai-features">
+        <div class="ai-feature">
+          <div class="check-icon">✓</div>
+          <span>Upload photo of leaking pipe, broken switch, or any issue</span>
+        </div>
+        <div class="ai-feature">
+          <div class="check-icon">✓</div>
+          <span>AI identifies issue type and severity in seconds</span>
+        </div>
+        <div class="ai-feature">
+          <div class="check-icon">✓</div>
+          <span>Auto-matches with the right skilled professional</span>
+        </div>
+        <div class="ai-feature">
+          <div class="check-icon">✓</div>
+          <span>Get estimated cost before booking</span>
+        </div>
+      </div>
+      <button class="btn btn-lg btn-white">📸 Upload Issue Photo</button>
+    </div>
+    <div class="ai-visual">
+      <div class="ai-upload-box">
+        <div class="ai-upload-icon">📷</div>
+        <div class="ai-upload-text">Drag & drop your issue photo here<br>or click to browse</div>
+        <div class="ai-upload-btn">Choose Photo</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PAINTING & INTERIORS ============ -->
+<section class="service-section reveal" data-category="painting">
+  <div class="container">
+    <div class="section-header">
+      <h2>🎨 Painting &amp; Interiors</h2>
+      <a href="#" class="view-all">View All →</a>
+    </div>
+    <div class="scroll-row" id="painting-row"></div>
+  </div>
+</section>
+
+<!-- ============ TRUST SECTION ============ -->
+<section class="trust-section reveal">
+  <div class="container">
+    <div class="section-header">
+      <h2>Why Choose FixMate AI?</h2>
+    </div>
+    <div class="trust-grid">
+      <div class="trust-card">
+        <div class="trust-card-icon green">🛡️</div>
+        <div>
+          <h4>KYC Verified Workers</h4>
+          <p>Every worker is ID-verified with background check and skill assessment</p>
+        </div>
+      </div>
+      <div class="trust-card">
+        <div class="trust-card-icon blue">💰</div>
+        <div>
+          <h4>Transparent Pricing</h4>
+          <p>See exact price before booking. No hidden charges, no surprises</p>
+        </div>
+      </div>
+      <div class="trust-card">
+        <div class="trust-card-icon purple">🔒</div>
+        <div>
+          <h4>30-Day Service Warranty</h4>
+          <p>If anything goes wrong within 30 days, we fix it for free</p>
+        </div>
+      </div>
+      <div class="trust-card">
+        <div class="trust-card-icon orange">📞</div>
+        <div>
+          <h4>24/7 Support</h4>
+          <p>Our team is available round the clock. Call, chat, or email us anytime</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BUDGET SERVICES ============ -->
+<section class="service-section reveal" style="background:var(--bg-secondary);">
+  <div class="container">
+    <div class="section-header">
+      <h2>💰 Budget Friendly Services</h2>
+      <a href="#" class="view-all">View All →</a>
+    </div>
+    <div class="scroll-row" id="budget-row"></div>
+  </div>
+</section>
+
+<!-- ============ SUBSCRIPTION / PLUS ============ -->
+<section class="plus-section reveal">
+  <div class="container">
+    <div class="plus-card">
+      <div style="flex:1;">
+        <div class="plus-badge">⭐ FixMate Plus</div>
+        <h2>Join FixMate Plus for Premium Benefits</h2>
+        <p style="color:var(--text-secondary);margin-top:8px;font-size:1rem;">Get priority service, best workers, and exclusive discounts on every booking.</p>
+        <div class="plus-features">
+          <div class="plus-feature"><span class="feat-icon">✓</span> 15% off all services</div>
+          <div class="plus-feature"><span class="feat-icon">✓</span> Priority emergency dispatch</div>
+          <div class="plus-feature"><span class="feat-icon">✓</span> Choose your preferred worker</div>
+          <div class="plus-feature"><span class="feat-icon">✓</span> Free material delivery</div>
+          <div class="plus-feature"><span class="feat-icon">✓</span> Extended 60-day warranty</div>
+          <div class="plus-feature"><span class="feat-icon">✓</span> Dedicated support line</div>
+        </div>
+      </div>
+      <div class="plus-pricing">
+        <div class="plus-price">₹299<span>/month</span></div>
+        <p style="color:var(--text-muted);font-size:0.875rem;margin:8px 0 20px;">or ₹2,499/year (save 30%)</p>
+        <button class="btn btn-lg btn-primary btn-full">Subscribe Now</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TRENDING ============ -->
+<section class="service-section reveal">
+  <div class="container">
+    <div class="section-header">
+      <h2>📈 Trending Near You</h2>
+      <a href="#" class="view-all">View All →</a>
+    </div>
+    <div class="scroll-row" id="trending-row"></div>
+  </div>
+</section>
+
+<!-- ============ TESTIMONIALS ============ -->
+<section class="testimonials-section reveal">
+  <div class="container">
+    <div class="section-header">
+      <h2>💬 What Our Customers Say</h2>
+      <a href="#" class="view-all">All Reviews →</a>
+    </div>
+    <div class="scroll-row">
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">"Booked an emergency plumber at 11 PM. Worker arrived in 8 minutes! Fixed the pipe burst instantly. Life saver. Best service platform I've used."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">RK</div>
+          <div>
+            <div class="testimonial-name">Rahul Kumar</div>
+            <div class="testimonial-service">Emergency Plumbing • Hyderabad</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">"The AI photo diagnosis feature blew my mind. I uploaded a picture of my broken switchboard and it identified the exact issue. Professional arrived with the right parts!"</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">PA</div>
+          <div>
+            <div class="testimonial-name">Priya Agarwal</div>
+            <div class="testimonial-service">Electrical Repair • Bangalore</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">"Got my entire 3BHK deep cleaned for ₹1,999. The team was professional, punctual, and thorough. Way better pricing than what I was quoted elsewhere."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">SK</div>
+          <div>
+            <div class="testimonial-name">Suresh Kapoor</div>
+            <div class="testimonial-service">Deep Cleaning • Mumbai</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">"Best bridal makeup at home! The artist was so talented. FixMate Plus membership saved me 15% on my pre-wedding package. Highly recommend!"</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">AD</div>
+          <div>
+            <div class="testimonial-name">Anjali Desai</div>
+            <div class="testimonial-service">Bridal Makeup • Pune</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">"FixMate's transparent pricing is the game-changer. No more workers demanding extra money after coming home. Everything is upfront and fair."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">VM</div>
+          <div>
+            <div class="testimonial-name">Vikram Mehta</div>
+            <div class="testimonial-service">AC Repair • Delhi</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3>🔧 FixMate <span style="color:var(--primary-light);">AI</span></h3>
+        <p>India's #1 AI-powered home services marketplace. Connecting customers with trusted, KYC-verified professionals for 200+ services across 10+ cities. 10-minute emergency dispatch available 24/7.</p>
+        <div class="footer-social">
+          <a href="#">📱</a>
+          <a href="#">💬</a>
+          <a href="#">🐦</a>
+          <a href="#">📸</a>
+          <a href="#">💼</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <a href="#">Home Cleaning</a>
+        <a href="#">Plumbing</a>
+        <a href="#">Electrical</a>
+        <a href="#">AC Repair</a>
+        <a href="#">Salon at Home</a>
+        <a href="#">Painting</a>
+        <a href="#">Carpentry</a>
+        <a href="#">Pest Control</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="#">About Us</a>
+        <a href="#">Careers</a>
+        <a href="#">Blog</a>
+        <a href="#">Press</a>
+        <a href="#">Partners</a>
+        <a href="#">Investor Relations</a>
+      </div>
+      <div class="footer-col">
+        <h4>For Workers</h4>
+        <a href="worker/dashboard.html">Worker Dashboard</a>
+        <a href="worker/earnings.html">Earnings</a>
+        <a href="worker/tools-store.html">Tools Store</a>
+        <a href="register.html">Register as Worker</a>
+        <a href="#">Worker Support</a>
+      </div>
+      <div class="footer-col">
+        <h4>Support</h4>
+        <a href="#">Help Center</a>
+        <a href="#">Contact Us</a>
+        <a href="#">Safety</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Refund Policy</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 FixMate AI. All rights reserved. Built with ❤️ in India.</span>
+      <div class="footer-payments">
+        <span>UPI</span>
+        <span>Cards</span>
+        <span>Net Banking</span>
+        <span>Wallets</span>
+        <span>EMI</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ MOBILE BOTTOM NAV ============ -->
+<div class="mobile-bottom-nav">
+  <div class="container">
+    <a href="index.html" class="mobile-nav-item active">
+      <span class="mnav-icon">🏠</span>
+      Home
+    </a>
+    <a href="#categories" class="mobile-nav-item">
+      <span class="mnav-icon">🔍</span>
+      Search
+    </a>
+    <a href="customer/booking.html" class="mobile-nav-item">
+      <span class="mnav-icon">📋</span>
+      Book
+    </a>
+    <a href="customer/history.html" class="mobile-nav-item">
+      <span class="mnav-icon">🕐</span>
+      History
+    </a>
+    <a href="login.html" class="mobile-nav-item">
+      <span class="mnav-icon">👤</span>
+      Account
+    </a>
+  </div>
+</div>
+
+<!-- Mobile Drawer -->
+<div class="mobile-overlay"></div>
+<div class="mobile-drawer">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;">
+    <div class="nav-logo">
+      <div class="nav-logo-icon">F</div>
+      <div class="nav-logo-text">Fix<span>Mate</span></div>
+    </div>
+    <button onclick="document.querySelector('.mobile-drawer').classList.remove('active');document.querySelector('.mobile-overlay').classList.remove('active');" style="font-size:24px;padding:8px;">✕</button>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:4px;">
+    <a href="index.html" class="dash-menu-item active"><span class="dm-icon">🏠</span> Home</a>
+    <a href="customer/dashboard.html" class="dash-menu-item"><span class="dm-icon">📊</span> Dashboard</a>
+    <a href="customer/booking.html" class="dash-menu-item"><span class="dm-icon">📋</span> Book Service</a>
+    <a href="customer/track.html" class="dash-menu-item"><span class="dm-icon">📍</span> Track Worker</a>
+    <a href="customer/history.html" class="dash-menu-item"><span class="dm-icon">🕐</span> My Bookings</a>
+    <a href="customer/profile.html" class="dash-menu-item"><span class="dm-icon">👤</span> Profile</a>
+    <div class="divider" style="margin:12px 0;"></div>
+    <a href="worker/dashboard.html" class="dash-menu-item"><span class="dm-icon">🔧</span> Worker Dashboard</a>
+    <a href="admin/dashboard.html" class="dash-menu-item"><span class="dm-icon">⚙️</span> Admin Panel</a>
+    <div class="divider" style="margin:12px 0;"></div>
+    <a href="login.html" class="dash-menu-item"><span class="dm-icon">🔑</span> Login / Register</a>
+  </div>
+</div>
+
+<script src="assets/js/api.js"></script>
+<script src="assets/js/main.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  if (Auth.isLoggedIn()) {
+    const user = Auth.getUser();
+    const authBtn = document.querySelector('.nav-auth-btn');
+    if (authBtn && user) {
+      authBtn.innerHTML = `<span>👤</span> ${user.name}`;
+      authBtn.href = '#';
+      authBtn.onclick = (e) => { e.preventDefault(); Auth.logout(); };
+    }
+    // Update mobile account link
+    const mobileAccount = document.querySelector('.mobile-bottom-nav a[href="login.html"]');
+    if (mobileAccount) {
+      mobileAccount.href = Auth.getRole() === 'worker' ? 'worker/dashboard.html' 
+                         : Auth.getRole() === 'admin' ? 'admin/dashboard.html'
+                         : 'customer/dashboard.html';
+    }
+  }
+});
+</script>
+</body>
+</html>

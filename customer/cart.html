@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your cart — FixMate</title>
+  <!-- Add Instrument Serif and Inter fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* Premium SaaS Reset & Tokens */
+    :root {
+      --bg: #FAFAFA; --surface: #FFFFFF; --surface-frosted: rgba(255, 255, 255, 0.75);
+      --fg: #111827; --fg-muted: #6B7280; --border: #F3F4F6; --border-strong: #E5E7EB;
+      --accent: #5B7AF7; --accent-light: #EFF2FE; --success: #10B981; --warning: #F59E0B;
+      --font-display: 'Instrument Serif', serif; --font-body: 'Inter', sans-serif;
+      --radius-sm: 8px; --radius-md: 12px; --radius-lg: 20px; --radius-xl: 32px;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.05); --shadow-md: 0 10px 25px -5px rgba(0,0,0,0.02), 0 4px 10px -5px rgba(0,0,0,0.01);
+      --shadow-lg: 0 20px 40px -10px rgba(0,0,0,0.05); --shadow-glow: 0 10px 30px -10px rgba(91,122,247,0.3);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-body); background-color: var(--bg); color: var(--fg); line-height: 1.5; -webkit-font-smoothing: antialiased; background-image: radial-gradient(circle at 100% 0%, rgba(91,122,247,0.04) 0%, transparent 25%), radial-gradient(circle at 0% 100%, rgba(91,122,247,0.03) 0%, transparent 20%); background-attachment: fixed; }
+    .app-container { display: flex; min-height: 100vh; max-width: 1600px; margin: 0 auto; }
+    .sidebar { width: 260px; background: var(--surface); border-right: 1px solid var(--border); display: flex; flex-direction: column; position: sticky; top: 0; height: 100vh; z-index: 50; }
+    .brand { height: 80px; display: flex; align-items: center; padding: 0 24px; font-family: var(--font-display); font-size: 28px; font-style: italic; color: var(--fg); letter-spacing: -0.5px; border-bottom: 1px solid var(--border); text-decoration: none; }
+    .nav-menu { padding: 24px 12px; flex: 1; display: flex; flex-direction: column; gap: 4px; }
+    .nav-item { display: flex; align-items: center; gap: 12px; padding: 10px 16px; border-radius: var(--radius-sm); color: var(--fg-muted); text-decoration: none; font-weight: 500; font-size: 14px; transition: all 0.2s ease; }
+    .nav-item svg { width: 18px; height: 18px; opacity: 0.7; }
+    .nav-item:hover { background: var(--bg); color: var(--fg); }
+    .nav-item.active { background: var(--accent-light); color: var(--accent); }
+    .nav-item.active svg { opacity: 1; stroke: var(--accent); }
+    .sidebar-footer { padding: 24px; border-top: 1px solid var(--border); }
+    .user-profile { display: flex; align-items: center; gap: 12px; cursor: pointer; }
+    .avatar { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), #9b87f5); color: white; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 14px; box-shadow: 0 4px 12px rgba(91,122,247,0.2); }
+    .user-info .name { font-weight: 600; font-size: 14px; color: var(--fg); }
+    .user-info .plan { font-size: 12px; color: var(--accent); font-weight: 500; display:flex; align-items:center; gap:4px; }
+    .main-content { flex: 1; padding: 40px 48px; overflow-y: auto; }
+    /* Legacy dash-header mapping for imported pages */
+    .dash-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 40px; }
+    .dash-header h1 { font-family: var(--font-display); font-size: 48px; font-weight: 400; letter-spacing: -1px; line-height: 1.1; margin-bottom: 8px; }
+    .dash-header p, .dash-header .subtitle { color: var(--fg-muted); font-size: 15px; }
+    .bg-shape { position: fixed; top: -20vh; right: -10vw; width: 60vw; height: 60vw; border-radius: 50%; background: radial-gradient(circle, rgba(91,122,247,0.08) 0%, transparent 60%); pointer-events: none; z-index: -1; filter: blur(40px); }
+    
+    /* Legacy Buttons mapped to modern style */
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 10px 20px; border-radius: 100px; font-weight: 500; font-size: 14px; cursor: pointer; transition: all 0.2s ease; text-decoration: none; border: 1px solid transparent; }
+    .btn-primary { background: var(--fg); color: white; box-shadow: 0 4px 14px rgba(0,0,0,0.1); }
+    .btn-primary:hover { background: #000; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
+    .btn-secondary, .btn-outline { background: white; border-color: var(--border-strong); color: var(--fg); }
+    .btn-secondary:hover, .btn-outline:hover { background: var(--bg); border-color: #d1d5db; }
+    
+    .list-item, .glass-card { background: var(--surface-frosted); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.4); border-radius: var(--radius-lg); padding: 24px; box-shadow: var(--shadow-md); margin-bottom: 16px; }
+    .badge { display: inline-flex; align-items: center; padding: 4px 10px; border-radius: 100px; font-size: 12px; font-weight: 500; }
+    .badge-success { background: rgba(16,185,129,0.1); color: var(--success); }
+    .badge-warning { background: rgba(245,158,11,0.1); color: var(--warning); }
+    .badge-danger { background: rgba(239,68,68,0.1); color: #EF4444; }
+    .input { border: 1px solid var(--border-strong); border-radius: var(--radius-sm); padding: 8px 12px; font-family: var(--font-body); }
+    
+    @media (max-width: 768px) { .sidebar { display: none; } .main-content { padding: 24px 20px; } }
+  </style>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/global.css" />
+  <link rel="stylesheet" href="../assets/css/cart.css" />
+</head>
+<body class="cart-page">
+  <header class="cart-nav">
+    <div class="cart-nav-inner">
+      <a class="logo" href="../index.html">FixMate<span>.</span></a>
+      <div class="cart-nav-links">
+        <a href="booking.html">← Continue shopping</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="../login.html" id="cart-nav-auth">Login</a>
+      </div>
+    </div>
+  </header>
+
+  <div id="cart-empty" class="empty-cart" style="display: none">
+    <h2>Your cart is empty</h2>
+    <p style="color: #64748b">Add services from the catalogue, then review plans here.</p>
+    <a href="booking.html">Browse services</a>
+  </div>
+
+  <div id="cart-main" class="cart-shell cart-shell--uc" style="display: none">
+    <!-- Left: savings + account (Urban Company style) -->
+    <aside class="uc-checkout-left">
+      <div class="savings-pill" id="cart-savings-pill">
+        <span class="savings-pill-icon" aria-hidden="true">✓</span>
+        <span id="cart-savings-text">Saving on this order</span>
+      </div>
+      <div class="uc-account-card">
+        <h2 class="uc-account-title">Account</h2>
+        <p class="uc-account-desc" id="cart-account-desc">To book the service, please login or sign up</p>
+        <a href="../login.html" class="uc-login-btn" id="cart-login-btn">Login</a>
+        <p class="uc-account-foot" id="cart-account-foot" style="display: none"></p>
+      </div>
+    </aside>
+
+    <!-- Right: lines, coupons, AI plans, payment -->
+    <div class="uc-checkout-right">
+      <div class="uc-category-heading" id="cart-category-heading">Your services</div>
+
+      <div class="cart-card uc-lines-card">
+        <div id="cart-lines"></div>
+        <label class="uc-checkbox-row">
+          <input type="checkbox" id="opt-no-call" />
+          <span>Avoid calling before reaching the location</span>
+        </label>
+      </div>
+
+      <div class="cart-card uc-coupon-card">
+        <div class="uc-coupon-icon" aria-hidden="true">%</div>
+        <div class="uc-coupon-copy">
+          <div class="uc-coupon-title">Coupons and offers</div>
+          <div class="uc-coupon-sub" id="cart-coupon-hint">Login / Sign up to view offers</div>
+        </div>
+      </div>
+
+      <div class="cart-section-title uc-section-spaced">When do you need the service?</div>
+      <p class="uc-delivery-lead">
+        Pick <strong>instant delivery</strong> for the soonest pro, <strong>a date &amp; time slot</strong> for a planned visit, or
+        <strong>flexible timing</strong> to save more.
+      </p>
+
+      <div class="cart-card uc-booking-card">
+        <div class="problem-box">
+          <label for="cart-problem">Describe the issue (optional — improves AI pricing)</label>
+          <textarea id="cart-problem" placeholder="e.g. Heavy water leakage in bathroom ceiling"></textarea>
+        </div>
+        <button type="button" class="btn-analyze" id="btn-analyze">Analyzing best plan…</button>
+
+        <div id="ai-diagnosis-card" class="ai-diagnosis-card" style="display: none">
+          <div class="ai-diagnosis-head">
+            <span class="ai-diagnosis-title">FixMate AI diagnosis</span>
+            <span id="ai-confidence-pill" class="ai-confidence-pill"></span>
+          </div>
+          <p id="ai-issue-summary" class="ai-issue-summary"></p>
+          <div class="ai-meta-row" id="ai-meta-row"></div>
+          <p id="ai-why-line" class="ai-why-line"></p>
+          <div id="ai-followup-box" class="ai-followup-box" style="display: none">
+            <strong>Quick check</strong>
+            <p id="ai-followup-text"></p>
+          </div>
+          <div class="ai-workers" id="ai-workers-row"></div>
+        </div>
+
+        <div id="ai-loading" class="ai-loading" style="display: none">Analyzing demand, workers &amp; traffic…</div>
+
+        <div id="upgrade-banner" class="upgrade-banner">
+          <span id="upgrade-text"></span><br />
+          <button type="button" id="btn-approve-upgrade">Approve upgraded plan</button>
+        </div>
+
+        <div class="plan-grid" id="plan-grid" style="display: none">
+          <div class="plan-card" data-plan="fast" id="plan-fast">
+            <div class="plan-card-head">
+              <h3>⚡ Instant / fast delivery</h3>
+              <span class="plan-badge ai">Express</span>
+            </div>
+            <p class="uc-plan-lead">Dispatch priority — no time slot to choose. Pay priority fee for earliest arrival.</p>
+            <div class="plan-stats" id="plan-fast-stats"></div>
+            <div class="plan-price-tag" id="plan-fast-price">—</div>
+            <div class="plan-cta">Live ETA &amp; nearby workers update after analysis</div>
+            <button type="button" class="plan-cta-btn" data-choose-plan="fast">Choose instant delivery</button>
+          </div>
+          <div class="plan-card" data-plan="scheduled" id="plan-scheduled">
+            <div class="plan-card-head">
+              <h3>📅 Scheduled time slot</h3>
+              <span class="plan-badge">Planned visit</span>
+            </div>
+            <p class="uc-plan-lead">Choose your visit date and an available window below. Best-rated pros reserved for premium slots.</p>
+            <div class="plan-stats" id="plan-scheduled-stats"></div>
+            <div class="plan-price-tag" id="plan-scheduled-price">—</div>
+            <div class="plan-cta">Evening &amp; weekend slots may show a small peak fee</div>
+            <button type="button" class="plan-cta-btn" data-choose-plan="scheduled">Choose date &amp; slot</button>
+          </div>
+          <div class="plan-card" data-plan="budget" id="plan-budget">
+            <div class="plan-card-head">
+              <h3>💰 Flexible / budget window</h3>
+              <span class="plan-badge">Save more</span>
+            </div>
+            <p class="uc-plan-lead">We route your job in an off-peak or return-trip window — longer wait, lower price.</p>
+            <div class="plan-stats" id="plan-budget-stats"></div>
+            <div class="plan-price-tag" id="plan-budget-price">—</div>
+            <div class="plan-cta">Ideal if you are flexible on exact arrival time</div>
+            <button type="button" class="plan-cta-btn" data-choose-plan="budget">Choose flexible timing</button>
+          </div>
+        </div>
+
+        <div id="uc-slot-panel" class="uc-slot-panel" style="display: none">
+          <div class="uc-slot-panel-head">
+            <h4 class="uc-slot-title">Pick date &amp; time slot</h4>
+            <p class="uc-slot-sub">Choose the visit date, then an available slot. Required for scheduled bookings before checkout.</p>
+          </div>
+          <div class="uc-slot-grid">
+            <div class="uc-slot-field">
+              <label for="plan-slot-date">Visit date</label>
+              <input type="date" id="plan-slot-date" class="uc-slot-input" />
+            </div>
+            <div class="uc-slot-field">
+              <label for="plan-slot-select">Available time slots</label>
+              <select id="plan-slot-select" class="uc-slot-input">
+                <option value="">Choose date first to load slots</option>
+              </select>
+            </div>
+          </div>
+          <p id="uc-slot-login-hint" class="uc-slot-hint" style="display: none">
+            Sign in with your FixMate account to load live slots for your city.
+          </p>
+        </div>
+
+        <div class="cart-section-title uc-inner-section">AI &amp; pricing</div>
+        <p class="uc-footnote uc-footnote--tight">
+          Estimates use live worker availability in your city. Instant delivery uses surge / priority rules; scheduled uses slot engine; flexible uses idle routing.
+          Checkout uses secure payment confirmation.
+        </p>
+      </div>
+
+      <div class="cart-card uc-payment-card">
+        <div id="cart-delivery-summary" class="uc-selection-banner" style="display: none" aria-live="polite"></div>
+        <div class="uc-pay-summary-head">
+          <span class="uc-pay-summary-title">Payment summary</span>
+          <button type="button" class="uc-breakup-link" id="btn-toggle-breakup" aria-expanded="false">View breakup</button>
+        </div>
+        <div class="summary-rows" id="summary-rows"></div>
+        <div class="uc-pay-sticky" id="uc-pay-sticky">
+          <div class="uc-pay-sticky-label">Amount to pay</div>
+          <div class="uc-pay-sticky-row">
+            <span class="uc-pay-sticky-total" id="sticky-pay-total">₹0</span>
+            <button type="button" class="uc-breakup-link uc-breakup-link--inline" id="btn-toggle-breakup-2">View breakup</button>
+          </div>
+        </div>
+        <button type="button" class="btn-pay" id="btn-pay" disabled>Complete booking</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../assets/js/api.js"></script>
+  <script src="../assets/js/bookingAIFallback.js"></script>
+  <script src="../assets/js/fixmateRecommendationAI.js"></script>
+  <script src="../assets/js/fixmate-cart.js"></script>
+  <script>
+    let services = [];
+    let categories = [];
+    let cart = {};
+    let engine = null;
+    let selectedPlan = null;
+    let upgradeApproved = false;
+    let lastSubtotal = 0;
+    let taxRate = 0;
+    let lastLlmHints = null;
+
+    function aiCategoryForSlots() {
+      return (engine && engine.meta && engine.meta.category) || primaryCategory();
+    }
+
+    function escapeHtml(s) {
+      return String(s || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+    }
+
+    function renderAiDiagnosis(eng) {
+      const card = document.getElementById("ai-diagnosis-card");
+      if (!card) return;
+      if (!eng) {
+        card.style.display = "none";
+        return;
+      }
+      const rec = eng.fixmateRecommendation;
+      if (!rec) {
+        card.style.display = "none";
+        return;
+      }
+      if (rec.llmRefusal) {
+        card.style.display = "none";
+        return;
+      }
+      card.style.display = "block";
+      const sumEl = document.getElementById("ai-issue-summary");
+      if (sumEl) sumEl.textContent = rec.issueSummary || eng.issueType || "";
+      const pill = document.getElementById("ai-confidence-pill");
+      if (pill) {
+        const c = rec.confidence != null ? Math.round(Number(rec.confidence) * 100) : null;
+        pill.textContent = c != null && !Number.isNaN(c) ? `Confidence ${c}%` : "";
+        pill.style.display = pill.textContent ? "inline-flex" : "none";
+      }
+      const meta = document.getElementById("ai-meta-row");
+      if (meta) {
+        const chips = [];
+        if (rec.category) chips.push(`<span class="ai-chip">${escapeHtml(rec.category)}</span>`);
+        if (rec.urgency) chips.push(`<span class="ai-chip ai-chip-urgency">${escapeHtml(rec.urgency)}</span>`);
+        if (rec.complexity) chips.push(`<span class="ai-chip">${escapeHtml(rec.complexity)}</span>`);
+        if (rec.recommendedMode) chips.push(`<span class="ai-chip ai-chip-mode">${escapeHtml(rec.recommendedMode)}</span>`);
+        meta.innerHTML = chips.join("");
+      }
+      const why = document.getElementById("ai-why-line");
+      if (why) why.textContent = rec.why || "";
+      const fb = document.getElementById("ai-followup-box");
+      const ft = document.getElementById("ai-followup-text");
+      if (rec.followUpQuestion && fb && ft) {
+        fb.style.display = "block";
+        ft.textContent = rec.followUpQuestion;
+      } else if (fb) fb.style.display = "none";
+      const wr = document.getElementById("ai-workers-row");
+      if (wr) {
+        if (rec.recommendedWorkers && rec.recommendedWorkers.length) {
+          wr.innerHTML =
+            '<div class="ai-workers-title">Top pros for your area</div><div class="ai-worker-pills">' +
+            rec.recommendedWorkers
+              .map(
+                w =>
+                  `<div class="ai-worker-pill"><span class="ai-worker-name">${escapeHtml(w.name)}</span> <span class="ai-worker-meta">★${(
+                    Number.isFinite(Number(w.rating)) ? Number(w.rating) : 4.7
+                  ).toFixed(1)} · ${escapeHtml(w.distance)}</span><span class="ai-worker-tag">${escapeHtml(w.tag)}</span></div>`
+              )
+              .join("") +
+            "</div>";
+        } else wr.innerHTML = "";
+      }
+    }
+
+    function primaryCategory() {
+      const keys = Object.keys(cart);
+      if (!keys.length) return "cleaning";
+      let best = keys[0];
+      let mq = cart[best];
+      keys.forEach(k => {
+        if (cart[k] > mq) {
+          mq = cart[k];
+          best = k;
+        }
+      });
+      const s = services.find(x => String(x.id) === String(best));
+      return (s && s.category) || "cleaning";
+    }
+
+    function categoryDisplayName() {
+      const id = primaryCategory();
+      const c = categories.find(x => x.id === id);
+      return c ? c.name : "Your services";
+    }
+
+    function lineMRP(s) {
+      const p = Number(s.price) || 0;
+      const o = Number(s.originalPrice);
+      return o > 0 ? o : Math.round(p * 1.18);
+    }
+
+    function computeListMRPSubtotal() {
+      let m = 0;
+      Object.keys(cart).forEach(id => {
+        const s = services.find(x => String(x.id) === String(id));
+        if (s) m += lineMRP(s) * cart[id];
+      });
+      return m;
+    }
+
+    function updateCategoryHeading() {
+      const h = document.getElementById("cart-category-heading");
+      if (h) h.textContent = categoryDisplayName();
+    }
+
+    function updateSavingsPill() {
+      const mrp = computeListMRPSubtotal();
+      const sub = computeSubtotal();
+      const save = Math.max(0, mrp - sub);
+      const el = document.getElementById("cart-savings-text");
+      if (el) {
+        el.textContent = save > 0 ? `Saving ${fmt(save)} on this order` : "Great value on this order";
+      }
+    }
+
+    function updateAccountUI() {
+      const btn = document.getElementById("cart-login-btn");
+      const desc = document.getElementById("cart-account-desc");
+      const foot = document.getElementById("cart-account-foot");
+      const hint = document.getElementById("cart-coupon-hint");
+      if (!btn || !desc) return;
+      if (Auth.isLoggedIn()) {
+        const u = Auth.getUser() || {};
+        desc.textContent = u.name ? `Signed in as ${u.name}` : "You are signed in.";
+        btn.textContent = "Go to dashboard";
+        btn.href = "dashboard.html";
+        if (foot) {
+          foot.style.display = "block";
+          foot.textContent = u.email || u.phone || "";
+        }
+      if (hint) hint.textContent = "Cart checkout uses secure Razorpay verification.";
+      } else {
+        desc.textContent = "To book the service, please login or sign up";
+        btn.textContent = "Login";
+        btn.href = "../login.html";
+        if (foot) foot.style.display = "none";
+        if (hint) hint.textContent = "Login / Sign up to view offers";
+      }
+    }
+
+    function serviceTitles() {
+      return Object.keys(cart)
+        .map(id => {
+          const s = services.find(x => String(x.id) === String(id));
+          return s ? `${cart[id]}× ${s.title}` : "";
+        })
+        .filter(Boolean)
+        .join(", ");
+    }
+
+    function computeSubtotal() {
+      let t = 0;
+      Object.keys(cart).forEach(id => {
+        const s = services.find(x => String(x.id) === String(id));
+        if (s) t += s.price * cart[id];
+      });
+      return t;
+    }
+
+    function persistCart() {
+      FixmateCart.save(cart);
+      FixmateCart.updateNavBadge();
+    }
+
+    function renderLines() {
+      const el = document.getElementById("cart-lines");
+      const keys = Object.keys(cart);
+      if (!keys.length) {
+        el.innerHTML = "";
+        return;
+      }
+      updateCategoryHeading();
+      updateSavingsPill();
+      el.innerHTML = keys
+        .map(id => {
+          const s = services.find(x => String(x.id) === String(id));
+          if (!s) return "";
+          const img = s.image && s.image.startsWith("http") ? s.image : "../" + s.image;
+          const qty = cart[id];
+          const line = s.price * qty;
+          const mrpLine = lineMRP(s) * qty;
+          const sid = String(id).replace(/'/g, "\\'");
+          return `<div class="uc-cart-line" data-id="${id}">
+            <img class="uc-cart-line-img" src="${img}" alt="" />
+            <div class="uc-cart-line-main">
+              <div class="uc-cart-line-title">${s.title}</div>
+              <div class="uc-cart-line-desc">${(s.description || "").slice(0, 100)}</div>
+              <div class="uc-cart-line-meta">
+                <div class="uc-qty-pill">
+                  <button type="button" aria-label="decrease" onclick="changeQty('${sid}',-1)">−</button>
+                  <span>${qty}</span>
+                  <button type="button" aria-label="increase" onclick="changeQty('${sid}',1)">+</button>
+                </div>
+                <button type="button" class="uc-cart-remove" onclick="removeLine('${sid}')">Remove</button>
+              </div>
+            </div>
+            <div class="uc-cart-line-prices">
+              <div class="uc-cart-line-price">${fmt(line)}</div>
+              <div class="uc-cart-line-mrp">${mrpLine > line ? fmt(mrpLine) : ""}</div>
+            </div>
+          </div>`;
+        })
+        .join("");
+    }
+
+    function changeQty(id, d) {
+      id = String(id);
+      cart[id] = (cart[id] || 0) + d;
+      if (cart[id] <= 0) delete cart[id];
+      persistCart();
+      renderLines();
+      refreshTotals();
+      if (Auth.isLoggedIn()) runEngine();
+      else if (!Auth.isLoggedIn() && typeof calculateBookingEngineLocal === "function") {
+        lastSubtotal = computeSubtotal();
+        engine = calculateBookingEngineLocal({
+          service: serviceTitles().slice(0, 200),
+          category: primaryCategory(),
+          problem: document.getElementById("cart-problem")?.value?.trim() || "",
+          cartValue: lastSubtotal,
+          customer: { city: "Hyderabad", membership: "free" }
+        });
+        renderPlanCards();
+        refreshTotals();
+      }
+    }
+
+    function removeLine(id) {
+      delete cart[String(id)];
+      persistCart();
+      renderLines();
+      refreshTotals();
+      if (Auth.isLoggedIn()) runEngine();
+      else if (!Auth.isLoggedIn() && typeof calculateBookingEngineLocal === "function") {
+        lastSubtotal = computeSubtotal();
+        engine = calculateBookingEngineLocal({
+          service: serviceTitles().slice(0, 200),
+          category: primaryCategory(),
+          problem: document.getElementById("cart-problem")?.value?.trim() || "",
+          cartValue: lastSubtotal,
+          customer: { city: "Hyderabad", membership: "free" }
+        });
+        renderPlanCards();
+        refreshTotals();
+      }
+    }
+
+    function fmt(n) {
+      return "₹" + Math.round(n).toLocaleString("en-IN");
+    }
+
+    function timingSummaryText() {
+      if (!selectedPlan || !engine) return "";
+      if (selectedPlan === "fast") return `Instant · ~${engine.fastETA}`;
+      if (selectedPlan === "budget") return `Flexible · ${engine.budgetETA || "Off-peak"}`;
+      const d = document.getElementById("plan-slot-date")?.value || "";
+      const sel = document.getElementById("plan-slot-select");
+      const txt = sel?.selectedOptions?.[0]?.textContent?.trim() || "Pick a slot";
+      return `Scheduled · ${d || "—"} · ${txt}`;
+    }
+
+    function updateDeliverySummary() {
+      const el = document.getElementById("cart-delivery-summary");
+      if (!el) return;
+      if (!selectedPlan || !engine) {
+        el.style.display = "none";
+        el.innerHTML = "";
+        return;
+      }
+      el.style.display = "block";
+      if (selectedPlan === "fast") {
+        el.innerHTML = `<span class="uc-selection-banner-label">Service timing</span>
+          <div class="uc-selection-banner-body"><strong>Instant delivery</strong> — dispatch as soon as a pro is free. Typical arrival <strong>${engine.fastETA}</strong> (live estimate). Priority fees are included in the plan total.</div>`;
+      } else if (selectedPlan === "scheduled") {
+        el.innerHTML = `<span class="uc-selection-banner-label">Service timing</span>
+          <div class="uc-selection-banner-body"><strong>Scheduled visit</strong> — choose your <strong>date</strong> and <strong>time slot</strong> in the panel below. ${
+            Auth.isLoggedIn() ? "Slots are loaded from FixMate for your city." : "Sign in to load available slots."
+          }</div>`;
+      } else {
+        el.innerHTML = `<span class="uc-selection-banner-label">Service timing</span>
+          <div class="uc-selection-banner-body"><strong>Flexible window</strong> — ${engine.budgetETA || "We batch you into a cheaper off-peak route"}. No exact slot to pick; you save vs instant.</div>`;
+      }
+    }
+
+    function refreshTotals() {
+      lastSubtotal = computeSubtotal();
+      const mrpList = computeListMRPSubtotal();
+      const tax = Math.round(lastSubtotal * taxRate);
+      const planTotal =
+        engine && selectedPlan
+          ? engine.finalPrices[selectedPlan === "fast" ? "fast" : selectedPlan === "scheduled" ? "scheduled" : "budget"]
+          : lastSubtotal + tax;
+      let planFee = 0;
+      let discountShow = 0;
+      if (engine && selectedPlan === "fast") {
+        planFee = (engine.priorityFee || 0) + (engine.peakFee || 0) + (upgradeApproved ? engine.extraWorkerFee : 0);
+        discountShow = Math.round((engine.discount || 0) * 0.25);
+      } else if (engine && selectedPlan === "scheduled") {
+        planFee = Math.round((engine.extraWorkerFee || 0) * 0.5 + (engine.peakFee || 0) * 0.5);
+        discountShow = engine.discount || 0;
+      } else if (engine && selectedPlan === "budget") {
+        planFee = 0;
+        discountShow = Math.round((engine.discount || 0) * 1.5);
+      }
+      const walletUse = 0;
+      const reward = 0;
+      const finalPay = Math.max(0, planTotal - walletUse - reward);
+      const taxesDisplay =
+        selectedPlan && engine
+          ? "Included in plan"
+          : Math.round(lastSubtotal * 0.04) > 0
+            ? fmt(Math.round(lastSubtotal * 0.04))
+            : "—";
+      const strikeItem = mrpList > lastSubtotal ? `<span class="uc-strike uc-strike--sm">${fmt(mrpList)}</span>` : "";
+
+      const timingRow =
+        selectedPlan && engine
+          ? `<div class="summary-row summary-row--always"><span>Delivery / slot</span><strong class="summary-timing">${String(timingSummaryText()).replace(/</g, "")}</strong></div>`
+          : "";
+
+      const rows = document.getElementById("summary-rows");
+      rows.innerHTML = `
+        <div class="summary-row summary-row--always">
+          <span>Item total</span>
+          <span class="summary-pair"><strong>${fmt(lastSubtotal)}</strong> ${strikeItem}</span>
+        </div>
+        ${timingRow}
+        <div class="summary-row">
+          <span>Taxes &amp; platform fee <span class="summary-hint">(est.)</span></span>
+          <strong>${taxesDisplay}</strong>
+        </div>
+        <div class="summary-row"><span>Plan &amp; priority fees</span><strong>${planFee ? fmt(planFee) : "—"}</strong></div>
+        <div class="summary-row"><span>Discounts</span><strong style="color:#059669">− ${discountShow ? fmt(discountShow) : "—"}</strong></div>
+        <div class="summary-row"><span>Wallet</span><strong>${walletUse ? fmt(walletUse) : "—"}</strong></div>
+        <div class="summary-row"><span>Reward points</span><strong>${reward || "—"}</strong></div>
+        <div class="summary-row summary-row--divider summary-row--always"><span>Total amount</span><span class="summary-total-label">${fmt(finalPay)}</span></div>
+        <div class="summary-row total summary-row--always"><span>Amount to pay</span><span>${fmt(finalPay)}</span></div>
+      `;
+      const sticky = document.getElementById("sticky-pay-total");
+      if (sticky) sticky.textContent = fmt(finalPay);
+      const slotSel = document.getElementById("plan-slot-select");
+      const slotDate = document.getElementById("plan-slot-date");
+      const slotOk =
+        selectedPlan !== "scheduled" ||
+        !!(slotDate?.value && slotSel?.value && String(slotSel.value).length > 0);
+      document.getElementById("btn-pay").disabled =
+        !selectedPlan || !engine || !Auth.isLoggedIn() || !slotOk;
+      updateDeliverySummary();
+    }
+
+    function renderPlanCards() {
+      if (!engine) return;
+      document.getElementById("plan-grid").style.display = "flex";
+      document.getElementById("plan-fast-price").textContent = fmt(engine.finalPrices.fast);
+      document.getElementById("plan-scheduled-price").textContent = fmt(engine.finalPrices.scheduled);
+      document.getElementById("plan-budget-price").textContent = fmt(engine.finalPrices.budget);
+
+      document.getElementById("plan-fast-stats").innerHTML = `
+        <div><span>ETA</span><strong>${engine.fastETA}</strong></div>
+        <div><span>Workers near you</span><strong>${engine.workersAvailableNear}</strong></div>
+        <div><span>Priority fee</span><strong>${fmt(engine.priorityFee)}</strong></div>
+      `;
+      document.getElementById("plan-scheduled-stats").innerHTML = `
+        <div><span>Suggested slot</span><strong>${engine.normalETA}</strong></div>
+        <div><span>Demand</span><strong>${engine.demandLevel}</strong></div>
+        <div><span>Peak (est.)</span><strong>${fmt(Math.round(engine.peakFee * 0.5))}</strong></div>
+      `;
+      document.getElementById("plan-budget-stats").innerHTML = `
+        <div><span>Window</span><strong>${engine.budgetETA}</strong></div>
+        <div><span>You save</span><strong>${fmt((engine.discount || 0) * 1.5)}</strong></div>
+        <div><span>Flex</span><strong>High</strong></div>
+      `;
+
+      const ub = document.getElementById("upgrade-banner");
+      const up = engine.upgradeProposal;
+      if (up && up.approveRequired && !upgradeApproved) {
+        ub.classList.add("show");
+        document.getElementById("upgrade-text").textContent = up.message || "";
+      } else ub.classList.remove("show");
+
+      if (engine.workersRequired >= 2) {
+        const h = document.querySelector("#plan-fast .plan-card-head");
+        let badge = document.getElementById("worker-team-badge");
+        if (!badge && h) {
+          badge = document.createElement("span");
+          badge.id = "worker-team-badge";
+          badge.className = "plan-badge worker-badge-pop";
+          badge.textContent = engine.workersRequired + " workers";
+          h.appendChild(badge);
+        }
+      } else {
+        document.getElementById("worker-team-badge")?.remove();
+      }
+      renderAiDiagnosis(engine);
+    }
+
+    async function runEngine() {
+      if (!Auth.isLoggedIn()) {
+        showToast("Sign in for AI pricing and plans.", "error");
+        return;
+      }
+      const btn = document.getElementById("btn-analyze");
+      const load = document.getElementById("ai-loading");
+      const loadDefault = "Analyzing demand, workers & traffic…";
+      btn.disabled = true;
+      load.style.display = "block";
+      load.textContent = "FixMate AI is analyzing your issue…";
+      lastLlmHints = null;
+      try {
+        const problem = document.getElementById("cart-problem").value.trim();
+        const payload = {
+          service: serviceTitles().slice(0, 200),
+          category: primaryCategory(),
+          problem,
+          cartValue: lastSubtotal || computeSubtotal()
+        };
+        try {
+          const me = await UserAPI.getMe({ optional: true });
+          if (me?.user) {
+            payload.city = me.user.city;
+            payload.membership = me.user.membership;
+          }
+        } catch (_) {}
+
+        if (
+          problem.length >= 6 &&
+          window.FixmateRecommendationAI &&
+          typeof window.FixmateRecommendationAI.analyzeComplaintWithPuter === "function"
+        ) {
+          load.textContent = "Refining diagnosis…";
+          const hints = await window.FixmateRecommendationAI.analyzeComplaintWithPuter(problem, primaryCategory());
+          if (hints && hints.outOfDomain) {
+            showToast(
+              hints.message ||
+                "I'm FixMate AI Assistant. I help only with home repairs, services, worker recommendations, booking options, claims and pricing.",
+              "error"
+            );
+            renderAiDiagnosis(null);
+            return;
+          }
+          if (hints && !hints.outOfDomain) lastLlmHints = hints;
+        }
+        if (lastLlmHints) payload.llmHints = lastLlmHints;
+
+        load.textContent = "Fetching live workers & pricing…";
+        let res = await BookingAIAPI.calculateBooking(payload);
+        if (res && res.engine) {
+          engine = res.engine;
+        } else if (typeof calculateBookingEngineLocal === "function") {
+          engine = calculateBookingEngineLocal({
+            service: payload.service,
+            category: payload.category,
+            problem: payload.problem,
+            cartValue: payload.cartValue,
+            customer: {
+              city: payload.city || "Hyderabad",
+              membership: payload.membership || "free"
+            }
+          });
+          showToast(
+            "Using offline pricing — start FixMate API (backend-repo/server) for live workers & slots.",
+            "error"
+          );
+        } else {
+          showToast(
+            "Cannot load pricing — start the backend at " + (window.FIXMATE_API_BASE || "http://localhost:5000") + ".",
+            "error"
+          );
+          return;
+        }
+        renderPlanCards();
+        if (!selectedPlan && engine && engine.fixmateRecommendation && engine.fixmateRecommendation.recommendedMode) {
+          const m = String(engine.fixmateRecommendation.recommendedMode).toLowerCase();
+          if (m === "instant") selectPlan("fast");
+          else if (m === "flexible") selectPlan("budget");
+          else selectPlan("scheduled");
+        }
+        refreshTotals();
+      } catch (e) {
+        showToast(e.message || "Could not analyze", "error");
+      } finally {
+        load.style.display = "none";
+        load.textContent = loadDefault;
+        btn.disabled = false;
+        btn.textContent = "Refresh AI pricing";
+      }
+    }
+
+    function selectPlan(plan) {
+      selectedPlan = plan;
+      document.querySelectorAll(".plan-card").forEach(c => c.classList.remove("selected", "glow"));
+      const card = document.querySelector(`.plan-card[data-plan="${plan}"]`);
+      if (card) {
+        card.classList.add("selected", "glow");
+      }
+      const slotPanel = document.getElementById("uc-slot-panel");
+      const slotHint = document.getElementById("uc-slot-login-hint");
+      if (slotPanel) {
+        const show = plan === "scheduled";
+        slotPanel.style.display = show ? "block" : "none";
+        slotPanel.classList.toggle("uc-slot-panel--open", show);
+      }
+      if (slotHint) {
+        slotHint.style.display = plan === "scheduled" && !Auth.isLoggedIn() ? "block" : "none";
+      }
+      if (plan === "scheduled" && Auth.isLoggedIn()) {
+        loadSlotsForPlan();
+      }
+      refreshTotals();
+    }
+
+    function buildFallbackSlots() {
+      return [
+        { start: "09:00", end: "10:00", label: "09:00 AM - 10:00 AM" },
+        { start: "10:00", end: "11:00", label: "10:00 AM - 11:00 AM" },
+        { start: "11:00", end: "12:00", label: "11:00 AM - 12:00 PM" },
+        { start: "12:00", end: "13:00", label: "12:00 PM - 01:00 PM" },
+        { start: "13:00", end: "14:00", label: "01:00 PM - 02:00 PM" },
+        { start: "14:00", end: "15:00", label: "02:00 PM - 03:00 PM" },
+        { start: "15:00", end: "16:00", label: "03:00 PM - 04:00 PM" },
+        { start: "16:00", end: "17:00", label: "04:00 PM - 05:00 PM" },
+        { start: "17:00", end: "18:00", label: "05:00 PM - 06:00 PM" }
+      ];
+    }
+
+    function fallbackSlotsHtml() {
+      return (
+        '<option value="">Choose a time slot</option>' +
+        buildFallbackSlots()
+          .map(s => `<option value="custom|${s.start}|${s.end}">${s.label}</option>`)
+          .join("")
+      );
+    }
+
+    async function loadSlotsForPlan() {
+      const date = document.getElementById("plan-slot-date")?.value;
+      const sel = document.getElementById("plan-slot-select");
+      if (!sel) return;
+      if (!date) {
+        sel.innerHTML = '<option value="">Choose visit date first</option>';
+        refreshTotals();
+        return;
+      }
+      if (!Auth.isLoggedIn()) {
+        sel.innerHTML = fallbackSlotsHtml();
+        refreshTotals();
+        return;
+      }
+      sel.innerHTML = "<option value=\"\">Loading slots…</option>";
+      try {
+        const me = await UserAPI.getMe({ optional: true });
+        const city = me?.user?.city || "Hyderabad";
+        const data = await SlotAPI.available({ date, city, category: aiCategoryForSlots() });
+        const live = (data.slots || []).filter(s => !s.disabled);
+        if (!live.length) {
+          sel.innerHTML = fallbackSlotsHtml();
+        } else {
+          sel.innerHTML =
+            '<option value="">Choose a time slot</option>' +
+            live
+              .map(s => `<option value="${s.slotId}">${s.label} · ${s.remaining} left</option>`)
+              .join("");
+        }
+      } catch {
+        sel.innerHTML = fallbackSlotsHtml();
+      }
+      refreshTotals();
+    }
+
+    async function confirmPlanOnServer() {
+      if (!selectedPlan || !engine) throw new Error("Select a booking plan first.");
+      const problem = document.getElementById("cart-problem").value.trim();
+      const body = {
+        planType: selectedPlan,
+        service: serviceTitles().slice(0, 200),
+        category: aiCategoryForSlots(),
+        problem,
+        cartValue: lastSubtotal || computeSubtotal()
+      };
+      if (lastLlmHints) body.llmHints = lastLlmHints;
+      if (selectedPlan === "scheduled") {
+        body.date = document.getElementById("plan-slot-date").value;
+        body.slotId = document.getElementById("plan-slot-select").value;
+        if (!body.date || !body.slotId) {
+          throw new Error("Pick a date and slot for scheduled booking.");
+        }
+        if (String(body.slotId).startsWith("custom|")) {
+          const parts = String(body.slotId).split("|");
+          const start = parts[1];
+          const end = parts[2];
+          const startIso = new Date(`${body.date}T${start}:00`).toISOString();
+          const endIso = new Date(`${body.date}T${end}:00`).toISOString();
+          body.slotStart = startIso;
+          body.slotEnd = endIso;
+          delete body.slotId;
+        }
+        const me = await UserAPI.getMe({ optional: true });
+        body.city = me?.user?.city;
+      }
+      await BookingAIAPI.confirmPlan(body);
+      showToast("Plan locked — proceed to secure checkout.", "success");
+      refreshTotals();
+    }
+
+    async function proceedPayment() {
+      if (!Auth.isLoggedIn()) {
+        window.location.href = "../login.html";
+        return;
+      }
+      if (!selectedPlan || !engine) {
+        showToast("Select a booking plan first.", "error");
+        return;
+      }
+      try {
+        await confirmPlanOnServer();
+      } catch (e) {
+        showToast(e.message || "Could not confirm plan", "error");
+        return;
+      }
+      const btn = document.getElementById("btn-pay");
+      btn.disabled = true;
+      btn.textContent = "Confirming…";
+      try {
+        const serviceName = serviceTitles();
+        const createPayload = {
+          service: serviceName,
+          category: aiCategoryForSlots(),
+          price: lastSubtotal,
+          address: Auth.getUser()?.address || "Address on profile",
+          description: "Cart checkout",
+          type: "scheduled",
+          useStoredPlan: true,
+          planType: selectedPlan
+        };
+        const created = await BookingAPI.create(createPayload);
+        if (!created?.booking) throw new Error("Booking failed");
+        const booking = created.booking;
+
+        let paid = null;
+        try {
+          const order = await PaymentAPI.createOrder({
+            type: "BOOKING",
+            bookingId: booking.id,
+            amountRupees: Number(booking.price) || 0
+          });
+          if (!order?.orderId || !order?.keyId || !order?.amountPaise) {
+            throw new Error("Could not start payment");
+          }
+          const rzResp = await openRazorpayModal({
+            keyId: order.keyId,
+            orderId: order.orderId,
+            amountPaise: order.amountPaise,
+            description: `FixMate booking ${booking.id}`
+          });
+          paid = await PaymentAPI.verify(rzResp);
+        } catch (payErr) {
+          // If the payable amount became zero after wallet/rewards application, settle server-side.
+          if (String(payErr?.message || "").toLowerCase().includes("nothing to charge")) {
+            paid = await PaymentAPI.bookingSettle({ bookingId: booking.id });
+          } else {
+            throw payErr;
+          }
+        }
+        if (!paid?.success) throw new Error(paid?.error || "Payment verification failed");
+
+        cart = {};
+        persistCart();
+        showToast("Payment successful. Booking confirmed.", "success");
+        window.location.href = "track.html";
+      } catch (e) {
+        showToast(e.message || "Checkout error", "error");
+      } finally {
+        btn.disabled = false;
+        btn.textContent = "Complete booking";
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", async () => {
+      const u = Auth.getUser();
+      const authEl = document.getElementById("cart-nav-auth");
+      if (u && authEl) {
+        authEl.textContent = u.name;
+        authEl.href = "#";
+        authEl.onclick = e => {
+          e.preventDefault();
+          Auth.logout();
+        };
+      }
+
+      Object.assign(cart, FixmateCart.load());
+      const r = await fetch("../assets/data/services.json");
+      const data = await r.json();
+      services = data.services;
+      categories = data.categories || [];
+
+      if (!Object.keys(cart).length) {
+        document.getElementById("cart-empty").style.display = "block";
+        return;
+      }
+      document.getElementById("cart-main").style.display = "grid";
+      updateAccountUI();
+      renderLines();
+
+      const payCard = document.querySelector(".uc-payment-card");
+      const mqBreak = window.matchMedia("(max-width: 900px)");
+      const syncBreakup = () => {
+        if (!payCard) return;
+        if (mqBreak.matches) payCard.classList.remove("uc-pay-expanded");
+        else payCard.classList.add("uc-pay-expanded");
+      };
+      syncBreakup();
+      mqBreak.addEventListener("change", syncBreakup);
+      const toggleBreakup = () => {
+        if (!payCard) return;
+        payCard.classList.toggle("uc-pay-expanded");
+        const on = payCard.classList.contains("uc-pay-expanded");
+        document.getElementById("btn-toggle-breakup")?.setAttribute("aria-expanded", String(on));
+        document.getElementById("btn-toggle-breakup-2")?.setAttribute("aria-expanded", String(on));
+      };
+      document.getElementById("btn-toggle-breakup")?.addEventListener("click", toggleBreakup);
+      document.getElementById("btn-toggle-breakup-2")?.addEventListener("click", toggleBreakup);
+
+      const noc = document.getElementById("opt-no-call");
+      if (noc) {
+        noc.checked = sessionStorage.getItem("fixmate_no_call") === "1";
+        noc.addEventListener("change", () => sessionStorage.setItem("fixmate_no_call", noc.checked ? "1" : "0"));
+      }
+
+      document.getElementById("btn-analyze").textContent = "Analyze best plan";
+      document.getElementById("btn-analyze").onclick = () => runEngine();
+      document.getElementById("btn-pay").onclick = () => proceedPayment();
+      document.getElementById("btn-approve-upgrade").onclick = () => {
+        upgradeApproved = true;
+        document.getElementById("upgrade-banner").classList.remove("show");
+        refreshTotals();
+        showToast("Upgrade approved", "success");
+      };
+
+      ["fast", "scheduled", "budget"].forEach(p => {
+        document.querySelector(`.plan-card[data-plan="${p}"]`)?.addEventListener("click", () => selectPlan(p));
+      });
+
+      document.querySelectorAll("[data-choose-plan]").forEach(btn => {
+        btn.addEventListener("click", e => {
+          e.preventDefault();
+          e.stopPropagation();
+          const p = btn.getAttribute("data-choose-plan");
+          if (p) selectPlan(p);
+        });
+      });
+
+      const sd = document.getElementById("plan-slot-date");
+      if (sd) {
+        const t = new Date();
+        t.setDate(t.getDate() + 1);
+        sd.valueAsDate = t;
+        sd.addEventListener("change", loadSlotsForPlan);
+      }
+      document.getElementById("plan-slot-select")?.addEventListener("change", () => refreshTotals());
+
+      if (Auth.isLoggedIn()) {
+        await runEngine();
+        document.getElementById("btn-analyze").textContent = "Refresh AI pricing";
+        if (!engine) {
+          lastSubtotal = computeSubtotal();
+          try {
+            const me = await UserAPI.getMe({ optional: true });
+            engine = calculateBookingEngineLocal({
+              service: serviceTitles().slice(0, 200),
+              category: primaryCategory(),
+              problem: (document.getElementById("cart-problem") && document.getElementById("cart-problem").value.trim()) || "",
+              cartValue: lastSubtotal,
+              customer: {
+                city: me?.user?.city || "Hyderabad",
+                membership: me?.user?.membership || "free"
+              }
+            });
+          } catch (_) {
+            engine = calculateBookingEngineLocal({
+              service: serviceTitles().slice(0, 200),
+              category: primaryCategory(),
+              problem: "",
+              cartValue: lastSubtotal,
+              customer: { city: "Hyderabad", membership: "free" }
+            });
+          }
+          renderPlanCards();
+        }
+        if (engine.fixmateRecommendation && engine.fixmateRecommendation.recommendedMode) {
+          const m = String(engine.fixmateRecommendation.recommendedMode).toLowerCase();
+          if (m === "instant") selectPlan("fast");
+          else if (m === "flexible") selectPlan("budget");
+          else selectPlan("scheduled");
+        } else if (engine.recommendedPlan && engine.recommendedPlan.includes("Fast")) selectPlan("fast");
+        else if (engine.recommendedPlan && engine.recommendedPlan.includes("Budget")) selectPlan("budget");
+        else selectPlan("scheduled");
+      } else {
+        lastSubtotal = computeSubtotal();
+        document.getElementById("ai-loading").style.display = "block";
+        document.getElementById("ai-loading").textContent = "Sign in to unlock AI plans, worker matching & payment.";
+        document.getElementById("btn-analyze").onclick = () => (window.location.href = "../login.html");
+        document.getElementById("btn-analyze").textContent = "Sign in for AI pricing";
+        engine = calculateBookingEngineLocal({
+          service: serviceTitles().slice(0, 200),
+          category: primaryCategory(),
+          problem: "",
+          cartValue: lastSubtotal,
+          customer: { city: "Hyderabad", membership: "free" }
+        });
+        document.getElementById("ai-loading").style.display = "none";
+        renderPlanCards();
+        document.getElementById("plan-grid").style.display = "flex";
+        selectPlan("scheduled");
+      }
+    });
+  </script>
+<script>
+    document.querySelectorAll('.nav-item').forEach(el=>el.classList.remove('active'));
+    let act = document.querySelector('.dm-cart');
+    if(act) act.classList.add('active');
+  </script>
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FixMate AI — Worker Availability</title>
+  <link rel="stylesheet" href="../assets/css/global.css">
+  <link rel="stylesheet" href="../assets/css/cards.css">
+  <link rel="stylesheet" href="../assets/css/worker.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>🔧</text></svg>">
+</head>
+<body>
+<nav class="worker-navbar"><div class="container">
+  <a href="../index.html" class="worker-nav-logo"><div class="logo-icon">F</div><div><div class="logo-text">FixMate</div><div class="logo-sub">Worker Portal</div></div></a>
+  <div class="worker-nav-right">
+    <a href="dashboard.html" class="worker-nav-item"><span class="wnav-icon">📊</span><span>Dashboard</span></a>
+    <a href="jobs.html" class="worker-nav-item"><span class="wnav-icon">📋</span><span>Jobs</span></a>
+    <a href="profile.html" class="worker-nav-item"><span class="wnav-icon">👤</span><span>Profile</span></a>
+  </div>
+</div></nav>
+<div class="worker-layout">
+  <aside class="worker-sidebar">
+    <div class="worker-sidebar-menu">
+      <div class="worker-menu-label">Main Menu</div>
+      <a href="dashboard.html" class="worker-menu-item"><span class="wm-icon">📊</span> Dashboard</a>
+      <a href="jobs.html" class="worker-menu-item"><span class="wm-icon">📋</span> Job Requests</a>
+      <a href="earnings.html" class="worker-menu-item"><span class="wm-icon">💰</span> Earnings</a>
+      <a href="availability.html" class="worker-menu-item active"><span class="wm-icon">🕐</span> Availability</a>
+      <div class="worker-menu-label">Marketplace</div>
+      <a href="tools-store.html" class="worker-menu-item"><span class="wm-icon">🛒</span> Tools Store</a>
+      <div class="worker-menu-label">Support</div>
+      <a href="../index.html" class="worker-menu-item"><span class="wm-icon">🏠</span> Customer Site</a>
+    </div>
+  </aside>
+  <main class="worker-main">
+    <div class="dash-header"><h1>🕐 Availability & Slots</h1><button class="btn btn-primary btn-sm">Save Changes</button></div>
+
+    <!-- Online Toggle -->
+    <div class="online-toggle" id="online-toggle">
+      <div class="toggle-switch" onclick="toggleOnline()"><div class="toggle-knob"></div></div>
+      <div class="toggle-info"><h4>Current Status</h4><p>Toggle to go online and receive instant job requests</p></div>
+      <div class="toggle-status"><span class="status-dot"></span><span class="status-text" style="color:var(--text-muted);">Offline</span></div>
+    </div>
+
+    <!-- Weekly Schedule -->
+    <div style="background:#fff;border-radius:var(--radius-lg);padding:28px;box-shadow:var(--shadow-sm);margin-bottom:28px;">
+      <h3 style="margin-bottom:20px;">📅 Weekly Schedule</h3>
+      <p style="font-size:0.875rem;color:var(--text-muted);margin-bottom:20px;">Set your available time slots for each day. Customers will only see slots you've enabled.</p>
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        <div style="display:flex;align-items:center;gap:16px;padding:14px 20px;background:var(--bg-tertiary);border-radius:var(--radius-md);">
+          <div style="width:80px;font-weight:700;font-size:0.875rem;">Monday</div>
+          <div style="display:flex;gap:8px;flex:1;flex-wrap:wrap;">
+            <span class="tools-filter active" style="font-size:0.75rem;padding:6px 12px;">6AM-9AM</span>
+            <span class="tools-filter active" style="font-size:0.75rem;padding:6px 12px;">9AM-12PM</span>
+            <span class="tools-filter active" style="font-size:0.75rem;padding:6px 12px;">12PM-3PM</span>
+            <span class="tools-filter" style="font-size:0.75rem;padding:6px 12px;">3PM-6PM</span>
+            <span class="tools-filter" style="font-size:0.75rem;padding:6px 12px;">6PM-9PM</span>
+          </div>
+          <div class="toggle-switch active" style="width:44px;height:24px;flex-shrink:0;" onclick="this.classList.toggle('active')"><div class="toggle-knob" style="width:18px;height:18px;top:3px;left:23px;"></div></div>
+        </div>
+        <div style="display:flex;align-items:center;gap:16px;padding:14px 20px;background:var(--bg-tertiary);border-radius:var(--radius-md);">
+          <div style="width:80px;font-weight:700;font-size:0.875rem;">Tuesday</div>
+          <div style="display:flex;gap:8px;flex:1;flex-wrap:wrap;">
+            <span class="tools-filter active" style="font-size:0.75rem;padding:6px 12px;">6AM-9AM</span>
+            <span class="tools-filter active" style="font-size:0.75rem;padding:6px 12px;">9AM-12PM</span>
+            <span class="tools-filter active" style="font-size:0.75rem;padding:6px 12px;">12PM-3PM</span>
+            <span class="tools-filter active" style="font-size:0.75rem;padding:6px 12px;">3PM-6PM</span>
+            <span class="tools-filter active" style="font-size:0.75rem;padding:6px 12px;">6PM-9PM</span>
+          </div>
+          <div class="toggle-switch active" style="width:44px;height:24px;flex-shrink:0;" onclick="this.classList.toggle('active')"><div class="toggle-knob" style="width:18px;height:18px;top:3px;left:23px;"></div></div>
+        </div>
+        <div style="display:flex;align-items:center;gap:16px;padding:14px 20px;background:var(--bg-tertiary);border-radius:var(--radius-md);">
+          <div style="width:80px;font-weight:700;font-size:0.875rem;">Wednesday</div>
+          <div style="display:flex;gap:8px;flex:1;flex-wrap:wrap;">
+            <span class="tools-filter active" style="font-size:0.75rem;padding:6px 12px;">9AM-12PM</span>
+            <span class="tools-filter active" style="font-size:0.75rem;padding:6px 12px;">12PM-3PM</span>
+            <span class="tools-filter active" style="font-size:0.75rem;padding:6px 12px;">3PM-6PM</span>
+            <span class="tools-filter" style="font-size:0.75rem;padding:6px 12px;">6PM-9PM</span>
+          </div>
+          <div class="toggle-switch active" style="width:44px;height:24px;flex-shrink:0;" onclick="this.classList.toggle('active')"><div class="toggle-knob" style="width:18px;height:18px;top:3px;left:23px;"></div></div>
+        </div>
+        <div style="display:flex;align-items:center;gap:16px;padding:14px 20px;background:var(--bg-tertiary);border-radius:var(--radius-md);">
+          <div style="width:80px;font-weight:700;font-size:0.875rem;">Thursday</div>
+          <div style="display:flex;gap:8px;flex:1;flex-wrap:wrap;">
+            <span class="tools-filter active" style="font-size:0.75rem;padding:6px 12px;">6AM-9AM</span>
+            <span class="tools-filter active" style="font-size:0.75rem;padding:6px 12px;">9AM-12PM</span>
+            <span class="tools-filter active" style="font-size:0.75rem;padding:6px 12px;">12PM-3PM</span>
+            <span class="tools-filter active" style="font-size:0.75rem;padding:6px 12px;">3PM-6PM</span>
+          </div>
+          <div class="toggle-switch active" style="width:44px;height:24px;flex-shrink:0;" onclick="this.classList.toggle('active')"><div class="toggle-knob" style="width:18px;height:18px;top:3px;left:23px;"></div></div>
+        </div>
+        <div style="display:flex;align-items:center;gap:16px;padding:14px 20px;background:var(--bg-tertiary);border-radius:var(--radius-md);">
+          <div style="width:80px;font-weight:700;font-size:0.875rem;">Friday</div>
+          <div style="display:flex;gap:8px;flex:1;flex-wrap:wrap;">
+            <span class="tools-filter active" style="font-size:0.75rem;padding:6px 12px;">9AM-12PM</span>
+            <span class="tools-filter active" style="font-size:0.75rem;padding:6px 12px;">12PM-3PM</span>
+          </div>
+          <div class="toggle-switch active" style="width:44px;height:24px;flex-shrink:0;" onclick="this.classList.toggle('active')"><div class="toggle-knob" style="width:18px;height:18px;top:3px;left:23px;"></div></div>
+        </div>
+        <div style="display:flex;align-items:center;gap:16px;padding:14px 20px;background:var(--bg-tertiary);border-radius:var(--radius-md);opacity:0.5;">
+          <div style="width:80px;font-weight:700;font-size:0.875rem;">Saturday</div>
+          <div style="flex:1;font-size:0.8125rem;color:var(--text-muted);">Day Off</div>
+          <div class="toggle-switch" style="width:44px;height:24px;flex-shrink:0;" onclick="this.classList.toggle('active')"><div class="toggle-knob" style="width:18px;height:18px;top:3px;"></div></div>
+        </div>
+        <div style="display:flex;align-items:center;gap:16px;padding:14px 20px;background:var(--bg-tertiary);border-radius:var(--radius-md);opacity:0.5;">
+          <div style="width:80px;font-weight:700;font-size:0.875rem;">Sunday</div>
+          <div style="flex:1;font-size:0.8125rem;color:var(--text-muted);">Day Off</div>
+          <div class="toggle-switch" style="width:44px;height:24px;flex-shrink:0;" onclick="this.classList.toggle('active')"><div class="toggle-knob" style="width:18px;height:18px;top:3px;"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Service Zone -->
+    <div style="background:#fff;border-radius:var(--radius-lg);padding:28px;box-shadow:var(--shadow-sm);margin-bottom:28px;">
+      <h3 style="margin-bottom:16px;">📍 Service Zone</h3>
+      <p style="font-size:0.875rem;color:var(--text-muted);margin-bottom:16px;">Select areas where you're willing to work. Jobs outside these areas won't be sent to you.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;">
+        <span class="tools-filter active">Madhapur</span>
+        <span class="tools-filter active">Gachibowli</span>
+        <span class="tools-filter active">Kondapur</span>
+        <span class="tools-filter active">Kukatpally</span>
+        <span class="tools-filter">Banjara Hills</span>
+        <span class="tools-filter">Jubilee Hills</span>
+        <span class="tools-filter active">Miyapur</span>
+        <span class="tools-filter">Ameerpet</span>
+        <span class="tools-filter">Secunderabad</span>
+        <span class="tools-filter">Begumpet</span>
+        <span class="tools-filter active">HITEC City</span>
+        <span class="tools-filter">Tolichowki</span>
+      </div>
+      <div style="margin-top:16px;padding:12px;background:rgba(245,158,11,0.08);border-radius:var(--radius-sm);font-size:0.8125rem;display:flex;align-items:center;gap:8px;">
+        <span>💡</span> Tip: More areas = more job requests = more earnings!
+      </div>
+    </div>
+
+    <!-- Emergency Availability -->
+    <div style="background:linear-gradient(135deg,#FEF2F2,#FFF7ED);border:2px solid #FECACA;border-radius:var(--radius-lg);padding:28px;">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+        <span style="font-size:1.5rem;">🚨</span>
+        <div><h3>Emergency Service Availability</h3><p style="font-size:0.8125rem;color:var(--text-muted);">Enable to receive emergency 10-min dispatch requests (higher pay)</p></div>
+        <div class="toggle-switch active" style="width:56px;height:30px;margin-left:auto;" onclick="this.classList.toggle('active')"><div class="toggle-knob" style="width:24px;height:24px;top:3px;left:29px;"></div></div>
+      </div>
+      <div style="display:flex;gap:16px;font-size:0.8125rem;color:var(--text-secondary);">
+        <span>⚡ +30% higher pay</span>
+        <span>📍 Within 3km radius</span>
+        <span>⏱ Must respond in 30 seconds</span>
+      </div>
+    </div>
+  </main>
+</div>
+<script src="../assets/js/api.js"></script>
+<script>document.addEventListener('DOMContentLoaded',()=>{if(!requireAuth(['worker']))return;updateNavbarUser();});</script>
+<script src="../assets/js/main.js"></script>
+<script>document.querySelectorAll('.tools-filter').forEach(f=>{f.addEventListener('click',()=>{f.classList.toggle('active');});});</script>
+</body>
+</html>

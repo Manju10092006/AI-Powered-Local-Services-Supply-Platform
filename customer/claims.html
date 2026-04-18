@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FixMate AI — Claims Protection</title>
+  <!-- Add Instrument Serif and Inter fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* Premium SaaS Reset & Tokens */
+    :root {
+      --bg: #FAFAFA; --surface: #FFFFFF; --surface-frosted: rgba(255, 255, 255, 0.75);
+      --fg: #111827; --fg-muted: #6B7280; --border: #F3F4F6; --border-strong: #E5E7EB;
+      --accent: #5B7AF7; --accent-light: #EFF2FE; --success: #10B981; --warning: #F59E0B; --danger: #EF4444;
+      --font-display: 'Instrument Serif', serif; --font-body: 'Inter', sans-serif;
+      --radius-sm: 8px; --radius-md: 12px; --radius-lg: 20px; --radius-xl: 32px;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.05); --shadow-md: 0 10px 25px -5px rgba(0,0,0,0.02), 0 4px 10px -5px rgba(0,0,0,0.01);
+      --shadow-lg: 0 20px 40px -10px rgba(0,0,0,0.05); --shadow-glow: 0 10px 30px -10px rgba(91,122,247,0.3);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-body); background-color: var(--bg); color: var(--fg); line-height: 1.5; -webkit-font-smoothing: antialiased; background-image: radial-gradient(circle at 100% 0%, rgba(91,122,247,0.04) 0%, transparent 25%), radial-gradient(circle at 0% 100%, rgba(91,122,247,0.03) 0%, transparent 20%); background-attachment: fixed; }
+    .app-container { display: flex; min-height: 100vh; max-width: 1600px; margin: 0 auto; }
+    .sidebar { width: 260px; background: var(--surface); border-right: 1px solid var(--border); display: flex; flex-direction: column; position: sticky; top: 0; height: 100vh; z-index: 50; }
+    .brand { height: 80px; display: flex; align-items: center; padding: 0 24px; font-family: var(--font-display); font-size: 28px; font-style: italic; color: var(--fg); letter-spacing: -0.5px; border-bottom: 1px solid var(--border); text-decoration: none; }
+    .nav-menu { padding: 24px 12px; flex: 1; display: flex; flex-direction: column; gap: 4px; }
+    .nav-item { display: flex; align-items: center; gap: 12px; padding: 10px 16px; border-radius: var(--radius-sm); color: var(--fg-muted); text-decoration: none; font-weight: 500; font-size: 14px; transition: all 0.2s ease; }
+    .nav-item svg { width: 18px; height: 18px; opacity: 0.7; }
+    .nav-item:hover { background: var(--bg); color: var(--fg); }
+    .nav-item.active { background: var(--accent-light); color: var(--accent); }
+    .nav-item.active svg { opacity: 1; stroke: var(--accent); }
+    .sidebar-footer { padding: 24px; border-top: 1px solid var(--border); }
+    .user-profile { display: flex; align-items: center; gap: 12px; cursor: pointer; }
+    .avatar { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), #9b87f5); color: white; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 14px; box-shadow: 0 4px 12px rgba(91,122,247,0.2); }
+    .user-info .name { font-weight: 600; font-size: 14px; color: var(--fg); }
+    .user-info .plan { font-size: 12px; color: var(--accent); font-weight: 500; display:flex; align-items:center; gap:4px; }
+    .main-content { flex: 1; padding: 40px clamp(20px, 4vw, 48px); overflow-y: auto; }
+    
+    .bg-shape { position: fixed; top: -20vh; right: -10vw; width: 60vw; height: 60vw; border-radius: 50%; background: radial-gradient(circle, rgba(91,122,247,0.08) 0%, transparent 60%); pointer-events: none; z-index: -1; filter: blur(40px); }
+    
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 10px 20px; border-radius: 100px; font-weight: 500; font-size: 14px; cursor: pointer; transition: all 0.2s ease; text-decoration: none; border: 1px solid transparent; }
+    .btn-primary { background: var(--fg); color: white; box-shadow: 0 4px 14px rgba(0,0,0,0.1); }
+    .btn-primary:hover { background: #000; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
+    .btn-secondary { background: var(--border); color: var(--fg); }
+    .btn-secondary:hover { background: var(--border-strong); }
+    .btn-outline { background: white; border-color: var(--border-strong); color: var(--fg); }
+    .btn-outline:hover { background: var(--bg); border-color: #d1d5db; }
+    
+    .glass-card { background: var(--surface-frosted); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.4); border-radius: var(--radius-lg); padding: 24px; box-shadow: var(--shadow-md); margin-bottom: 16px; }
+    .badge { display: inline-flex; align-items: center; padding: 4px 10px; border-radius: 100px; font-size: 12px; font-weight: 500; }
+    .badge-success { background: rgba(16,185,129,0.1); color: var(--success); }
+    .badge-warning { background: rgba(245,158,11,0.1); color: var(--warning); }
+    .badge-danger { background: rgba(239,68,68,0.1); color: var(--danger); }
+    
+    .claim-upload-area { border: 2px dashed var(--border-strong); border-radius: var(--radius-lg); padding: 40px; text-align: center; background: rgba(255,255,255,0.5); cursor: pointer; transition: all 0.2s; margin-bottom: 24px; }
+    .claim-upload-area:hover { border-color: var(--accent); background: var(--accent-light); }
+    .ai-scanning { position: relative; overflow: hidden; }
+    .ai-scanning::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: var(--accent); box-shadow: 0 0 10px var(--accent); animation: scan 2s linear infinite; }
+    @keyframes scan { 0% { top: 0; } 50% { top: 100%; } 100% { top: 0; } }
+    .progress-bar-bg { background: var(--border); height: 8px; border-radius: 4px; overflow: hidden; margin-top: 8px; }
+    .progress-bar-fill { background: var(--accent); height: 100%; width: 0%; transition: width 0.5s; }
+    
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(17, 24, 39, 0.6); backdrop-filter: blur(4px); z-index: 9999; align-items: center; justify-content: center; padding: 20px; animation: fadeIn 0.2s ease-out forwards; }
+    .modal-content { background: var(--surface); border-radius: var(--radius-xl); border: 1px solid rgba(255,255,255,0.5); width: 100%; max-width: 600px; max-height: 90vh; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25); animation: floatUp 0.3s ease-out forwards; transform: translateY(20px); opacity: 0; }
+    @keyframes fadeIn { to { opacity: 1; } }
+    @keyframes floatUp { to { transform: translateY(0); opacity: 1; } }
+    input, select, textarea { font-family: var(--font-body); width: 100%; padding: 12px 16px; border-radius: var(--radius-sm); border: 1px solid var(--border-strong); background: var(--bg); transition: border-color 0.2s; outline: none; }
+    input:focus, select:focus, textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-light); }
+    
+    @media (max-width: 768px) { .sidebar { display: none; } }
+  </style>
+  <link rel="stylesheet" href="../assets/css/global.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>🛡️</text></svg>">
+</head>
+<body>
+
+<div class="bg-shape"></div>
+<div class="app-container">
+  <!-- Sleek Sidebar -->
+  <aside class="sidebar">
+    <a href="../index.html" class="brand">FixMate</a>
+    <nav class="nav-menu">
+      <a href="dashboard.html" class="nav-item dm-dashboard">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1"></rect><rect x="14" y="3" width="7" height="5" rx="1"></rect><rect x="14" y="12" width="7" height="9" rx="1"></rect><rect x="3" y="16" width="7" height="5" rx="1"></rect></svg>
+        Overview
+      </a>
+      <a href="booking.html" class="nav-item dm-booking">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"></path></svg>
+        Book Service
+      </a>
+      <a href="history.html" class="nav-item dm-history">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+        History
+      </a>
+      <a href="track.html" class="nav-item dm-track">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+        Track Worker
+      </a>
+      <a href="claims.html" class="nav-item dm-claims active">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+        Protection
+      </a>
+      <a href="profile.html" class="nav-item dm-profile">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+        Settings
+      </a>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="user-profile" onclick="Auth.logout()">
+        <div class="avatar" id="sidebar-avatar">M</div>
+        <div class="user-info">
+          <div class="name" id="sidebar-name">Manjunath</div>
+          <div class="plan"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg> Premium Member</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <main class="main-content">
+    <div class="header" style="margin-bottom: 40px; display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:16px;">
+      <div>
+        <h1 style="font-size: 36px; margin-bottom: 8px;">AI Claims Center 🛡️</h1>
+        <p style="color:var(--fg-muted);font-size:16px;">Automated dispute resolution powered by AI video analysis.</p>
+      </div>
+      <button class="btn btn-primary" onclick="document.getElementById('new-claim-modal').style.display='flex'" style="padding: 12px 24px; box-shadow: var(--shadow-md);">+ File New Claim</button>
+    </div>
+
+    <!-- Active Claims -->
+    <div style="margin-bottom:40px;">
+      <h2 style="font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--fg-muted); margin-bottom: 16px;">⚠️ Processing Claims</h2>
+      <div style="display:flex; flex-direction:column; gap:20px;" id="active-claims-list">
+        
+        <!-- Claim Card -->
+        <div class="glass-card" style="border-left: 4px solid var(--warning); position:relative; overflow:hidden;">
+          <!-- decorative corner -->
+          <svg style="position:absolute; top:-20px; right:-20px; width:100px; height:100px; opacity:0.03; z-index:0;" viewBox="0 0 24 24" fill="currentColor"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+          
+          <div style="position:relative; z-index:1;">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom: 12px; flex-wrap:wrap; gap:8px;">
+              <div>
+                <div style="margin-bottom: 8px;"><span class="badge badge-warning">AI Review Tracking</span></div>
+                <h4 style="font-size: 18px; font-weight: 600; margin-bottom: 4px;">Damage during AC Service</h4>
+                <div style="display:flex; gap: 16px; font-size: 14px; color: var(--fg-muted); flex-wrap:wrap;">
+                  <span>🔖 #CLM-8492</span>
+                  <span>📋 Service: AC Gas Refill</span>
+                  <span>💰 Est Payout: ₹1,500</span>
+                </div>
+              </div>
+              <span style="font-size:13px; color:var(--fg-muted); font-weight:500;">Filed Today</span>
+            </div>
+            
+            <div style="margin-top: 20px; padding: 16px; background: rgba(245, 158, 11, 0.05); border: 1px solid rgba(245, 158, 11, 0.2); border-radius: 12px;">
+                <div style="font-size: 13px; font-weight: 600; color: #b45309; display:flex; justify-content:space-between;">
+                  <span>AI Risk Score: Correlating timeframes...</span>
+                  <span>65%</span>
+                </div>
+                <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 65%; background: var(--warning);"></div></div>
+                <div style="font-size: 12px; color: #b45309; margin-top: 10px; display:flex; gap: 8px; align-items:center; opacity:0.8;">
+                  <span style="display:inline-block; animation:spin 2s linear infinite;">⚙️</span> AI is verifying video metadata against the completed booking timestamps. Est completion: 2 mins
+                </div>
+            </div>
+            @keyframes spin { 100% { transform: rotate(360deg); } }
+            
+            <div style="display:flex; gap: 12px; margin-top: 24px;">
+              <button class="btn btn-secondary">Watch Uploaded Proof</button>
+              <button class="btn btn-outline">Message Support</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Past Claims -->
+    <div>
+      <h2 style="font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--fg-muted); margin-bottom: 16px;">✅ Verified & Resolved</h2>
+      <div style="display:flex; flex-direction:column; gap:20px;">
+        
+        <!-- Claim Card -->
+        <div class="glass-card" style="border-left: 4px solid var(--success); opacity: 0.85;">
+          <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom: 12px;">
+            <div>
+              <div style="margin-bottom: 8px;"><span class="badge badge-success">Resolved & Refunded</span></div>
+              <h4 style="font-size: 18px; font-weight: 600; margin-bottom: 4px;">Incomplete Bathroom Cleaning</h4>
+              <div style="display:flex; gap: 16px; font-size: 14px; color: var(--fg-muted);">
+                <span>🔖 Claim ID: #CLM-3310</span>
+                <span>📋 Service: Deep Cleaning</span>
+                <span style="color:var(--success); font-weight:600;">💰 Refunded: ₹200</span>
+              </div>
+            </div>
+            <span style="font-size:13px; color:var(--fg-muted);">Filed 1 month ago</span>
+          </div>
+          <div style="margin-top: 20px;">
+            <button class="btn btn-secondary">View AI Resolution Report</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- Mobile Bottom Nav -->
+<div class="mobile-bottom-nav">
+  <div class="container">
+    <a href="../index.html" class="mobile-nav-item"><span class="mnav-icon">🏠</span>Home</a>
+    <a href="booking.html" class="mobile-nav-item"><span class="mnav-icon">📋</span>Book</a>
+    <a href="dashboard.html" class="mobile-nav-item"><span class="mnav-icon">📊</span>Dashboard</a>
+    <a href="claims.html" class="mobile-nav-item active"><span class="mnav-icon">🛡️</span>Claims</a>
+    <a href="profile.html" class="mobile-nav-item"><span class="mnav-icon">👤</span>Profile</a>
+  </div>
+</div>
+
+<!-- Modal for New Claim -->
+<div id="new-claim-modal" class="modal-overlay">
+  <div class="modal-content">
+    <div style="padding: 24px; border-bottom: 1px solid var(--border); display:flex; justify-content:space-between; align-items:center;">
+      <h2 style="font-size: 24px; font-family: var(--font-display); letter-spacing:-0.5px; margin:0;">File AI Damage Claim</h2>
+      <button style="border:none;background:var(--bg);width:32px;height:32px;border-radius:50%;font-size:1.2rem;cursor:pointer;color:var(--fg-muted);" onclick="document.getElementById('new-claim-modal').style.display='none'">✕</button>
+    </div>
+    
+    <div style="padding: 24px; overflow-y:auto; flex:1;">
+      <div style="margin-bottom: 20px;">
+        <label style="display:block; font-weight:600; margin-bottom:8px; font-size:14px; color:var(--fg);">Select Past Booking</label>
+        <select id="claim-booking">
+          <option>#FX-28475 - AC Gas Refill + Deep Cleaning (2 days ago)</option>
+          <option>#FX-19232 - Full Home Cleaning (5 days ago)</option>
+        </select>
+      </div>
+
+      <div style="margin-bottom: 20px;">
+        <label style="display:block; font-weight:600; margin-bottom:8px; font-size:14px; color:var(--fg);">Describe the Issue</label>
+        <textarea rows="3" placeholder="I found damages after the worker left..." id="claim-desc"></textarea>
+      </div>
+
+      <div style="margin-bottom: 24px;">
+        <label style="display:block; font-weight:600; margin-bottom:8px; font-size:14px; color:var(--fg);">Requested Claim Amount (₹)</label>
+        <input type="number" placeholder="1500" id="claim-amount">
+      </div>
+
+      <div class="claim-upload-area" id="upload-box" onclick="document.getElementById('video-upload').click()" ondragover="event.preventDefault(); this.style.borderColor='var(--accent)'" ondragleave="this.style.borderColor='var(--border-strong)'" ondrop="event.preventDefault(); handleDrop(event)">
+        <div style="font-size:40px; margin-bottom:12px;">📁</div>
+        <div style="font-weight:600; color:var(--fg); font-size: 16px;">Drag & drop video evidence here</div>
+        <div style="font-size:13px; color:var(--fg-muted); margin-top:4px;">Supports MP4, MOV (Max 50MB)</div>
+        <input type="file" id="video-upload" accept="video/mp4,video/x-m4v,video/*,image/*" style="display:none;" onchange="handleFileUpload(this.files[0])">
+      </div>
+      
+      <!-- AI Scanning UI Hidden initially -->
+      <div id="ai-processing-ui" style="display:none; text-align:center; padding: 20px 10px;">
+          <div class="ai-scanning" style="width:100%; max-width:300px; height:180px; background:#000; border-radius:var(--radius-md); margin:0 auto 24px; position:relative; box-shadow:var(--shadow-lg); overflow:hidden; border: 1px solid var(--border-strong);">
+              <video id="preview-video" style="width:100%; height:100%; object-fit:contain; background:#000;" muted loop></video>
+          </div>
+          <h3 style="color:var(--accent); margin-bottom:8px; font-size: 18px;">🤖 AI Video Analysis Running</h3>
+          <p style="font-size:14px; color:var(--fg-muted); max-width:90%; margin:0 auto; line-height:1.6;">Extracting frames and scanning metadata to correlate objects with previously verified worker logs...</p>
+      </div>
+
+    </div>
+    
+    <div style="padding: 24px; border-top: 1px solid var(--border); display:flex; gap:16px;">
+      <button class="btn btn-outline" onclick="document.getElementById('new-claim-modal').style.display='none'" style="flex:1;">Cancel</button>
+      <button class="btn btn-primary" onclick="submitClaim()" style="flex:2;" id="submit-claim-btn" disabled style="opacity:0.6;">Start AI Engine</button>
+    </div>
+  </div>
+</div>
+
+<script src="../assets/js/api.js"></script>
+<script src="../assets/js/main.js"></script>
+<script>
+  let uploadedFile = null;
+  
+  function handleDrop(e) {
+      document.getElementById('upload-box').style.borderColor = "var(--border-strong)";
+      if(e.dataTransfer.files && e.dataTransfer.files[0]) {
+          handleFileUpload(e.dataTransfer.files[0]);
+      }
+  }
+
+  function handleFileUpload(file) {
+    if(file) {
+      uploadedFile = file;
+      const box = document.getElementById('upload-box');
+      box.innerHTML = `<div style="font-size:40px; margin-bottom:12px;">✅</div><div style="font-weight:600; color:var(--accent); font-size:16px;">${uploadedFile.name} loaded</div><div style="font-size:13px; color:var(--fg-muted); margin-top:4px;">Click Process AI Engine to continue</div>`;
+      box.style.borderColor = "var(--accent)";
+      box.style.background = "var(--accent-light)";
+      
+      const subBtn = document.getElementById('submit-claim-btn');
+      subBtn.disabled = false;
+      subBtn.style.opacity = '1';
+    }
+  }
+
+  function submitClaim() {
+    if(!uploadedFile) return;
+    const btn = document.getElementById('submit-claim-btn');
+    btn.disabled = true;
+    btn.innerHTML = `<span style="animation:pulse 1.5s infinite alternate;display:inline-block;">Processing Neural Engine...</span>`;
+    
+    document.getElementById('upload-box').style.display = "none";
+    document.getElementById('claim-desc').disabled = true;
+    document.getElementById('claim-amount').disabled = true;
+    document.getElementById('claim-booking').disabled = true;
+    
+    const ui = document.getElementById('ai-processing-ui');
+    ui.style.display = "block";
+    
+    const preview = document.getElementById('preview-video');
+    preview.src = URL.createObjectURL(uploadedFile);
+    preview.play().catch(e=>console.log("Auto-play prevented", e));
+
+    // Fast Forward Simulation
+    setTimeout(() => {
+        ui.innerHTML = `
+          <div style="width:80px;height:80px;background:var(--success);color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:40px;margin:0 auto 20px;box-shadow:var(--shadow-md);">✓</div>
+          <h2 style="color:var(--success); margin-bottom:12px; font-size: 22px;">AI Validation Complete</h2>
+          <div style="background:rgba(16, 185, 129, 0.1); border:1px solid rgba(16, 185, 129, 0.3); padding:16px 24px; border-radius:var(--radius-md); font-weight:600; color:var(--success); display:inline-block;">
+            Fraud Risk: 5% (Safe)
+          </div>
+          <p style="margin-top:16px; color:var(--fg-muted); font-size:14px; line-height:1.6; max-width:90%; margin-left:auto; margin-right:auto;">Your claim timeframe has been authenticated automatically. We have passed the report to the Human Finance Resolution team for immediate payout release within 2 hours.</p>
+        `;
+        btn.textContent = "Done & Return";
+        btn.disabled = false;
+        btn.style.opacity = '1';
+        btn.onclick = () => location.reload();
+    }, 4000);
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FixMate AI — Tools Store for Workers</title>
+  <meta name="description" content="Buy professional tools & materials at discounted prices. Fast delivery to worksite.">
+  <link rel="stylesheet" href="../assets/css/global.css">
+  <link rel="stylesheet" href="../assets/css/cards.css">
+  <link rel="stylesheet" href="../assets/css/worker.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>🔧</text></svg>">
+</head>
+<body>
+
+<!-- Worker Navbar -->
+<nav class="worker-navbar">
+  <div class="container">
+    <a href="../index.html" class="worker-nav-logo">
+      <div class="logo-icon">F</div>
+      <div>
+        <div class="logo-text">FixMate</div>
+        <div class="logo-sub">Worker Portal</div>
+      </div>
+    </a>
+    <div class="worker-nav-right">
+      <a href="dashboard.html" class="worker-nav-item"><span class="wnav-icon">📊</span><span>Dashboard</span></a>
+      <a href="jobs.html" class="worker-nav-item"><span class="wnav-icon">📋</span><span>Jobs</span></a>
+      <a href="earnings.html" class="worker-nav-item"><span class="wnav-icon">💰</span><span>Earnings</span></a>
+      <a href="profile.html" class="worker-nav-item"><span class="wnav-icon">👤</span><span>Profile</span></a>
+    </div>
+  </div>
+</nav>
+
+<div class="worker-layout">
+  <!-- Sidebar -->
+  <aside class="worker-sidebar">
+    <div class="worker-sidebar-menu">
+      <div class="worker-menu-label">Main Menu</div>
+      <a href="dashboard.html" class="worker-menu-item"><span class="wm-icon">📊</span> Dashboard</a>
+      <a href="jobs.html" class="worker-menu-item"><span class="wm-icon">📋</span> Job Requests</a>
+      <a href="earnings.html" class="worker-menu-item"><span class="wm-icon">💰</span> Earnings</a>
+      <a href="availability.html" class="worker-menu-item"><span class="wm-icon">🕐</span> Availability</a>
+      <div class="worker-menu-label">Marketplace</div>
+      <a href="tools-store.html" class="worker-menu-item active"><span class="wm-icon">🛒</span> Tools Store</a>
+      <a href="#" class="worker-menu-item"><span class="wm-icon">📦</span> My Orders</a>
+      <div class="worker-menu-label">Support</div>
+      <a href="#" class="worker-menu-item"><span class="wm-icon">❓</span> Help Center</a>
+      <a href="../index.html" class="worker-menu-item"><span class="wm-icon">🏠</span> Customer Site</a>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="worker-main">
+    <div class="section-header">
+      <div>
+        <h2>🛒 Tools &amp; Materials Store</h2>
+        <p style="font-size:0.875rem;color:var(--text-muted);">Professional tools at discounted prices with fast delivery to your worksite</p>
+      </div>
+      <div style="display:flex;gap:8px;">
+        <button class="btn btn-secondary btn-sm">📦 My Orders</button>
+        <button class="btn btn-primary btn-sm">🛒 Cart (3)</button>
+      </div>
+    </div>
+
+    <!-- Filters -->
+    <div class="tools-filter-bar">
+      <span class="tools-filter active">All</span>
+      <span class="tools-filter">Power Tools</span>
+      <span class="tools-filter">Hand Tools</span>
+      <span class="tools-filter">Electrical</span>
+      <span class="tools-filter">Plumbing</span>
+      <span class="tools-filter">AC Tools</span>
+      <span class="tools-filter">Painting</span>
+      <span class="tools-filter">Safety</span>
+      <span class="tools-filter">Measuring</span>
+      <span class="tools-filter">Tool Kits</span>
+      <span class="tools-filter">Testing</span>
+    </div>
+
+    <!-- Tools Grid -->
+    <div class="tools-grid" id="tools-grid">
+      <!-- Rendered by JS or static -->
+    </div>
+  </main>
+</div>
+
+<script src="../assets/js/api.js"></script>
+<script>document.addEventListener('DOMContentLoaded',()=>{if(!requireAuth(['worker']))return;updateNavbarUser();});</script>
+<script src="../assets/js/main.js"></script>
+<script>
+  // Render tools from JSON
+  async function loadTools() {
+    try {
+      const res = await fetch('../assets/data/tools.json');
+      const data = await res.json();
+      renderTools(data.tools);
+      initFilters(data.tools);
+    } catch(e) {
+      console.log('Loading inline tools data');
+      renderStaticTools();
+    }
+  }
+
+  function renderTools(tools) {
+    const grid = document.getElementById('tools-grid');
+    grid.innerHTML = tools.map(t => `
+      <div class="tool-card" data-category="${t.category}">
+        <div class="tool-card-img">
+          <img src="../Images/${t.image}" alt="${t.title}" loading="lazy" onerror="this.src='https://placehold.co/220x160/f1f5f9/94a3b8?text=${encodeURIComponent(t.title)}'">
+        </div>
+        <div class="tool-card-body">
+          <div class="tool-card-title">${t.title}</div>
+          <div class="tool-card-brand">${t.brand} • ${t.category}</div>
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px;">
+            <span style="font-size:0.8125rem;font-weight:700;color:var(--text);background:var(--accent-green);color:#fff;padding:1px 6px;border-radius:4px;">${t.rating}</span>
+            <span style="font-size:0.75rem;color:var(--text-muted);">(${t.reviews.toLocaleString('en-IN')})</span>
+          </div>
+          <div class="tool-card-price">
+            <span class="current">₹${t.price.toLocaleString('en-IN')}</span>
+            <span class="original">₹${t.originalPrice.toLocaleString('en-IN')}</span>
+          </div>
+          <div class="tool-card-delivery">🚚 ${t.delivery}</div>
+          <button class="tool-card-btn" onclick="showToast('Added to cart!')">🛒 Add to Cart</button>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function initFilters(tools) {
+    document.querySelectorAll('.tools-filter').forEach(f => {
+      f.addEventListener('click', () => {
+        document.querySelectorAll('.tools-filter').forEach(x => x.classList.remove('active'));
+        f.classList.add('active');
+        const cat = f.textContent.trim();
+        if (cat === 'All') {
+          renderTools(tools);
+        } else {
+          renderTools(tools.filter(t => t.category === cat));
+        }
+      });
+    });
+  }
+
+  function renderStaticTools() {
+    // Fallback - static cards
+    const grid = document.getElementById('tools-grid');
+    const items = [
+      { title: 'Bosch Drill Machine 500W', brand: 'Bosch', price: '₹2,499', original: '₹3,999', img: 'img_23.jpeg' },
+      { title: 'Stanley 130-Piece Tool Kit', brand: 'Stanley', price: '₹3,499', original: '₹5,999', img: 'img_24.jpeg' },
+      { title: 'Digital Multimeter', brand: 'HTC', price: '₹899', original: '₹1,499', img: 'img_26.jpeg' },
+      { title: 'Pipe Wrench Set (3pc)', brand: 'Stanley', price: '₹1,299', original: '₹2,199', img: 'img_27.jpeg' },
+      { title: 'Safety Gloves (12 pairs)', brand: '3M', price: '₹399', original: '₹699', img: 'img_45.jpeg' },
+      { title: 'AC Gas Refill Kit R32', brand: 'Refron', price: '₹1,999', original: '₹3,499', img: 'img_46.jpeg' },
+      { title: 'Electric Wire 100m', brand: 'Havells', price: '₹1,499', original: '₹2,499', img: 'img_40.jpeg' },
+      { title: 'Aluminium Ladder 6ft', brand: 'Bathla', price: '₹3,999', original: '₹6,999', img: 'img_43.jpeg' },
+    ];
+    grid.innerHTML = items.map(t => `
+      <div class="tool-card">
+        <div class="tool-card-img">
+          <img src="../Images/${t.img}" alt="${t.title}" loading="lazy">
+        </div>
+        <div class="tool-card-body">
+          <div class="tool-card-title">${t.title}</div>
+          <div class="tool-card-brand">${t.brand}</div>
+          <div class="tool-card-price">
+            <span class="current">${t.price}</span>
+            <span class="original">${t.original}</span>
+          </div>
+          <div class="tool-card-delivery">🚚 Free delivery by tomorrow</div>
+          <button class="tool-card-btn" onclick="showToast('Added to cart!')">🛒 Add to Cart</button>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  document.addEventListener('DOMContentLoaded', loadTools);
+</script>
+</body>
+</html>

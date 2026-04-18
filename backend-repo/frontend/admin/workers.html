@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FixMate AI — Admin Workers</title>
+  <link rel="stylesheet" href="../assets/css/global.css">
+  <link rel="stylesheet" href="../assets/css/cards.css">
+  <link rel="stylesheet" href="../assets/css/admin.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>🔧</text></svg>">
+</head>
+<body>
+<nav class="admin-navbar"><div class="container">
+  <a href="../index.html" class="admin-nav-logo"><span class="logo-text">🔧 FixMate AI</span><span class="logo-badge">ADMIN</span></a>
+  <div class="admin-nav-right"><a href="dashboard.html" class="worker-nav-item"><span class="wnav-icon">📊</span><span>Dashboard</span></a></div>
+</div></nav>
+<div class="admin-layout">
+  <aside class="admin-sidebar">
+    <div style="padding:20px 24px;border-bottom:1px solid rgba(255,255,255,0.06);"><div style="color:#fff;font-weight:700;">Admin Panel</div></div>
+    <a href="dashboard.html" class="admin-menu-item"><span class="am-icon">📊</span> Dashboard</a>
+    <a href="users.html" class="admin-menu-item"><span class="am-icon">👥</span> Users</a>
+    <a href="workers.html" class="admin-menu-item active"><span class="am-icon">🔧</span> Workers</a>
+    <a href="bookings.html" class="admin-menu-item"><span class="am-icon">📋</span> Bookings</a>
+    <a href="analytics.html" class="admin-menu-item"><span class="am-icon">📈</span> Analytics</a>
+    <a href="../index.html" class="admin-menu-item"><span class="am-icon">🏠</span> Customer Site</a>
+  </aside>
+  <main class="admin-main">
+    <div class="dash-header">
+      <div><h1>🔧 Worker Management</h1><p style="color:var(--text-muted);font-size:0.875rem;">12,450 registered workers</p></div>
+      <div style="display:flex;gap:8px;">
+        <input type="text" class="input" placeholder="🔍 Search workers..." style="width:240px;padding:8px 16px;font-size:0.8125rem;">
+        <select class="input" style="width:auto;padding:8px 14px;font-size:0.8125rem;"><option>All Skills</option><option>Electrician</option><option>Plumber</option><option>Cleaner</option><option>AC Tech</option><option>Carpenter</option><option>Painter</option><option>Salon</option></select>
+        <select class="input" style="width:auto;padding:8px 14px;font-size:0.8125rem;"><option>All Status</option><option>Online</option><option>Offline</option><option>Pending</option><option>Suspended</option></select>
+      </div>
+    </div>
+
+    <div class="admin-stats-stripe" style="margin-bottom:24px;">
+      <div class="admin-stat green"><div class="as-value">4,890</div><div class="as-label">Online Now</div></div>
+      <div class="admin-stat blue"><div class="as-value">7,320</div><div class="as-label">Offline</div></div>
+      <div class="admin-stat orange"><div class="as-value">128</div><div class="as-label">Pending Verification</div></div>
+      <div class="admin-stat red"><div class="as-value">112</div><div class="as-label">Suspended</div></div>
+    </div>
+
+    <div class="admin-table-card">
+      <table class="admin-table">
+        <thead><tr><th>Worker</th><th>Skill</th><th>City</th><th>Rating</th><th>Jobs Done</th><th>Earnings</th><th>Status</th><th>Actions</th></tr></thead>
+        <tbody>
+          <tr><td><div class="user-cell"><div class="user-avatar" style="background:var(--accent-green);color:#fff;">RK</div><div><div class="user-name">Rajesh Kumar</div><div style="font-size:0.7rem;color:var(--text-muted);">ID: WRK-001</div></div></div></td><td>Cleaning</td><td>Hyderabad</td><td><span style="font-weight:700;">⭐ 4.8</span></td><td style="font-weight:700;">1,247</td><td style="font-weight:700;">₹3.2L</td><td><span class="status-badge active">Online</span></td><td><div class="action-btns"><button class="action-btn">👁</button><button class="action-btn">✏</button></div></td></tr>
+          <tr><td><div class="user-cell"><div class="user-avatar" style="background:var(--accent-green);color:#fff;">SE</div><div><div class="user-name">Sunil Electrician</div><div style="font-size:0.7rem;color:var(--text-muted);">ID: WRK-002</div></div></div></td><td>Electrical</td><td>Hyderabad</td><td><span style="font-weight:700;">⭐ 4.7</span></td><td style="font-weight:700;">892</td><td style="font-weight:700;">₹2.8L</td><td><span class="status-badge active">Online</span></td><td><div class="action-btns"><button class="action-btn">👁</button><button class="action-btn">✏</button></div></td></tr>
+          <tr><td><div class="user-cell"><div class="user-avatar" style="background:var(--text-muted);color:#fff;">RP</div><div><div class="user-name">Ravi Plumber</div><div style="font-size:0.7rem;color:var(--text-muted);">ID: WRK-003</div></div></div></td><td>Plumbing</td><td>Mumbai</td><td><span style="font-weight:700;">⭐ 4.6</span></td><td style="font-weight:700;">654</td><td style="font-weight:700;">₹1.9L</td><td><span class="status-badge" style="background:var(--bg-tertiary);">Offline</span></td><td><div class="action-btns"><button class="action-btn">👁</button><button class="action-btn">✏</button></div></td></tr>
+          <tr><td><div class="user-cell"><div class="user-avatar" style="background:var(--secondary);color:#fff;">CT</div><div><div class="user-name">CoolFix Technician</div><div style="font-size:0.7rem;color:var(--text-muted);">ID: WRK-004</div></div></div></td><td>AC Repair</td><td>Bangalore</td><td><span style="font-weight:700;">⭐ 4.9</span></td><td style="font-weight:700;">1,034</td><td style="font-weight:700;">₹4.1L</td><td><span class="status-badge active">Online</span></td><td><div class="action-btns"><button class="action-btn">👁</button><button class="action-btn">✏</button></div></td></tr>
+          <tr><td><div class="user-cell"><div class="user-avatar" style="background:var(--accent-orange);color:#fff;">MA</div><div><div class="user-name">Mohammed Ali</div><div style="font-size:0.7rem;color:var(--text-muted);">ID: WRK-NEW</div></div></div></td><td>Electrician</td><td>Hyderabad</td><td><span style="color:var(--text-muted);">—</span></td><td>0</td><td>₹0</td><td><span class="status-badge pending">Pending</span></td><td><div class="action-btns"><button class="action-btn" style="color:var(--accent-green);">✓</button><button class="action-btn" style="color:var(--accent-red);">✕</button></div></td></tr>
+          <tr><td><div class="user-cell"><div class="user-avatar" style="background:var(--accent-pink);color:#fff;">MB</div><div><div class="user-name">Meera Beauty</div><div style="font-size:0.7rem;color:var(--text-muted);">ID: WRK-005</div></div></div></td><td>Salon</td><td>Pune</td><td><span style="font-weight:700;">⭐ 4.8</span></td><td style="font-weight:700;">456</td><td style="font-weight:700;">₹2.1L</td><td><span class="status-badge active">Online</span></td><td><div class="action-btns"><button class="action-btn">👁</button><button class="action-btn">✏</button></div></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-top:20px;">
+      <span style="font-size:0.8125rem;color:var(--text-muted);">Showing 1-6 of 12,450</span>
+      <div style="display:flex;gap:6px;"><button class="btn btn-secondary btn-sm">← Prev</button><button class="btn btn-primary btn-sm">1</button><button class="btn btn-secondary btn-sm">2</button><button class="btn btn-secondary btn-sm">Next →</button></div>
+    </div>
+  </main>
+</div>
+<script src="../assets/js/api.js"></script>
+<script>document.addEventListener('DOMContentLoaded',()=>{if(!requireAuth(['admin']))return;updateNavbarUser();});</script>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

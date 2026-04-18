@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FixMate AI — My Profile</title>
+  <!-- Add Instrument Serif and Inter fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* Premium SaaS Reset & Tokens */
+    :root {
+      --bg: #FAFAFA; --surface: #FFFFFF; --surface-frosted: rgba(255, 255, 255, 0.75);
+      --fg: #111827; --fg-muted: #6B7280; --border: #F3F4F6; --border-strong: #E5E7EB;
+      --accent: #5B7AF7; --accent-light: #EFF2FE; --success: #10B981; --warning: #F59E0B;
+      --font-display: 'Instrument Serif', serif; --font-body: 'Inter', sans-serif;
+      --radius-sm: 8px; --radius-md: 12px; --radius-lg: 20px; --radius-xl: 32px;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.05); --shadow-md: 0 10px 25px -5px rgba(0,0,0,0.02), 0 4px 10px -5px rgba(0,0,0,0.01);
+      --shadow-lg: 0 20px 40px -10px rgba(0,0,0,0.05); --shadow-glow: 0 10px 30px -10px rgba(91,122,247,0.3);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-body); background-color: var(--bg); color: var(--fg); line-height: 1.5; -webkit-font-smoothing: antialiased; background-image: radial-gradient(circle at 100% 0%, rgba(91,122,247,0.04) 0%, transparent 25%), radial-gradient(circle at 0% 100%, rgba(91,122,247,0.03) 0%, transparent 20%); background-attachment: fixed; }
+    .app-container { display: flex; min-height: 100vh; max-width: 1600px; margin: 0 auto; }
+    .sidebar { width: 260px; background: var(--surface); border-right: 1px solid var(--border); display: flex; flex-direction: column; position: sticky; top: 0; height: 100vh; z-index: 50; }
+    .brand { height: 80px; display: flex; align-items: center; padding: 0 24px; font-family: var(--font-display); font-size: 28px; font-style: italic; color: var(--fg); letter-spacing: -0.5px; border-bottom: 1px solid var(--border); text-decoration: none; }
+    .nav-menu { padding: 24px 12px; flex: 1; display: flex; flex-direction: column; gap: 4px; }
+    .nav-item { display: flex; align-items: center; gap: 12px; padding: 10px 16px; border-radius: var(--radius-sm); color: var(--fg-muted); text-decoration: none; font-weight: 500; font-size: 14px; transition: all 0.2s ease; }
+    .nav-item svg { width: 18px; height: 18px; opacity: 0.7; }
+    .nav-item:hover { background: var(--bg); color: var(--fg); }
+    .nav-item.active { background: var(--accent-light); color: var(--accent); }
+    .nav-item.active svg { opacity: 1; stroke: var(--accent); }
+    .sidebar-footer { padding: 24px; border-top: 1px solid var(--border); }
+    .user-profile { display: flex; align-items: center; gap: 12px; cursor: pointer; }
+    .avatar { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), #9b87f5); color: white; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 14px; box-shadow: 0 4px 12px rgba(91,122,247,0.2); }
+    .user-info .name { font-weight: 600; font-size: 14px; color: var(--fg); }
+    .user-info .plan { font-size: 12px; color: var(--accent); font-weight: 500; display:flex; align-items:center; gap:4px; }
+    .main-content { flex: 1; padding: 40px 48px; overflow-y: auto; }
+    /* Legacy dash-header mapping for imported pages */
+    .dash-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 40px; }
+    .dash-header h1 { font-family: var(--font-display); font-size: 48px; font-weight: 400; letter-spacing: -1px; line-height: 1.1; margin-bottom: 8px; }
+    .dash-header p, .dash-header .subtitle { color: var(--fg-muted); font-size: 15px; }
+    .bg-shape { position: fixed; top: -20vh; right: -10vw; width: 60vw; height: 60vw; border-radius: 50%; background: radial-gradient(circle, rgba(91,122,247,0.08) 0%, transparent 60%); pointer-events: none; z-index: -1; filter: blur(40px); }
+    
+    /* Legacy Buttons mapped to modern style */
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 10px 20px; border-radius: 100px; font-weight: 500; font-size: 14px; cursor: pointer; transition: all 0.2s ease; text-decoration: none; border: 1px solid transparent; }
+    .btn-primary { background: var(--fg); color: white; box-shadow: 0 4px 14px rgba(0,0,0,0.1); }
+    .btn-primary:hover { background: #000; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
+    .btn-secondary, .btn-outline { background: white; border-color: var(--border-strong); color: var(--fg); }
+    .btn-secondary:hover, .btn-outline:hover { background: var(--bg); border-color: #d1d5db; }
+    
+    .list-item, .glass-card { background: var(--surface-frosted); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.4); border-radius: var(--radius-lg); padding: 24px; box-shadow: var(--shadow-md); margin-bottom: 16px; }
+    .badge { display: inline-flex; align-items: center; padding: 4px 10px; border-radius: 100px; font-size: 12px; font-weight: 500; }
+    .badge-success { background: rgba(16,185,129,0.1); color: var(--success); }
+    .badge-warning { background: rgba(245,158,11,0.1); color: var(--warning); }
+    .badge-danger { background: rgba(239,68,68,0.1); color: #EF4444; }
+    .input { border: 1px solid var(--border-strong); border-radius: var(--radius-sm); padding: 8px 12px; font-family: var(--font-body); }
+    
+    @media (max-width: 768px) { .sidebar { display: none; } .main-content { padding: 24px 20px; } }
+  </style>
+
+  <link rel="stylesheet" href="../assets/css/global.css">
+  
+  
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>🔧</text></svg>">
+</head>
+<body>
+
+
+
+<div class="bg-shape"></div>
+<div class="app-container">
+  <!-- Sleek Sidebar -->
+  <aside class="sidebar">
+    <a href="../index.html" class="brand">FixMate</a>
+    <nav class="nav-menu">
+      <a href="dashboard.html" class="nav-item dm-dashboard">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1"></rect><rect x="14" y="3" width="7" height="5" rx="1"></rect><rect x="14" y="12" width="7" height="9" rx="1"></rect><rect x="3" y="16" width="7" height="5" rx="1"></rect></svg>
+        Overview
+      </a>
+      <a href="booking.html" class="nav-item dm-booking">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"></path></svg>
+        Book Service
+      </a>
+      <a href="history.html" class="nav-item dm-history">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+        History
+      </a>
+      <a href="track.html" class="nav-item dm-track">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+        Track Worker
+      </a>
+      <a href="claims.html" class="nav-item dm-claims">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+        Protection
+      </a>
+      <a href="profile.html" class="nav-item dm-profile">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+        Settings
+      </a>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="user-profile" onclick="Auth.logout()">
+        <div class="avatar" id="sidebar-avatar">M</div>
+        <div class="user-info">
+          <div class="name" id="sidebar-name">Manjunath</div>
+          <div class="plan"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg> Premium Member</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <main class="main-content">
+    <div class="header" style="margin-bottom: 40px;">
+      <h1 style="font-size: 36px; margin-bottom: 8px;">👤 Premium Account Center</h1>
+      <p style="color:var(--fg-muted);font-size:16px;">Manage your details, wallet balance, and subscriptions.</p>
+    </div>
+
+    <!-- Header Card -->
+    <div class="glass-card" style="padding: 32px; display:flex; gap: 32px; align-items: center; flex-wrap: wrap; background: linear-gradient(145deg, var(--surface), var(--accent-light)); position:relative; overflow:hidden;">
+      <div style="position:absolute; right:-50px; top:-50px; width:200px; height:200px; background:var(--accent); filter:blur(80px); opacity:0.1; border-radius:50%;"></div>
+      <div style="width: 100px; height: 100px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), #9b87f5); display: flex; align-items: center; justify-content: center; color: white; font-size: 36px; font-weight: 700; box-shadow: var(--shadow-glow); border: 4px solid white;">M</div>
+      <div style="flex:1;">
+        <h2 style="font-size: 28px; font-family: var(--font-display); margin-bottom: 8px;">Manjunath Pendyal</h2>
+        <div style="display:flex; align-items:center; gap: 12px; flex-wrap:wrap;">
+          <span class="badge badge-warning" style="padding: 6px 12px; font-size: 13px;">⭐ Gold Member</span>
+          <span style="font-size:14px; color:var(--fg-muted);">Member since Jan 2025</span>
+        </div>
+      </div>
+      <div style="display:flex; gap: 12px;">
+        <button class="btn btn-outline">Edit Profile</button>
+        <button class="btn btn-primary" onclick="document.getElementById('membership-section').scrollIntoView({behavior:'smooth'})">Upgrade Plan</button>
+      </div>
+    </div>
+
+    <div style="display:grid; grid-template-columns: minmax(300px, 1fr) minmax(300px, 1fr); gap: 24px;">
+      
+      <!-- Personal Info Card -->
+      <div class="glass-card">
+        <h3 style="font-size: 18px; font-weight: 600; margin-bottom: 24px;">Personal Information</h3>
+        <div style="display:flex; flex-direction:column; gap: 16px;">
+          <div>
+            <label style="display:block; font-size:13px; font-weight:600; color:var(--fg-muted); margin-bottom:6px;">Full Name</label>
+            <input type="text" id="pf-name" class="input" value="Manjunath Pendyal" style="background:var(--bg);">
+          </div>
+          <div>
+            <label style="display:block; font-size:13px; font-weight:600; color:var(--fg-muted); margin-bottom:6px;">Email Address</label>
+            <input type="email" id="pf-email" class="input" value="manjunath@email.com" style="background:var(--bg);">
+          </div>
+          <div>
+            <label style="display:block; font-size:13px; font-weight:600; color:var(--fg-muted); margin-bottom:6px;">Phone Number</label>
+            <input type="tel" id="pf-phone" class="input" value="+91 98765 43210" style="background:var(--bg);">
+          </div>
+          <div>
+            <label style="display:block; font-size:13px; font-weight:600; color:var(--fg-muted); margin-bottom:6px;">City</label>
+            <select id="pf-city" class="input" style="background:var(--bg);"><option>Hyderabad</option><option>Bangalore</option><option>Mumbai</option></select>
+          </div>
+        </div>
+        <button id="pf-save-btn" class="btn btn-primary" style="margin-top:24px; width:100%;">Save Changes</button>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap: 24px;">
+        <!-- Wallet Card -->
+        <div id="wallet-section" class="glass-card" style="background: linear-gradient(135deg, #111827 0%, #1f2937 100%); color: white; border: none; box-shadow: 0 20px 40px -10px rgba(0,0,0,0.3);">
+          <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom: 16px;">
+            <h3 style="font-size: 18px; font-weight: 600; color: rgba(255,255,255,0.8);">FixMate Wallet</h3>
+            <span style="font-size: 24px;">💳</span>
+          </div>
+          <div style="margin-bottom: 24px;">
+            <p style="font-size: 40px; font-family: var(--font-display); font-weight: 500; line-height: 1;"><span id="wallet-balance-display">₹ —</span></p>
+            <p style="font-size: 14px; color: rgba(255,255,255,0.6); margin-top: 8px;">Reward Points: <strong id="reward-points-display" style="color:var(--success);">—</strong></p>
+          </div>
+          <div style="display:flex; flex-wrap:wrap; gap: 8px; margin-bottom: 16px;">
+            <button class="btn" style="background:rgba(255,255,255,0.1); color:white; border:1px solid rgba(255,255,255,0.2);" onclick="walletTopupPreset(100)">+ ₹100</button>
+            <button class="btn" style="background:rgba(255,255,255,0.1); color:white; border:1px solid rgba(255,255,255,0.2);" onclick="walletTopupPreset(500)">+ ₹500</button>
+          </div>
+          <div style="display:flex; gap: 8px;">
+            <input type="number" id="wallet-custom-amt" class="input" placeholder="Custom ₹" min="1" step="1" style="flex:1; background:rgba(255,255,255,0.05); color:white; border-color:rgba(255,255,255,0.2);">
+            <button class="btn" style="background:white; color:var(--fg);" onclick="walletTopupCustom()">Add Money</button>
+          </div>
+        </div>
+
+        <!-- Membership Card -->
+        <div id="membership-section" class="glass-card" style="border: 1px solid var(--warning); background: linear-gradient(to right, rgba(245, 158, 11, 0.05), rgba(245, 158, 11, 0.02));">
+          <div style="display:flex; justify-content:space-between; margin-bottom:16px;">
+            <div>
+              <h3 style="font-size: 18px; font-weight: 600; display:flex; align-items:center; gap:8px;">
+                ⭐ Premium Membership
+              </h3>
+              <p id="membership-status-line" style="font-size:13px; color:var(--fg-muted); margin-top:4px;">Loading membership…</p>
+            </div>
+          </div>
+          <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px;">
+            <button class="btn btn-outline" style="border-color:var(--warning); color:#b45309;" onclick="buyMembership('plus_monthly')">Plus ₹199 / mo</button>
+            <button class="btn btn-warning" onclick="buyMembership('plus_yearly')" style="color:white;">Plus ₹1,999 / yr</button>
+            <button class="btn btn-outline" style="border-color:var(--accent); color:var(--accent);" onclick="buyMembership('premium_monthly')">Pro ₹499 / mo</button>
+            <button class="btn btn-primary" onclick="buyMembership('premium_yearly')">Pro ₹4,999 / yr</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Saved Addresses & Preferences -->
+    <div style="display:grid; grid-template-columns: minmax(300px, 1fr) minmax(300px, 1fr); gap: 24px; margin-top: 24px;">
+      
+      <!-- Addresses -->
+      <div class="glass-card">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 24px;">
+          <h3 style="font-size: 18px; font-weight: 600;">Saved Locations</h3>
+          <button class="btn btn-outline" style="padding: 6px 12px; font-size:13px;">+ Add New</button>
+        </div>
+        <div style="display:flex; flex-direction:column; gap: 16px;">
+          <div style="padding: 16px; border: 1px solid var(--accent); background: var(--accent-light); border-radius: var(--radius-md); display:flex; gap: 16px; align-items:flex-start;">
+            <div style="font-size: 24px; background:white; width:40px; height:40px; border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:var(--shadow-sm);">🏠</div>
+            <div style="flex:1;">
+              <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+                <span style="font-weight:600; color:var(--accent);">Home</span>
+                <span class="badge badge-success" style="font-size:11px; padding: 2px 8px;">Default</span>
+              </div>
+              <p style="font-size:13px; color:var(--fg-muted); line-height:1.5;">Flat 302, Sunshine Apartments, Madhapur, Hyderabad 500081</p>
+            </div>
+          </div>
+          <div style="padding: 16px; border: 1px solid var(--border-strong); border-radius: var(--radius-md); display:flex; gap: 16px; align-items:flex-start; transition: border-color 0.2s; cursor:pointer;" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border-strong)'">
+            <div style="font-size: 24px; background:var(--bg); width:40px; height:40px; border-radius:50%; display:flex; align-items:center; justify-content:center;">🏢</div>
+            <div style="flex:1;">
+              <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+                <span style="font-weight:600;">Office</span>
+                <span style="font-size:12px; color:var(--accent);">Edit</span>
+              </div>
+              <p style="font-size:13px; color:var(--fg-muted); line-height:1.5;">WeWork Galaxy, Residency Rd, Ashok Nagar, Bangalore 560025</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Preferences & Security -->
+      <div class="glass-card">
+        <h3 style="font-size: 18px; font-weight: 600; margin-bottom: 24px;">Preferences & Security</h3>
+        <div style="display:flex; flex-direction:column; gap: 16px;">
+          <!-- Toggles -->
+          <div style="display:flex; justify-content:space-between; align-items:center; padding-bottom:16px; border-bottom:1px solid var(--border);">
+            <div>
+              <div style="font-weight:600; font-size:14px; margin-bottom:2px;">Push Notifications</div>
+              <div style="font-size:12px; color:var(--fg-muted);">Get alerts for bookings and live worker tracking</div>
+            </div>
+            <!-- Custom CSS Toggle -->
+            <label style="position:relative; display:inline-block; width:48px; height:24px;">
+              <input id="pf-push-toggle" type="checkbox" checked style="opacity:0; width:0; height:0;" onchange="this.nextElementSibling.style.background = this.checked ? 'var(--success)' : 'var(--border-strong)'; this.nextElementSibling.children[0].style.transform = this.checked ? 'translateX(24px)' : 'translateX(0)';">
+              <span style="position:absolute; cursor:pointer; top:0; left:0; right:0; bottom:0; background-color:var(--success); transition:.4s; border-radius:34px;">
+                <span style="position:absolute; content:''; height:18px; width:18px; left:3px; bottom:3px; background-color:white; transition:.4s; border-radius:50%; transform:translateX(24px); box-shadow:var(--shadow-sm);"></span>
+              </span>
+            </label>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center; padding-bottom:16px; border-bottom:1px solid var(--border);">
+            <div>
+              <div style="font-weight:600; font-size:14px; margin-bottom:2px;">Two-Factor Authentication</div>
+              <div style="font-size:12px; color:var(--fg-muted);">Protect your wallet & saved cards</div>
+            </div>
+            <button class="btn btn-outline" style="padding: 6px 12px; font-size:12px;">Enable</button>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+             <button class="btn btn-secondary" style="width:100%;">Sign Out Everywhere</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<div class="mobile-bottom-nav"><div class="container">
+  <a href="../index.html" class="mobile-nav-item"><span class="mnav-icon">🏠</span>Home</a>
+  <a href="booking.html" class="mobile-nav-item"><span class="mnav-icon">📋</span>Book</a>
+  <a href="dashboard.html" class="mobile-nav-item"><span class="mnav-icon">📊</span>Dashboard</a>
+  <a href="history.html" class="mobile-nav-item"><span class="mnav-icon">🕐</span>History</a>
+  <a href="profile.html" class="mobile-nav-item active"><span class="mnav-icon">👤</span>Profile</a>
+</div></div>
+<script src="../assets/js/api.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', async () => {
+  if (!requireAuth(['customer'])) return;
+  updateNavbarUser();
+  await refreshWalletUi();
+  await hydrateProfileForm();
+  wireProfileSave();
+  if (window.location.hash === '#membership-section') {
+    document.getElementById('membership-section')?.scrollIntoView({ behavior: 'smooth' });
+  }
+});
+
+async function hydrateProfileForm() {
+  const r = await UserAPI.getMe();
+  const u = r && r.user ? r.user : null;
+  if (!u) return;
+  const set = (id, val) => { const el = document.getElementById(id); if (el && val != null) el.value = val; };
+  set("pf-name", u.name || "");
+  set("pf-email", u.email || "");
+  set("pf-phone", u.phone || "");
+  set("pf-city", u.city || "");
+  const togg = document.getElementById("pf-push-toggle");
+  if (tog) {
+    const saved = localStorage.getItem("fixmate_pref_push");
+    if (saved != null) togg.checked = saved === "1";
+    togg.dispatchEvent(new Event("change"));
+    togg.addEventListener("change", () => localStorage.setItem("fixmate_pref_push", togg.checked ? "1" : "0"));
+  }
+}
+
+function wireProfileSave() {
+  const btn = document.getElementById("pf-save-btn");
+  if (!btn) return;
+  btn.addEventListener("click", async () => {
+    const body = {
+      name: document.getElementById("pf-name")?.value?.trim(),
+      phone: document.getElementById("pf-phone")?.value?.trim(),
+      city: document.getElementById("pf-city")?.value?.trim()
+    };
+    const prev = btn.textContent;
+    btn.disabled = true;
+    btn.textContent = "Saving...";
+    try {
+      await UserAPI.updateProfile(body);
+      const curr = Auth.getUser() || {};
+      curr.name = body.name || curr.name;
+      curr.phone = body.phone || curr.phone;
+      curr.city = body.city || curr.city;
+      Auth.save(Auth.getToken(), curr, Auth.getRole(), !!localStorage.getItem("fixmate_token"));
+      showToast("Profile updated successfully", "success");
+    } catch (e) {
+      showToast(e.message || "Could not save profile", "error");
+    } finally {
+      btn.disabled = false;
+      btn.textContent = prev;
+    }
+  });
+}
+
+async function refreshWalletUi() {
+  const r = await UserAPI.getMe();
+  const el = document.getElementById('wallet-balance-display');
+  const rp = document.getElementById('reward-points-display');
+  const ms = document.getElementById('membership-status-line');
+  if (!r?.user) return;
+  if (el) el.textContent = '₹' + Number(r.user.walletBalance ?? 0).toLocaleString('en-IN');
+  if (rp) rp.textContent = r.user.rewardPoints ?? 0;
+  if (ms) {
+    const exp = r.user.membershipExpiresAt;
+    ms.textContent = exp
+      ? `${r.user.membership || 'Member'} · valid until ${new Date(exp).toLocaleDateString()}`
+      : (r.user.membership || 'Free') + ' · renew below';
+  }
+}
+
+async function walletTopupPreset(amount) {
+  try {
+    await loadRazorpayScript();
+    const ord = await PaymentAPI.walletTopup({ amountRupees: amount });
+    if (!ord?.orderId) {
+      showToast(ord?.error || 'Top-up unavailable — configure Razorpay keys on the server.', 'error');
+      return;
+    }
+    const resp = await openRazorpayModal({
+      keyId: ord.keyId,
+      orderId: ord.orderId,
+      amountPaise: ord.amountPaise,
+      description: 'FixMate wallet top-up'
+    });
+    const v = await PaymentAPI.verify({
+      razorpay_payment_id: resp.razorpay_payment_id,
+      razorpay_order_id: resp.razorpay_order_id,
+      razorpay_signature: resp.razorpay_signature
+    });
+    if (v?.success) {
+      showToast('Wallet credited successfully', 'success');
+      await refreshWalletUi();
+    } else {
+      showToast(v?.error || 'Verification failed', 'error');
+    }
+  } catch (e) {
+    showToast(e.message || 'Top-up cancelled or failed', 'error');
+  }
+}
+
+async function walletTopupCustom() {
+  const raw = document.getElementById('wallet-custom-amt')?.value;
+  const n = Number(raw);
+  if (!n || n < 1) {
+    showToast('Enter a valid amount (₹1 or more)', 'error');
+    return;
+  }
+  await walletTopupPreset(Math.floor(n));
+}
+
+async function buyMembership(planCode) {
+  try {
+    await loadRazorpayScript();
+    const ord = await PaymentAPI.subscription({ planCode });
+    if (!ord?.orderId) {
+      showToast(ord?.error || 'Plans unavailable — configure Razorpay keys.', 'error');
+      return;
+    }
+    const resp = await openRazorpayModal({
+      keyId: ord.keyId,
+      orderId: ord.orderId,
+      amountPaise: ord.amountPaise,
+      description: 'FixMate membership'
+    });
+    const v = await PaymentAPI.verify({
+      razorpay_payment_id: resp.razorpay_payment_id,
+      razorpay_order_id: resp.razorpay_order_id,
+      razorpay_signature: resp.razorpay_signature
+    });
+    if (v?.success) {
+      showToast('Membership activated — enjoy the perks!', 'success');
+      await refreshWalletUi();
+    } else {
+      showToast(v?.error || 'Verification failed', 'error');
+    }
+  } catch (e) {
+    showToast(e.message || 'Payment cancelled', 'error');
+  }
+}
+</script>
+<script src="../assets/js/main.js"></script>
+<script>
+    document.querySelectorAll('.nav-item').forEach(el=>el.classList.remove('active'));
+    let act = document.querySelector('.dm-profile');
+    if(act) act.classList.add('active');
+  </script>
+</body>
+</html>

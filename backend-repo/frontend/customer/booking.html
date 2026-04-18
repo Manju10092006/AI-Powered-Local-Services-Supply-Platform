@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FixMate AI — Book Service</title>
+  <link rel="stylesheet" href="../assets/css/global.css">
+  <link rel="stylesheet" href="../assets/css/navbar.css">
+  <link rel="stylesheet" href="../assets/css/cards.css">
+  <link rel="stylesheet" href="../assets/css/customer.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>🔧</text></svg>">
+</head>
+<body>
+<nav class="navbar"><div class="container">
+  <a href="../index.html" class="nav-logo"><div class="nav-logo-icon">F</div><div><div class="nav-logo-text">Fix<span>Mate</span></div></div><span class="nav-logo-badge">AI</span></a>
+  <div class="nav-search"><span class="nav-search-icon">🔍</span><input type="text" class="nav-search-input" placeholder="Search services..."><button class="nav-search-btn">→</button></div>
+  <div class="nav-links">
+    <a href="dashboard.html" class="nav-link"><span class="nav-icon">📊</span><span>Dashboard</span></a>
+    <a href="booking.html" class="nav-link" style="color:var(--primary);"><span class="nav-icon">📋</span><span>Book</span></a>
+  </div>
+  <a href="../login.html" class="nav-auth-btn"><span>👤</span> Manjunath</a>
+  <button class="nav-mobile-toggle">☰</button>
+</div></nav>
+
+<div class="dashboard-layout">
+  <aside class="dash-sidebar">
+    <div class="dash-sidebar-menu">
+      <a href="dashboard.html" class="dash-menu-item"><span class="dm-icon">📊</span> Dashboard</a>
+      <a href="booking.html" class="dash-menu-item active"><span class="dm-icon">📋</span> Book Service</a>
+      <a href="track.html" class="dash-menu-item"><span class="dm-icon">📍</span> Track Worker</a>
+      <a href="history.html" class="dash-menu-item"><span class="dm-icon">🕐</span> My Bookings</a>
+      <a href="profile.html" class="dash-menu-item"><span class="dm-icon">👤</span> Profile</a>
+      <a href="../index.html" class="dash-menu-item"><span class="dm-icon">🏠</span> Home</a>
+    </div>
+  </aside>
+
+  <main class="dash-main">
+    <div class="dash-header">
+      <div><h1>📋 Book a Service</h1><p style="color:var(--text-muted);">Choose your service, timing, and let our AI match you with the best worker</p></div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1.2fr 0.8fr;gap:28px;">
+      <!-- Booking Form -->
+      <div class="booking-form" style="max-width:none;">
+        <!-- Step 1: Service Selection -->
+        <div style="margin-bottom:28px;">
+          <h3 style="margin-bottom:16px;">1️⃣ Select Service Category</h3>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;">
+            <div class="category-card" style="padding:14px 10px;min-width:auto;" onclick="this.style.borderColor='var(--primary)';this.style.background='var(--primary-glow)'">
+              <div class="category-card-icon blue" style="width:44px;height:44px;font-size:22px;">🧹</div>
+              <div class="category-card-title" style="font-size:0.75rem;">Cleaning</div>
+            </div>
+            <div class="category-card" style="padding:14px 10px;min-width:auto;" onclick="this.style.borderColor='var(--primary)';this.style.background='var(--primary-glow)'">
+              <div class="category-card-icon cyan" style="width:44px;height:44px;font-size:22px;">🔧</div>
+              <div class="category-card-title" style="font-size:0.75rem;">Plumbing</div>
+            </div>
+            <div class="category-card" style="padding:14px 10px;min-width:auto;" onclick="this.style.borderColor='var(--primary)';this.style.background='var(--primary-glow)'">
+              <div class="category-card-icon yellow" style="width:44px;height:44px;font-size:22px;">⚡</div>
+              <div class="category-card-title" style="font-size:0.75rem;">Electrical</div>
+            </div>
+            <div class="category-card" style="padding:14px 10px;min-width:auto;" onclick="this.style.borderColor='var(--primary)';this.style.background='var(--primary-glow)'">
+              <div class="category-card-icon blue" style="width:44px;height:44px;font-size:22px;">❄️</div>
+              <div class="category-card-title" style="font-size:0.75rem;">AC Repair</div>
+            </div>
+            <div class="category-card" style="padding:14px 10px;min-width:auto;" onclick="this.style.borderColor='var(--primary)';this.style.background='var(--primary-glow)'">
+              <div class="category-card-icon pink" style="width:44px;height:44px;font-size:22px;">💇</div>
+              <div class="category-card-title" style="font-size:0.75rem;">Salon</div>
+            </div>
+            <div class="category-card" style="padding:14px 10px;min-width:auto;" onclick="this.style.borderColor='var(--primary)';this.style.background='var(--primary-glow)'">
+              <div class="category-card-icon orange" style="width:44px;height:44px;font-size:22px;">🎨</div>
+              <div class="category-card-title" style="font-size:0.75rem;">Painting</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 2: Issue Details -->
+        <div style="margin-bottom:28px;">
+          <h3 style="margin-bottom:16px;">2️⃣ Describe Your Issue</h3>
+          <div class="form-group">
+            <label>What do you need?</label>
+            <select class="input" style="cursor:pointer;">
+              <option value="">Select specific service...</option>
+              <option>Full Home Deep Cleaning</option>
+              <option>Bathroom Cleaning</option>
+              <option>Tap Repair / Replacement</option>
+              <option>Pipe Leakage Repair</option>
+              <option>Fan Installation</option>
+              <option>Switchboard Repair</option>
+              <option>AC Gas Refill</option>
+              <option>AC Deep Cleaning</option>
+              <option>Bridal Makeup</option>
+              <option>Hair Spa</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Describe the issue (optional)</label>
+            <textarea class="input" rows="3" placeholder="E.g., My kitchen tap is leaking from the base, water dripping constantly..."></textarea>
+          </div>
+          <div class="form-group">
+            <label>📸 Upload Photo (AI Detection)</label>
+            <div style="border:2px dashed var(--border);border-radius:var(--radius-md);padding:32px;text-align:center;cursor:pointer;transition:all 0.2s;" onmouseover="this.style.borderColor='var(--primary)'" onmouseout="this.style.borderColor='var(--border)'">
+              <div style="font-size:2.5rem;margin-bottom:8px;">📷</div>
+              <div style="font-size:0.875rem;color:var(--text-muted);">Click to upload or drag & drop</div>
+              <div style="font-size:0.75rem;color:var(--primary);margin-top:4px;font-weight:600;">AI will auto-detect the issue type</div>
+              <input type="file" accept="image/*" style="display:none;" id="photo-upload">
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 3: Timing -->
+        <div style="margin-bottom:28px;">
+          <h3 style="margin-bottom:16px;">3️⃣ Select Timing</h3>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+            <div style="padding:20px;border:2px solid var(--accent-red);border-radius:var(--radius-md);background:linear-gradient(135deg,#FEF2F2,#FFF7ED);cursor:pointer;text-align:center;" onclick="this.style.background='rgba(239,68,68,0.1)'">
+              <div style="font-size:1.5rem;margin-bottom:6px;">⚡</div>
+              <div style="font-weight:700;color:var(--accent-red);">Emergency — 10 Min</div>
+              <div style="font-size:0.75rem;color:var(--text-muted);margin-top:4px;">+₹99 priority fee</div>
+            </div>
+            <div style="padding:20px;border:2px solid var(--primary);border-radius:var(--radius-md);background:var(--primary-glow);cursor:pointer;text-align:center;">
+              <div style="font-size:1.5rem;margin-bottom:6px;">📅</div>
+              <div style="font-weight:700;color:var(--primary);">Schedule Slot</div>
+              <div style="font-size:0.75rem;color:var(--text-muted);margin-top:4px;">Choose date &amp; time</div>
+            </div>
+          </div>
+          <div class="form-row" style="margin-top:16px;">
+            <div class="form-group">
+              <label>Date</label>
+              <input type="date" class="input">
+            </div>
+            <div class="form-group">
+              <label>Preferred Time</label>
+              <select class="input">
+                <option>9:00 AM - 12:00 PM</option>
+                <option>12:00 PM - 3:00 PM</option>
+                <option>3:00 PM - 6:00 PM</option>
+                <option>6:00 PM - 9:00 PM</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 4: Address -->
+        <div style="margin-bottom:28px;">
+          <h3 style="margin-bottom:16px;">4️⃣ Service Location</h3>
+          <div class="form-group">
+            <label>Address</label>
+            <textarea class="input" rows="2" placeholder="Flat 302, Sunshine Apartments, Madhapur, Hyderabad">Flat 302, Sunshine Apartments, Madhapur, Hyderabad</textarea>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Landmark</label>
+              <input type="text" class="input" placeholder="Near Inorbit Mall" value="Near Inorbit Mall">
+            </div>
+            <div class="form-group">
+              <label>Phone</label>
+              <input type="tel" class="input" placeholder="+91 98765 43210" value="+91 98765 43210">
+            </div>
+          </div>
+        </div>
+
+        <button class="btn btn-primary btn-full btn-xl" id="confirm-booking-btn" onclick="confirmBooking()">
+          ✓ Confirm Booking
+        </button>
+      </div>
+
+      <!-- Booking Summary -->
+      <div>
+        <div style="background:#fff;border-radius:var(--radius-xl);padding:28px;box-shadow:var(--shadow-sm);position:sticky;top:90px;">
+          <h3 style="margin-bottom:20px;">📝 Booking Summary</h3>
+          <div style="display:flex;flex-direction:column;gap:14px;">
+            <div style="display:flex;justify-content:space-between;font-size:0.875rem;">
+              <span style="color:var(--text-muted);">Service</span>
+              <span style="font-weight:600;">AC Gas Refill</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;font-size:0.875rem;">
+              <span style="color:var(--text-muted);">Category</span>
+              <span style="font-weight:600;">AC & Appliances</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;font-size:0.875rem;">
+              <span style="color:var(--text-muted);">Duration</span>
+              <span style="font-weight:600;">1-2 hours</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;font-size:0.875rem;">
+              <span style="color:var(--text-muted);">Timing</span>
+              <span style="font-weight:600;">Schedule — Tomorrow</span>
+            </div>
+            <div class="divider" style="margin:8px 0;"></div>
+            <div style="display:flex;justify-content:space-between;font-size:0.875rem;">
+              <span style="color:var(--text-muted);">Service Price</span>
+              <span style="font-weight:600;">₹1,299</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;font-size:0.875rem;">
+              <span style="color:var(--text-muted);">Materials (if needed)</span>
+              <span style="font-weight:600;">₹500 - ₹900</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;font-size:0.875rem;">
+              <span style="color:var(--text-muted);">Platform Fee</span>
+              <span style="font-weight:600;">₹49</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;font-size:0.875rem;color:var(--accent-green);">
+              <span>Plus Discount (15%)</span>
+              <span style="font-weight:600;">- ₹195</span>
+            </div>
+            <div class="divider" style="margin:8px 0;"></div>
+            <div style="display:flex;justify-content:space-between;font-size:1.125rem;">
+              <span style="font-weight:800;">Total</span>
+              <span style="font-weight:800;color:var(--primary);">₹1,153 — ₹1,553</span>
+            </div>
+          </div>
+
+          <div style="margin-top:24px;padding:16px;background:rgba(16,185,129,0.08);border-radius:var(--radius-md);display:flex;align-items:center;gap:10px;">
+            <span style="font-size:1.25rem;">🛡️</span>
+            <div>
+              <div style="font-weight:600;font-size:0.8125rem;">30-Day Service Warranty</div>
+              <div style="font-size:0.75rem;color:var(--text-muted);">Free re-service if issue persists</div>
+            </div>
+          </div>
+
+          <div style="margin-top:16px;padding:16px;background:rgba(245,158,11,0.08);border-radius:var(--radius-md);display:flex;align-items:center;gap:10px;">
+            <span style="font-size:1.25rem;">⭐</span>
+            <div>
+              <div style="font-weight:600;font-size:0.8125rem;">FixMate Plus Active</div>
+              <div style="font-size:0.75rem;color:var(--text-muted);">You're saving ₹195 on this booking!</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<div class="mobile-bottom-nav"><div class="container">
+  <a href="../index.html" class="mobile-nav-item"><span class="mnav-icon">🏠</span>Home</a>
+  <a href="booking.html" class="mobile-nav-item active"><span class="mnav-icon">📋</span>Book</a>
+  <a href="dashboard.html" class="mobile-nav-item"><span class="mnav-icon">📊</span>Dashboard</a>
+  <a href="history.html" class="mobile-nav-item"><span class="mnav-icon">🕐</span>History</a>
+  <a href="profile.html" class="mobile-nav-item"><span class="mnav-icon">👤</span>Profile</a>
+</div></div>
+<script src="../assets/js/api.js"></script>
+<script src="../assets/js/main.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded',()=>{ if(!requireAuth(['customer']))return; updateNavbarUser(); });
+async function confirmBooking(){
+  const btn=document.getElementById('confirm-booking-btn');
+  btn.textContent='⏳ Booking...'; btn.disabled=true;
+  try{
+    const service=document.querySelector('.dash-main select')?.value||'General Service';
+    const desc=document.querySelector('.dash-main textarea')?.value||'';
+    const addr=document.querySelectorAll('.dash-main textarea')[1]?.value||'Address';
+    const data=await BookingAPI.create({service,category:'general',price:1299,address:addr,description:desc,type:'scheduled'});
+    if(data){ showToast(data.message||'Booking created!','success'); setTimeout(()=>{window.location.href='track.html';},1000); }
+    else showToast('Server unreachable','error');
+  }catch(e){ showToast(e.message,'error'); }
+  finally{ btn.textContent='✓ Confirm Booking'; btn.disabled=false; }
+}
+</script>
+</body>
+</html>

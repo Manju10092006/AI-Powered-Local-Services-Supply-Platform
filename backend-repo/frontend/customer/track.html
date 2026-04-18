@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FixMate AI — Track Worker</title>
+  <link rel="stylesheet" href="../assets/css/global.css">
+  <link rel="stylesheet" href="../assets/css/navbar.css">
+  <link rel="stylesheet" href="../assets/css/cards.css">
+  <link rel="stylesheet" href="../assets/css/customer.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>🔧</text></svg>">
+</head>
+<body>
+<nav class="navbar"><div class="container">
+  <a href="../index.html" class="nav-logo"><div class="nav-logo-icon">F</div><div><div class="nav-logo-text">Fix<span>Mate</span></div></div><span class="nav-logo-badge">AI</span></a>
+  <div class="nav-links">
+    <a href="dashboard.html" class="nav-link"><span class="nav-icon">📊</span><span>Dashboard</span></a>
+    <a href="track.html" class="nav-link" style="color:var(--primary);"><span class="nav-icon">📍</span><span>Track</span></a>
+  </div>
+  <a href="../login.html" class="nav-auth-btn"><span>👤</span> Manjunath</a>
+  <button class="nav-mobile-toggle">☰</button>
+</div></nav>
+
+<div class="dashboard-layout">
+  <aside class="dash-sidebar">
+    <div class="dash-sidebar-menu">
+      <a href="dashboard.html" class="dash-menu-item"><span class="dm-icon">📊</span> Dashboard</a>
+      <a href="booking.html" class="dash-menu-item"><span class="dm-icon">📋</span> Book Service</a>
+      <a href="track.html" class="dash-menu-item active"><span class="dm-icon">📍</span> Track Worker</a>
+      <a href="history.html" class="dash-menu-item"><span class="dm-icon">🕐</span> My Bookings</a>
+      <a href="profile.html" class="dash-menu-item"><span class="dm-icon">👤</span> Profile</a>
+      <a href="../index.html" class="dash-menu-item"><span class="dm-icon">🏠</span> Home</a>
+    </div>
+  </aside>
+
+  <main class="dash-main">
+    <div class="dash-header"><h1>📍 Track Your Worker</h1></div>
+
+    <!-- Tracking Status -->
+    <div class="tracking-status-bar">
+      <div class="tracking-step completed">
+        <div class="ts-dot"></div>
+        <div class="ts-label">Booked</div>
+      </div>
+      <div class="tracking-step completed">
+        <div class="ts-dot"></div>
+        <div class="ts-label">Assigned</div>
+      </div>
+      <div class="tracking-step current">
+        <div class="ts-dot"></div>
+        <div class="ts-label">On the Way</div>
+      </div>
+      <div class="tracking-step">
+        <div class="ts-dot"></div>
+        <div class="ts-label">Arrived</div>
+      </div>
+      <div class="tracking-step">
+        <div class="ts-dot"></div>
+        <div class="ts-label">Working</div>
+      </div>
+      <div class="tracking-step">
+        <div class="ts-dot"></div>
+        <div class="ts-label">Completed</div>
+      </div>
+    </div>
+
+    <!-- Map Placeholder -->
+    <div class="tracking-map">
+      <div style="text-align:center;">
+        <div style="font-size:4rem;">🗺️</div>
+        <div style="font-size:1.25rem;color:var(--text-secondary);margin-top:8px;font-weight:600;">Live Tracking Map</div>
+        <div style="font-size:0.875rem;color:var(--text-muted);margin-top:4px;">Worker is 1.2 km away • ETA: 4 minutes</div>
+        <div style="position:absolute;top:60px;left:30%;width:14px;height:14px;background:var(--primary);border-radius:50%;animation:blink 1.5s ease infinite;box-shadow:0 0 0 4px var(--primary-glow);"></div>
+        <div style="position:absolute;bottom:80px;right:35%;width:14px;height:14px;background:var(--accent-green);border-radius:50%;box-shadow:0 0 0 4px rgba(16,185,129,0.2);"></div>
+        <div style="position:absolute;top:60px;left:calc(30% + 7px);width:2px;height:calc(100% - 140px);background:var(--primary);opacity:0.3;transform:rotate(25deg);"></div>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+      <!-- Worker Info -->
+      <div style="background:#fff;border-radius:var(--radius-xl);padding:28px;box-shadow:var(--shadow-sm);">
+        <h3 style="margin-bottom:20px;">👷 Your Worker</h3>
+        <div style="display:flex;align-items:center;gap:16px;margin-bottom:20px;">
+          <div style="width:64px;height:64px;border-radius:50%;overflow:hidden;border:3px solid var(--accent-green);">
+            <img src="../Images/img_4.jpeg" alt="Worker" style="width:100%;height:100%;object-fit:cover;">
+          </div>
+          <div>
+            <div style="font-weight:700;font-size:1.125rem;">Rajesh Kumar</div>
+            <div style="font-size:0.8125rem;color:var(--text-muted);">Cleaning Specialist • 5 yrs exp</div>
+            <div style="display:flex;align-items:center;gap:6px;margin-top:4px;">
+              <span style="background:var(--accent-green);color:#fff;padding:2px 8px;border-radius:4px;font-size:0.75rem;font-weight:700;">4.9 ★</span>
+              <span style="font-size:0.75rem;color:var(--text-muted);">1,234 jobs</span>
+            </div>
+          </div>
+        </div>
+        <div style="display:flex;gap:10px;">
+          <button class="btn btn-primary btn-sm" style="flex:1;">📞 Call</button>
+          <button class="btn btn-secondary btn-sm" style="flex:1;">💬 Chat</button>
+          <button class="btn btn-outline btn-sm">📍 Navigate</button>
+        </div>
+        <div style="margin-top:16px;padding:12px;background:var(--bg-tertiary);border-radius:var(--radius-sm);display:flex;align-items:center;gap:8px;">
+          <span style="font-size:1rem;">🛡️</span>
+          <span style="font-size:0.75rem;color:var(--text-secondary);">KYC Verified • Background Checked • Insured</span>
+        </div>
+      </div>
+
+      <!-- Booking Info -->
+      <div style="background:#fff;border-radius:var(--radius-xl);padding:28px;box-shadow:var(--shadow-sm);">
+        <h3 style="margin-bottom:20px;">📋 Booking Details</h3>
+        <div style="display:flex;flex-direction:column;gap:14px;">
+          <div style="display:flex;justify-content:space-between;font-size:0.875rem;">
+            <span style="color:var(--text-muted);">Service</span>
+            <span style="font-weight:600;">Full Home Deep Cleaning</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:0.875rem;">
+            <span style="color:var(--text-muted);">Booking ID</span>
+            <span style="font-weight:600;font-family:monospace;">#FX-28475</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:0.875rem;">
+            <span style="color:var(--text-muted);">Duration</span>
+            <span style="font-weight:600;">4-5 hours</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:0.875rem;">
+            <span style="color:var(--text-muted);">Amount</span>
+            <span style="font-weight:700;color:var(--primary);">₹1,999</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:0.875rem;">
+            <span style="color:var(--text-muted);">Address</span>
+            <span style="font-weight:600;text-align:right;max-width:200px;">Flat 302, Sunshine Apts, Madhapur</span>
+          </div>
+          <div class="divider" style="margin:6px 0;"></div>
+          <div style="display:flex;align-items:center;gap:8px;padding:10px;background:rgba(245,158,11,0.08);border-radius:var(--radius-sm);">
+            <span style="font-size:1.25rem;">⏱️</span>
+            <div>
+              <div style="font-weight:700;font-size:0.875rem;color:var(--secondary-dark);">ETA: 4 minutes</div>
+              <div style="font-size:0.75rem;color:var(--text-muted);">Worker is on the way</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- OTP Section -->
+    <div style="margin-top:24px;background:linear-gradient(135deg,#F5F3FF,#EDE9FE);border-radius:var(--radius-xl);padding:28px;text-align:center;">
+      <h3>🔐 Share OTP with Worker</h3>
+      <p style="color:var(--text-muted);font-size:0.875rem;margin-top:4px;">Worker must enter this OTP to start the service</p>
+      <div style="display:flex;justify-content:center;gap:12px;margin-top:20px;">
+        <div style="width:56px;height:64px;background:#fff;border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center;font-size:1.75rem;font-weight:900;color:var(--primary);box-shadow:var(--shadow-md);">4</div>
+        <div style="width:56px;height:64px;background:#fff;border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center;font-size:1.75rem;font-weight:900;color:var(--primary);box-shadow:var(--shadow-md);">7</div>
+        <div style="width:56px;height:64px;background:#fff;border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center;font-size:1.75rem;font-weight:900;color:var(--primary);box-shadow:var(--shadow-md);">2</div>
+        <div style="width:56px;height:64px;background:#fff;border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center;font-size:1.75rem;font-weight:900;color:var(--primary);box-shadow:var(--shadow-md);">9</div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<div class="mobile-bottom-nav"><div class="container">
+  <a href="../index.html" class="mobile-nav-item"><span class="mnav-icon">🏠</span>Home</a>
+  <a href="booking.html" class="mobile-nav-item"><span class="mnav-icon">📋</span>Book</a>
+  <a href="dashboard.html" class="mobile-nav-item"><span class="mnav-icon">📊</span>Dashboard</a>
+  <a href="track.html" class="mobile-nav-item active"><span class="mnav-icon">📍</span>Track</a>
+  <a href="profile.html" class="mobile-nav-item"><span class="mnav-icon">👤</span>Profile</a>
+</div></div>
+<script src="../assets/js/api.js"></script>
+<script>document.addEventListener('DOMContentLoaded',()=>{if(!requireAuth(['customer']))return;updateNavbarUser();});</script>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>
